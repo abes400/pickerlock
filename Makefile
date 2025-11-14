@@ -28,3 +28,6 @@ build_osx:
 	$(MACOS_LINKED_LIBS) \
 	$(LINKED_LIBS) \
 	-o dist/$(MACOS_OUTPUT_DIR)/Pickerlock
+
+	cp -r project/assets dist/$(MACOS_OUTPUT_DIR)/
+	./dist/$(MACOS_OUTPUT_DIR)/Pickerlock
