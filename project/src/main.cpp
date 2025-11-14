@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "raymath.h"
 #include "gamesetup.h"
+#include "button.hpp"
 #include <math.h>
 
 #include <iostream>
@@ -8,27 +9,51 @@ using namespace std;
 
 void TileBG(Texture2D&, int, int);
 
+void LoopMainMenu() {
+    
+}
+
 int main() {
-
-    InitWindow(W_WINDOW, H_WINDOW, "Pickerlock");
-
+    
     ChangeDirectory(GetApplicationDirectory());
+    InitWindow(W_WINDOW, H_WINDOW, "Pickerlock");
 
     Texture2D background = LoadTexture("assets/texture/bg.png");
     const short tileRow = ceil(H_WINDOW / background.height) + 1;
-    const short tileCol = ceil(W_WINDOW / background.width); 
+    const short tileCol = ceil(W_WINDOW / background.width);
 
+    // Initialize Game Objects
+    Button* startButton = new Button("assets/texture/start.png", Vector2 {CENTER_X_WINDOW, H_WINDOW - 200});
+    
+
+    short scene = MAIN_MENU;
     while(!WindowShouldClose()) {
 
-
-        // DRAW
         BeginDrawing();
         ClearBackground(BLACK);
-        //DrawTexture(background, 0, 0, WHITE);
         TileBG(background, tileRow, tileCol);
 
-        EndDrawing();
+        switch(scene) {
+            case MAIN_MENU:
+                // Event Handling
+                
+                // Draw
+                startButton -> draw();
 
+
+            break;
+
+            case IN_GAME:
+            break;
+
+            case INSTRUCTIONS:
+            break;
+
+            case CREDITS:
+            break;
+        }
+
+        EndDrawing();
     }
     
     CloseWindow();
