@@ -1,6 +1,7 @@
 #include "gameloops.hpp"
 #include "raylib.h"
 #include <math.h>
+#include <iostream>
 #include "gamesetup.h"
 #include "button.hpp"
 
@@ -18,10 +19,21 @@ void init() {
 }
 
 void MainMenu() {
-    Button* start = new Button("assets/texture/start.png", Vector2 {CENTER_X_WINDOW, H_WINDOW - 200});
+    Button* start = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 200}, "assets/texture/start.png", "assets/texture/start_down.png");
+    
+    Vector2 mousePos;
+    bool mousePressed, mouseReleased;
     while(scene == MAIN_MENU && !WindowShouldClose()) {
 
-        // Draw
+        mousePos = GetMousePosition();
+        mousePressed = IsMouseButtonDown(MOUSE_BUTTON_LEFT);
+
+        if(start -> checkClick(mousePos, mousePressed)) {
+            std::cout << "start 1 clicked\n";
+        }
+
+
+        // Draw elements
         BeginDrawing();
         TileBG(background, tileRow, tileCol);
         start -> draw();
