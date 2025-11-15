@@ -9,19 +9,22 @@ using namespace std;
 
 Texture2D background;
 Texture2D start_btn, start_btn_down, btn, btn_down, ui_box;
+Font uifont;
 short tileRow;
 short tileCol;
 float tileAnimOffset = 0;
 short scene;
 
-void initTextures();
+void initAssets();
+void unloadAssets();
 
 int main() {
     
     ChangeDirectory(GetApplicationDirectory());
 
+    SetConfigFlags(FLAG_VSYNC_HINT);
     InitWindow(W_WINDOW, H_WINDOW, "Pickerlock");
-    initTextures();
+    initAssets();
 
     
     // Initialize Game Objects
@@ -48,17 +51,31 @@ int main() {
 
     }
     
+    unloadAssets();
     CloseWindow();
     return 0;
 }
 
-void initTextures() {
+void initAssets() {
     background = LoadTexture("assets/texture/bg.png");
     start_btn = LoadTexture("assets/texture/start.png");
+    uifont = LoadFont("assets/font/uifont.ttf");
     start_btn_down = LoadTexture("assets/texture/start_down.png");
     btn = LoadTexture("assets/texture/button.png");
     btn_down = LoadTexture("assets/texture/button_down.png");
     
     tileRow = ceil(H_WINDOW / background.height) + 2;
     tileCol = ceil(W_WINDOW / background.width) + 1;
+}
+
+void unloadAssets() {
+    UnloadTexture(background);
+    UnloadTexture(start_btn);
+    UnloadFont(uifont);
+    UnloadTexture(start_btn_down);
+    UnloadTexture(btn);
+    UnloadTexture(btn_down);
+
+    cout << "Assets Unloaded\n";
+
 }

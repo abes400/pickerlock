@@ -1,7 +1,6 @@
 #include "gameloops.hpp"
 #include "raylib.h"
 #include <math.h>
-#include <iostream>
 #include "gamesetup.h"
 #include "button.hpp"
 
@@ -15,22 +14,33 @@ extern short scene;
 void TileBG();
 
 void MainMenu() {
-    Button* start = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 200}, &start_btn, &start_btn_down);
-    Button* instr = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 130}, &btn, &btn_down);
+
+    // Initialise MainMenu Elements
+    Button* start = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 220}, &start_btn, &start_btn_down);
+
+    Button* instr = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 140}, &btn, &btn_down);
+    instr -> addLabel("Instructions", LIFT, 8);
+
+    Button* crdts = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 60}, &btn, &btn_down);
+    crdts -> addLabel("Credits", LIFT, 8);
     
     Vector2 mousePos;
     bool mousePressed;
+
+    // Menu Loop
     while(scene == MAIN_MENU && !WindowShouldClose()) {
 
+        // Handle Button Events
         mousePos = GetMousePosition();
         mousePressed = IsMouseButtonDown(MOUSE_BUTTON_LEFT);
 
         if(start -> checkClick(mousePos, mousePressed)) {
-            std::cout << "start 1 clicked\n";
         }
 
-        if(instr -> checkClick(mousePos, mousePressed)) {
-            std::cout << "start 1 clicked\n";
+        else if(instr -> checkClick(mousePos, mousePressed)) {
+        }
+
+        else if(crdts -> checkClick(mousePos, mousePressed)) {
         }
 
         // Draw elements
@@ -38,11 +48,14 @@ void MainMenu() {
         TileBG();
         start -> draw();
         instr -> draw();
+        crdts -> draw();
         EndDrawing();
     }
 
+    // Deallocate Buttons
     delete start;
     delete instr;
+    delete crdts;
 
 }
 
