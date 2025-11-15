@@ -9,7 +9,7 @@ extern Texture2D background;
 extern Texture2D start_btn, start_btn_down, btn, btn_down, ui_box;
 extern short tileRow;
 extern short tileCol;
-extern short tileAnimOffset;
+extern float tileAnimOffset;
 extern short scene;
 
 void TileBG(Texture2D&, int, int);
@@ -27,7 +27,6 @@ void MainMenu() {
         if(start -> checkClick(mousePos, mousePressed)) {
             std::cout << "start 1 clicked\n";
         }
-
 
         // Draw elements
         BeginDrawing();
@@ -53,6 +52,6 @@ void TileBG(Texture2D& texture, int row, int col) {
     for(int i = 0; i < col; i++)
         for(int j = 0; j < row; j++)
             DrawTexture(texture, i * texture.width - tileAnimOffset, j * texture.height - tileAnimOffset, WHITE);
-    //tileAnimOffset = tileAnimOffset == texture.width ? 0 : tileAnimOffset + 1;
+    tileAnimOffset = tileAnimOffset >= texture.width ? 0 : tileAnimOffset + 40 * GetFrameTime();
             
 }

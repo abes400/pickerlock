@@ -11,7 +11,7 @@ Texture2D background;
 Texture2D start_btn, start_btn_down, btn, btn_down, ui_box;
 short tileRow;
 short tileCol;
-short tileAnimOffset = 0;
+float tileAnimOffset = 0;
 short scene;
 
 void initTextures();
