@@ -4,15 +4,14 @@
 #include "raylib.h"
 class Button {
     private:
-        Texture2D texture_, texture_hold_;
+        Texture2D* texture_;
+        Texture2D* texture_hold_;
         Texture2D* currentTexture_;
         Vector2 position_;
         bool hold_ = false;
-        bool hasHoldTexture_ = false;
-    public:
-        Button(Vector2 position, const char *image_path, const char *image_path_hold) ;
-        ~Button();
 
+    public:
+        Button(Vector2 position, Texture2D* texture, Texture2D* texture_hold) ;
         void draw();
         bool checkClick(Vector2& mousePos, bool mousePressed);
 };
