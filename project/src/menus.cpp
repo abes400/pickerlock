@@ -12,13 +12,14 @@ extern short tileCol;
 extern float tileAnimOffset;
 extern short scene;
 
-void TileBG(Texture2D&, int, int);
+void TileBG();
 
 void MainMenu() {
     Button* start = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 200}, &start_btn, &start_btn_down);
+    Button* instr = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 130}, &btn, &btn_down);
     
     Vector2 mousePos;
-    bool mousePressed, mouseReleased;
+    bool mousePressed;
     while(scene == MAIN_MENU && !WindowShouldClose()) {
 
         mousePos = GetMousePosition();
@@ -28,14 +29,20 @@ void MainMenu() {
             std::cout << "start 1 clicked\n";
         }
 
+        if(instr -> checkClick(mousePos, mousePressed)) {
+            std::cout << "start 1 clicked\n";
+        }
+
         // Draw elements
         BeginDrawing();
-        TileBG(background, tileRow, tileCol);
+        TileBG();
         start -> draw();
+        instr -> draw();
         EndDrawing();
     }
 
     delete start;
+    delete instr;
 
 }
 
@@ -48,10 +55,10 @@ void Credits() {
 
 }
 
-void TileBG(Texture2D& texture, int row, int col) {
-    for(int i = 0; i < col; i++)
-        for(int j = 0; j < row; j++)
-            DrawTexture(texture, i * texture.width - tileAnimOffset, j * texture.height - tileAnimOffset, WHITE);
-    tileAnimOffset = tileAnimOffset >= texture.width ? 0 : tileAnimOffset + 40 * GetFrameTime();
-            
+// Tiles the background texture in an animated manner
+void TileBG() {
+    for(int i = 0; i < tileCol; i++)
+        for(int j = 0; j < tileRow; j++)
+            DrawTexture(background, i * background.width - tileAnimOffset, j * background.height - tileAnimOffset, WHITE);
+    tileAnimOffset = tileAnimOffset >= background.width ? 0 : tileAnimOffset + 40 * GetFrameTime();  
 }
