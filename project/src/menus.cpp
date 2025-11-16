@@ -94,11 +94,10 @@ void Instructions() {
     short txtY = boxY + 50;
 
     // Init visualization
-   float frameTimer;
-   short frameIndex = FRAME_COUNT;
-   Vector2 framePos = {static_cast<float>((W_WINDOW - instruction.width)/2), static_cast<float>((H_WINDOW - FRAME_HEIGHT)/2 - 20)};
-   Rectangle frameCrop = {0, 0, static_cast<float>(instruction.width), FRAME_HEIGHT};
-
+    float frameTimer;
+    short frameIndex = FRAME_COUNT;
+    Vector2 framePos = {static_cast<float>((W_WINDOW - instruction.width)/2), static_cast<float>((H_WINDOW - FRAME_HEIGHT)/2 - 20)};
+    Rectangle frameCrop = {0, 0, static_cast<float>(instruction.width), FRAME_HEIGHT};
 
 
     // Init back btn
@@ -132,11 +131,12 @@ void Instructions() {
         BeginDrawing();
         ClearBackground(BLACK);
         TileBG();
+
         DrawTexture(ui_box, boxX, boxY, WHITE);
         DrawTextEx(uifont, instTxt, {static_cast<float>(txtX), static_cast<float>(txtY)}, FONT_SIZE, 0, WHITE);
         DrawTextureRec(instruction, frameCrop, framePos, WHITE);
-
         back -> draw();
+
         EndDrawing();
     }
 
@@ -145,6 +145,49 @@ void Instructions() {
 }
 
 void Credits() {
+    // Init text
+    short boxX = (W_WINDOW - ui_box.width) / 2;
+    short boxY = (H_WINDOW - ui_box.height) / 2;
+
+    char* instTxt =
+                    "Pickerlock 1.0 \n\n"
+                    "---- CREDITS ---- \n"
+                    "Concept, Programming and Artwork : Abes400 \n\n"
+                    "Sound effects (Probably) Obtained from ZapSplat. \n"
+                    "Distributed under MIT License. \n\n"
+                    "Made for 20 Seconds GameJam 2025\n";
+    
+    Vector2 instTxtSize = MeasureTextEx(uifont, instTxt, FONT_SIZE, 0);
+    short txtX = boxX + (ui_box.width - instTxtSize.x) / 2;
+    short txtY = boxY + (ui_box.height - instTxtSize.y) / 2;
+
+    // Init back btn
+    Button* back = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 140}, &btn, &btn_down);
+    back -> addLabel("Back", LIFT, 8);
+
+    Vector2 mousePos;
+
+    while(scene == CREDITS && !WindowShouldClose()) {
+        // Handle Button Events
+        mousePos = GetMousePosition();
+
+        if(back -> checkClick(mousePos, IsMouseButtonDown(MOUSE_BUTTON_LEFT))) {
+            scene = MAIN_MENU;
+            break;
+        }
+
+        // Draw elements
+        BeginDrawing();
+        ClearBackground(BLACK);
+        TileBG();
+
+        DrawTexture(ui_box, boxX, boxY, WHITE);
+        DrawTextEx(uifont, instTxt, {static_cast<float>(txtX), static_cast<float>(txtY)}, FONT_SIZE, 0, WHITE);
+        back -> draw();
+        
+        EndDrawing();
+
+    }
 
 }
 
