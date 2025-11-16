@@ -189,6 +189,8 @@ void Credits() {
 
     }
 
+    delete back;
+
 }
 
 // Tiles the background texture in an animated manner
