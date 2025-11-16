@@ -1,6 +1,9 @@
 #include "button.hpp"
 #include "gamesetup.h"
 
+#include <iostream>
+using namespace std;
+
 extern Font uifont;
 
 Button::Button(Vector2 position, Texture2D* texture, Texture2D* texture_hold) {
@@ -54,4 +57,8 @@ bool Button::checkClick(Vector2& mousePos, bool mousePressed) {
   }
 
   return false;
+}
+
+Button::~Button() {
+  cout << "APP: Button deallocated\n";
 }

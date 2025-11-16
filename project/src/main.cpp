@@ -9,6 +9,7 @@ using namespace std;
 
 Texture2D background;
 Texture2D start_btn, start_btn_down, btn, btn_down, ui_box;
+Texture2D instruction;
 Font uifont;
 short tileRow;
 short tileCol;
@@ -43,6 +44,7 @@ int main() {
             break;
 
             case INSTRUCTIONS:
+            Instructions();
             break;
 
             case CREDITS:
@@ -63,6 +65,8 @@ void initAssets() {
     start_btn_down = LoadTexture("assets/texture/start_down.png");
     btn = LoadTexture("assets/texture/button.png");
     btn_down = LoadTexture("assets/texture/button_down.png");
+    ui_box = LoadTexture("assets/texture/uibox.png");
+    instruction = LoadTexture("assets/texture/inst_vis.png");
     
     tileRow = ceil(H_WINDOW / background.height) + 2;
     tileCol = ceil(W_WINDOW / background.width) + 1;
@@ -75,6 +79,8 @@ void unloadAssets() {
     UnloadTexture(start_btn_down);
     UnloadTexture(btn);
     UnloadTexture(btn_down);
+    UnloadTexture(ui_box);
+    UnloadTexture(instruction);
 
     cout << "Assets Unloaded\n";
 

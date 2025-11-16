@@ -15,7 +15,7 @@ class Button {
 
         char* label_;
         short lift_height_;
-        
+
         short current_label_offset_;
         short label_x_, label_y_;
         
@@ -24,5 +24,7 @@ class Button {
         void addLabel(char* label = nullptr, bool lifted = false, short lift_height = 0);
         void draw();
         bool checkClick(Vector2& mousePos, bool mousePressed);
+
+        ~Button();
 };
 #endif

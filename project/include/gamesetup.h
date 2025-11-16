@@ -11,6 +11,6 @@
 #define INSTRUCTIONS 2
 #define CREDITS 3
 
-#define FONT_SIZE 20
+#define FONT_SIZE 17
 
 #endif
