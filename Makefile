@@ -30,7 +30,8 @@ win:
 	-I$(LIB_INCLUDE_DIRS) \
 	$(CPP_SRCS) \
 	$(LINKED_LIB_PATH)$(WINDOWS_RAYLIB_LINKED) $(WINDOWS_LINKED_LIBS) \
-	-o dist/$(WINDOWS_OUTPUT_DIR)/Pickerlock
+	-o dist/$(WINDOWS_OUTPUT_DIR)/Pickerlock \
+	-static 
 
 	cp -r project/assets dist/$(WINDOWS_OUTPUT_DIR)/
 	./dist/$(WINDOWS_OUTPUT_DIR)/Pickerlock
