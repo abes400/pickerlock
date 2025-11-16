@@ -21,6 +21,7 @@ void MainMenu() {
 
     // Initialise MainMenu Elements
     Button* start = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 220}, &start_btn, &start_btn_down);
+    start -> addLabel("a");
 
     Button* instr = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 140}, &btn, &btn_down);
     instr -> addLabel("Instructions", LIFT, 8);
