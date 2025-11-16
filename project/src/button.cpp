@@ -15,17 +15,22 @@ Button::Button(Vector2 position, Texture2D* texture, Texture2D* texture_hold) {
 }
 
 void Button::addLabel(char* label, bool lifted, short lift_height) {
-  label_ = label;
-  lift_height_ = lifted ? lift_height : 0;
+  if(label != nullptr) {
+    label_ = label;
+    lift_height_ = lifted ? lift_height : 0;
 
-  Vector2 labelSize = MeasureTextEx(uifont, label, FONT_SIZE, 0);
-  label_x_ = position_.x + (texture_ -> width - labelSize.x) / 2;
-  label_y_ = position_.y + (texture_ -> height - labelSize.y) / 2 - lift_height;
+    Vector2 labelSize = MeasureTextEx(uifont, label, FONT_SIZE, 0);
+    label_pos_ = Vector2 {static_cast<float>(position_.x + (texture_ -> width - labelSize.x) / 2), 
+                          static_cast<float>(position_.y + (texture_ -> height - labelSize.y) / 2 - lift_height)};
+    labeled_ = true;
+  } else labeled_ = false;
+  
+  cout << labeled_ << endl;
 }
 
 void Button::draw() {
   DrawTextureV(*currentTexture_, position_, WHITE);
-  DrawTextEx(uifont, label_, {static_cast<float>(label_x_), static_cast<float>(label_y_ + current_label_offset_)}, FONT_SIZE, 0, BLACK);
+  if(labeled_) DrawTextEx(uifont, label_, label_pos_, FONT_SIZE, 0, BLACK);
 }
 
 bool Button::checkClick(Vector2& mousePos, bool mousePressed) {
@@ -43,14 +48,14 @@ bool Button::checkClick(Vector2& mousePos, bool mousePressed) {
       hold_ = true;
       if (texture_hold_ != nullptr) {
         currentTexture_ = texture_hold_;
-        current_label_offset_ = lift_height_;
+        label_pos_.y += lift_height_;
       }  
     }
   } else {
     if (hold_) {
       hold_ = false;
       currentTexture_ = texture_;
-      current_label_offset_ = 0;
+      label_pos_.y -= lift_height_;
       if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         return true;
     }

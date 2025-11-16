@@ -21,7 +21,6 @@ void MainMenu() {
 
     // Initialise MainMenu Elements
     Button* start = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 220}, &start_btn, &start_btn_down);
-    start -> addLabel("a");
 
     Button* instr = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 140}, &btn, &btn_down);
     instr -> addLabel("Instructions", LIFT, 8);
@@ -56,7 +55,7 @@ void MainMenu() {
 
         // Draw elements
         BeginDrawing();
-        ClearBackground(BLACK);
+        ClearBackground(PL_YELLOW);
         TileBG();
         start -> draw();
         instr -> draw();
@@ -130,7 +129,7 @@ void Instructions() {
 
         // Draw elements
         BeginDrawing();
-        ClearBackground(BLACK);
+        ClearBackground(PL_YELLOW);
         TileBG();
 
         DrawTexture(ui_box, boxX, boxY, WHITE);
@@ -179,7 +178,7 @@ void Credits() {
 
         // Draw elements
         BeginDrawing();
-        ClearBackground(BLACK);
+        ClearBackground(PL_YELLOW);
         TileBG();
 
         DrawTexture(ui_box, boxX, boxY, WHITE);
