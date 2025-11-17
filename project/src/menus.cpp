@@ -42,7 +42,7 @@ void MainMenu() {
         mousePressed = IsMouseButtonDown(MOUSE_BUTTON_LEFT);
 
         if(start -> checkClick(mousePos, mousePressed)) {
-            scene = IN_GAME;
+            scene = DIFFICULTY;
             break;
         }
 
@@ -71,6 +71,65 @@ void MainMenu() {
     delete start;
     delete instr;
     delete crdts;
+
+}
+
+void Difficulty() {
+    // Init text
+    short boxX = (W_WINDOW - ui_box.width) / 2;
+    short boxY = (H_WINDOW - ui_box.height) / 2;
+
+    char* instTxt ="Select Difficulty to begin:";
+    
+    Vector2 instTxtSize = MeasureTextEx(uifont, instTxt, FONT_SIZE, 0);
+    short txtX = boxX + (ui_box.width - instTxtSize.x) / 2;
+    short txtY = boxY + 100;
+
+    // Init btuttons
+    Button* back = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 140}, &btn, &btn_down);
+    back -> addLabel("Back", LIFT, 8);
+
+    Button* easy = new Button(Vector2 {CENTER_X_WINDOW - 160, CENTER_Y_WINDOW}, &btn, &btn_down);
+    easy -> addLabel("Easy \n3 Tiles", LIFT, 8);
+
+    Button* medi = new Button(Vector2 {CENTER_X_WINDOW, CENTER_Y_WINDOW}, &btn, &btn_down);
+    medi -> addLabel("Medium \n4 Tiles", LIFT, 8);
+
+    Button* hard = new Button(Vector2 {CENTER_X_WINDOW + 160, CENTER_Y_WINDOW}, &btn, &btn_down);
+    hard -> addLabel("Hard \n5 Tiles", LIFT, 8);
+
+    Vector2 mousePos;
+
+    while(scene == DIFFICULTY && !WindowShouldClose()) {
+        // Handle Button Events
+        mousePos = GetMousePosition();
+
+        if(back -> checkClick(mousePos, IsMouseButtonDown(MOUSE_BUTTON_LEFT))) {
+            scene = MAIN_MENU;
+            break;
+        }
+
+        // Draw elements
+        BeginDrawing();
+        ClearBackground(PL_YELLOW);
+        TileBG();
+
+        DrawTexture(ui_box, boxX, boxY, WHITE);
+        DrawTextEx(uifont, instTxt, {static_cast<float>(txtX), static_cast<float>(txtY)}, FONT_SIZE, 0, WHITE);
+
+        easy -> draw();
+        medi -> draw();
+        hard -> draw();
+        back -> draw();
+        
+        EndDrawing();
+
+    }
+
+    delete back;
+    delete easy;
+    delete medi;
+    delete hard;
 
 }
 

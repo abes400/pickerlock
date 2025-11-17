@@ -40,6 +40,10 @@ int main() {
             MainMenu();
             break;
 
+            case DIFFICULTY:
+            Difficulty();
+            break;
+
             case IN_GAME:
             break;
 

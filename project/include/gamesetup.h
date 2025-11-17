@@ -8,8 +8,9 @@
 
 #define MAIN_MENU 0
 #define IN_GAME 1
-#define INSTRUCTIONS 2
-#define CREDITS 3
+#define DIFFICULTY 2
+#define INSTRUCTIONS 3
+#define CREDITS 4
 
 #define FONT_SIZE 17
 
