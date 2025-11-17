@@ -65,6 +65,7 @@ WASM_OUTPUT_HTML	= index.html
 WASM_PRELOAD		= project/assets@/assets
 WASM_STACK_MB		= 64
 WASM_INIT_MEM_MB	= 128
+WASM_SHELL			= shell.html
 
 web:
 	clear
@@ -78,9 +79,11 @@ web:
 	--preload-file $(WASM_PRELOAD) 							\
 	-s TOTAL_STACK=$(WASM_STACK_MB)MB 						\
     -s INITIAL_MEMORY=$(WASM_INIT_MEM_MB)MB 				\
+	--shell-file project/web/$(WASM_SHELL)					\
 	-s $(WASM_FLAGS)
 
 	@echo [ INFO ] WEB BUILD SUCCEEDED. Output located at dist/$(WASM_OUTPUT_DIR)/
 
 make clear:
 	rm -rf dist
+	@echo [ INFO ] OUTPUT FILES DELETED.
