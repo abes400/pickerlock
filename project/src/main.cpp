@@ -7,7 +7,7 @@
 #include <iostream>
 using namespace std;
 
-Texture2D background;
+Texture2D background, logo;
 Texture2D start_btn, start_btn_down, btn, btn_down, ui_box;
 Texture2D instruction;
 Font uifont;
@@ -61,6 +61,7 @@ int main() {
 
 void initAssets() {
     background = LoadTexture("assets/texture/bg.png");
+    logo = LoadTexture("assets/texture/logo.png");
     start_btn = LoadTexture("assets/texture/start.png");
     uifont = LoadFont("assets/font/uifont.ttf");
     start_btn_down = LoadTexture("assets/texture/start_down.png");
@@ -75,6 +76,7 @@ void initAssets() {
 
 void unloadAssets() {
     UnloadTexture(background);
+    UnloadTexture(logo);
     UnloadTexture(start_btn);
     UnloadFont(uifont);
     UnloadTexture(start_btn_down);

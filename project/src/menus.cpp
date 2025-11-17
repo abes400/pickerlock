@@ -6,7 +6,7 @@
 #include <iostream>
 using namespace std;
 
-extern Texture2D background;
+extern Texture2D background, logo;
 extern Texture2D start_btn, start_btn_down, btn, btn_down, ui_box;
 extern Texture2D instruction;
 extern short tileRow;
@@ -18,6 +18,9 @@ extern Font uifont;
 void TileBG();
 
 void MainMenu() {
+    
+    // Init logo
+    short logoX = (W_WINDOW - logo.width) / 2;
 
     // Initialise MainMenu Elements
     Button* start = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 220}, &start_btn, &start_btn_down);
@@ -57,6 +60,7 @@ void MainMenu() {
         BeginDrawing();
         ClearBackground(PL_YELLOW);
         TileBG();
+        DrawTexture(logo, logoX, 0, WHITE);
         start -> draw();
         instr -> draw();
         crdts -> draw();
