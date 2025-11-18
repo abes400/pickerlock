@@ -23,12 +23,12 @@ void MainMenu() {
     short logoX = (W_WINDOW - logo.width) / 2;
 
     // Initialise MainMenu Elements
-    Button* start = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 220}, &start_btn, &start_btn_down);
+    Button* start = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 205}, &start_btn, &start_btn_down);
 
     Button* instr = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 140}, &btn, &btn_down);
     instr -> addLabel("Instructions", LIFT, 8);
 
-    Button* crdts = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 60}, &btn, &btn_down);
+    Button* crdts = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 80}, &btn, &btn_down);
     crdts -> addLabel("Credits", LIFT, 8);
     
     Vector2 mousePos;
@@ -79,9 +79,9 @@ void Difficulty() {
     short boxX = (W_WINDOW - ui_box.width) / 2;
     short boxY = (H_WINDOW - ui_box.height) / 2;
 
-    char* instTxt ="Select Difficulty to begin:";
+    char* diffTxt ="Select Difficulty to begin:";
     
-    Vector2 instTxtSize = MeasureTextEx(uifont, instTxt, FONT_SIZE, 0);
+    Vector2 instTxtSize = MeasureTextEx(uifont, diffTxt, FONT_SIZE, 0);
     short txtX = boxX + (ui_box.width - instTxtSize.x) / 2;
     short txtY = boxY + 100;
 
@@ -90,13 +90,13 @@ void Difficulty() {
     back -> addLabel("Back", LIFT, 8);
 
     Button* easy = new Button(Vector2 {CENTER_X_WINDOW - 160, CENTER_Y_WINDOW}, &btn, &btn_down);
-    easy -> addLabel("Easy \n3 Tiles", LIFT, 8);
+    easy -> addLabel("Easy", LIFT, 8);
 
     Button* medi = new Button(Vector2 {CENTER_X_WINDOW, CENTER_Y_WINDOW}, &btn, &btn_down);
-    medi -> addLabel("Medium \n4 Tiles", LIFT, 8);
+    medi -> addLabel("Medium", LIFT, 8);
 
     Button* hard = new Button(Vector2 {CENTER_X_WINDOW + 160, CENTER_Y_WINDOW}, &btn, &btn_down);
-    hard -> addLabel("Hard \n5 Tiles", LIFT, 8);
+    hard -> addLabel("Hard", LIFT, 8);
 
     Vector2 mousePos;
 
@@ -115,7 +115,7 @@ void Difficulty() {
         TileBG();
 
         DrawTexture(ui_box, boxX, boxY, WHITE);
-        DrawTextEx(uifont, instTxt, {static_cast<float>(txtX), static_cast<float>(txtY)}, FONT_SIZE, 0, WHITE);
+        DrawTextEx(uifont, diffTxt, {static_cast<float>(txtX), static_cast<float>(txtY)}, FONT_SIZE, 0, WHITE);
 
         easy -> draw();
         medi -> draw();
@@ -157,7 +157,7 @@ void Instructions() {
     short txtY = boxY + 50;
 
     // Init visualization
-    float frameTimer;
+    float frameTimer = FRAMETIMER_INIT;
     short frameIndex = FRAME_COUNT;
     Vector2 framePos = {static_cast<float>((W_WINDOW - instruction.width)/2), static_cast<float>((H_WINDOW - FRAME_HEIGHT)/2 - 20)};
     Rectangle frameCrop = {0, 0, static_cast<float>(instruction.width), FRAME_HEIGHT};
