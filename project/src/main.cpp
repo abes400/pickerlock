@@ -1,7 +1,7 @@
 #include "raylib.h"
 #include "raymath.h"
+
 #include "gamesetup.h"
-#include "button.hpp"
 #include "gameloops.hpp"
 
 #include <iostream>
@@ -23,14 +23,10 @@ int main() {
     
     ChangeDirectory(GetApplicationDirectory());
 
+    // Init game window
     SetConfigFlags(FLAG_VSYNC_HINT);
     InitWindow(W_WINDOW, H_WINDOW, "Pickerlock");
     initAssets();
-
-    
-    // Initialize Game Objects
-    //Button* startButton = new Button("assets/texture/start.png", Vector2 {CENTER_X_WINDOW, H_WINDOW - 200});
-    
 
     scene = MAIN_MENU;
     while(!WindowShouldClose()) {

@@ -1,5 +1,4 @@
-#ifndef BUTTON_HPP
-#define BUTTON_HPP
+#pragma once
 
 #include "raylib.h"
 
@@ -7,18 +6,20 @@
 #define NO_LIFT false
 class Button {
     private:
-        Texture2D* texture_;
-        Texture2D* texture_hold_;
-        Texture2D* currentTexture_;
-        Vector2 position_;
-        bool hold_ = false;
+        Texture2D*  texture_;
+        Texture2D*  texture_hold_;
+        Texture2D*  currentTexture_;
+        Vector2     position_;
+        bool        hold_ = false;
 
-        const char* label_ = nullptr;
-        short lift_height_;
-        bool labeled_ = false;
-        Vector2 label_pos_;
         
+        Vector2     label_pos_;
+        short       lift_height_;
+        const char* label_          = nullptr;
+        bool        labeled_        = false;
+         
     public:
+    
         Button(Vector2 position, Texture2D* texture, Texture2D* texture_hold = nullptr);
         void addLabel(const char* label = nullptr, bool lifted = false, short lift_height = 0);
         void draw();
@@ -26,4 +27,3 @@ class Button {
 
         ~Button();
 };
-#endif

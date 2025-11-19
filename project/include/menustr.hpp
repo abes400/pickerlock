@@ -1,5 +1,4 @@
-#ifndef MENUSTR_HPP
-#define MENUSTR_HPP
+#pragma once
 
 namespace MainMenuStr {
     constexpr const char* play = "Play";
@@ -42,4 +41,3 @@ namespace DiffStr {
 namespace MiscMenuStr {
     constexpr const char* back = "Back";
 }
-#endif
