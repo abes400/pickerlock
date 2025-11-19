@@ -26,8 +26,6 @@ void Button::addLabel(const char* label, bool lifted, short lift_height) {
         labeled_ = true;
     } else
         labeled_ = false;
-
-    cout << labeled_ << endl;
 }
 
 void Button::draw() {
