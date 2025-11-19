@@ -79,7 +79,7 @@ void Difficulty() {
     short boxX = (W_WINDOW - ui_box.width) / 2;
     short boxY = (H_WINDOW - ui_box.height) / 2;
 
-    char* diffTxt ="Select Difficulty to begin:";
+    const char* diffTxt ="Select Difficulty to begin:";
     
     Vector2 instTxtSize = MeasureTextEx(uifont, diffTxt, FONT_SIZE, 0);
     short txtX = boxX + (ui_box.width - instTxtSize.x) / 2;
@@ -142,7 +142,7 @@ void Instructions() {
     short boxX = (W_WINDOW - ui_box.width) / 2;
     short boxY = (H_WINDOW - ui_box.height) / 2;
 
-    char* instTxt = "Objective: \n"
+    const char* instTxt = "Objective: \n"
                     "You are in a lock picking contest. \n"
                     "You are tasked to pick as many locks as you can in 20 seconds. \n\n\n\n\n\n\n\n"
 
@@ -212,7 +212,7 @@ void Credits() {
     short boxX = (W_WINDOW - ui_box.width) / 2;
     short boxY = (H_WINDOW - ui_box.height) / 2;
 
-    char* instTxt =
+    const char* instTxt =
                     "Pickerlock 1.0 \n\n"
                     "---- CREDITS ---- \n"
                     "Concept, Programming and Artwork : Abes400 \n\n"

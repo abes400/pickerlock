@@ -14,7 +14,7 @@ Button::Button(Vector2 position, Texture2D* texture, Texture2D* texture_hold) {
   position_.y -= texture_ -> height/2;
 }
 
-void Button::addLabel(char* label, bool lifted, short lift_height) {
+void Button::addLabel(const char* label, bool lifted, short lift_height) {
   if(label != nullptr) {
     label_ = label;
     lift_height_ = lifted ? lift_height : 0;
