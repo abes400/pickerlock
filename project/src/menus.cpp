@@ -1,4 +1,5 @@
 #include <math.h>
+#include <stdio.h>
 
 #include "raylib.h"
 
@@ -11,9 +12,6 @@
 
 #include "assets.hpp"
 
-#include <iostream>
-using namespace std;
-
 
 void MainMenu() {
     
@@ -21,12 +19,31 @@ void MainMenu() {
     short logoX = (W_WINDOW - Assets::logo.width) / 2;
 
     // Initialise MainMenu Elements
-    Button* start = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 205}, &Assets::start_btn,   &Assets::start_btn_down);
-    Button* instr = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 140}, &Assets::btn,         &Assets::btn_down);
-    Button* crdts = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 80 }, &Assets::btn,         &Assets::btn_down);
+    Button* start = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 177}, &Assets::start_btn,   &Assets::start_btn_down);
+    Button* instr = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 115}, &Assets::btn,         &Assets::btn_down);
+    Button* crdts = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 60 }, &Assets::btn,         &Assets::btn_down);
 
     instr -> addLabel(MainMenuStr::inst, LIFT, 8);
     crdts -> addLabel(MainMenuStr::cred, LIFT, 8);
+
+    // Init scoreboard strings
+    Vector2 scoreTxtSize = MeasureTextEx(Assets::uifont, MainMenuStr::scrs, FONT_SIZE, 0);
+    Vector2 scoreTxtPos  = {
+        static_cast<float>(logoX + (Assets::ui_box.width - scoreTxtSize.x) / 2),
+        static_cast<float>(Assets::logo.height + 5)
+    };
+
+    int HSeasy = 4, HSmedium = 8, HShard = 120;
+
+    // allocate 15 char long string buffer for high score values
+    char* hsStr = (char*) malloc(sizeof(char) * 15);
+    sprintf(hsStr, MainMenuStr::hscr, HSeasy, HSmedium, HShard);
+    
+    Vector2 scoreValSize = MeasureTextEx(Assets::uifont, MainMenuStr::hscr, FONT_SIZE, 0);
+    Vector2 scoreValPos  = {
+        scoreTxtPos.x + scoreTxtSize.x - scoreValSize.x,
+        scoreTxtPos.y + scoreTxtSize.y/4
+    };
     
     Vector2 mousePos;
     bool    mousePressed;
@@ -48,6 +65,8 @@ void MainMenu() {
         tileBG();
 
         DrawTexture(Assets::logo, logoX, 0, WHITE);
+        DrawTextEx(Assets::uifont, MainMenuStr::scrs, scoreTxtPos, FONT_SIZE, 0, BLACK);
+        DrawTextEx(Assets::uifont, hsStr,   scoreValPos, FONT_SIZE, 0, BLACK);
         start -> draw();
         instr -> draw();
         crdts -> draw();
@@ -59,6 +78,7 @@ void MainMenu() {
     delete start;
     delete instr;
     delete crdts;
+    free(hsStr);
 }
 
 void Difficulty() {
