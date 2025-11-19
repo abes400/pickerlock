@@ -4,21 +4,23 @@
 
 #include "gamesetup.h"
 #include "globals.h"
+#include "commonvisuals.h"
 
 #include "menustr.hpp"
 #include "button.hpp"
 
-void TileBG();
+#include "assets.hpp"
+
 
 void MainMenu() {
     
     // Init logo coordinates
-    short logoX = (W_WINDOW - logo.width) / 2;
+    short logoX = (W_WINDOW - Assets::logo.width) / 2;
 
     // Initialise MainMenu Elements
-    Button* start = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 205}, &start_btn,   &start_btn_down);
-    Button* instr = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 140}, &btn,         &btn_down);
-    Button* crdts = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 80 }, &btn,         &btn_down);
+    Button* start = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 205}, &Assets::start_btn,   &Assets::start_btn_down);
+    Button* instr = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 140}, &Assets::btn,         &Assets::btn_down);
+    Button* crdts = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 80 }, &Assets::btn,         &Assets::btn_down);
 
     instr -> addLabel(MainMenuStr::inst, LIFT, 8);
     crdts -> addLabel(MainMenuStr::cred, LIFT, 8);
@@ -40,9 +42,9 @@ void MainMenu() {
         // Draw elements
         BeginDrawing();
         ClearBackground(PL_YELLOW);
-        TileBG();
+        tileBG();
 
-        DrawTexture(logo, logoX, 0, WHITE);
+        DrawTexture(Assets::logo, logoX, 0, WHITE);
         start -> draw();
         instr -> draw();
         crdts -> draw();
@@ -59,19 +61,19 @@ void MainMenu() {
 void Difficulty() {
 
     // Init text
-    short boxX          = (W_WINDOW - ui_box.width) / 2;
-    short boxY          = (H_WINDOW - ui_box.height) / 2;
+    short boxX          = (W_WINDOW - Assets::ui_box.width) / 2;
+    short boxY          = (H_WINDOW - Assets::ui_box.height) / 2;
 
     
-    Vector2 instTxtSize = MeasureTextEx(uifont, DiffStr::diffTxt, FONT_SIZE, 0);
-    short txtX          = boxX + (ui_box.width - instTxtSize.x) / 2;
+    Vector2 instTxtSize = MeasureTextEx(Assets::uifont, DiffStr::diffTxt, FONT_SIZE, 0);
+    short txtX          = boxX + (Assets::ui_box.width - instTxtSize.x) / 2;
     short txtY          = boxY + 100;
 
     // Init btuttons
-    Button* back = new Button(Vector2 {CENTER_X_WINDOW,       H_WINDOW - 140 }, &btn, &btn_down);
-    Button* easy = new Button(Vector2 {CENTER_X_WINDOW - 160, CENTER_Y_WINDOW}, &btn, &btn_down);
-    Button* medi = new Button(Vector2 {CENTER_X_WINDOW,       CENTER_Y_WINDOW}, &btn, &btn_down);
-    Button* hard = new Button(Vector2 {CENTER_X_WINDOW + 160, CENTER_Y_WINDOW}, &btn, &btn_down);
+    Button* back = new Button(Vector2 {CENTER_X_WINDOW,       H_WINDOW - 140 }, &Assets::btn, &Assets::btn_down);
+    Button* easy = new Button(Vector2 {CENTER_X_WINDOW - 160, CENTER_Y_WINDOW}, &Assets::btn, &Assets::btn_down);
+    Button* medi = new Button(Vector2 {CENTER_X_WINDOW,       CENTER_Y_WINDOW}, &Assets::btn, &Assets::btn_down);
+    Button* hard = new Button(Vector2 {CENTER_X_WINDOW + 160, CENTER_Y_WINDOW}, &Assets::btn, &Assets::btn_down);
 
     back -> addLabel(MiscMenuStr::back, LIFT, 8);
     easy -> addLabel(DiffStr::easy,     LIFT, 8);
@@ -92,10 +94,10 @@ void Difficulty() {
         // Draw elements
         BeginDrawing();
         ClearBackground(PL_YELLOW);
-        TileBG();
+        tileBG();
 
-        DrawTexture(ui_box, boxX, boxY, WHITE);
-        DrawTextEx(uifont, DiffStr::diffTxt, {static_cast<float>(txtX), static_cast<float>(txtY)}, FONT_SIZE, 0, WHITE);
+        DrawTexture(Assets::ui_box, boxX, boxY, WHITE);
+        DrawTextEx(Assets::uifont, DiffStr::diffTxt, {static_cast<float>(txtX), static_cast<float>(txtY)}, FONT_SIZE, 0, WHITE);
         easy -> draw();
         medi -> draw();
         hard -> draw();
@@ -118,25 +120,25 @@ void Difficulty() {
 void Instructions() {
 
     // Init box coords.
-    short boxX          = (W_WINDOW - ui_box.width ) / 2;
-    short boxY          = (H_WINDOW - ui_box.height) / 2;
+    short boxX          = (W_WINDOW - Assets::ui_box.width ) / 2;
+    short boxY          = (H_WINDOW - Assets::ui_box.height) / 2;
 
     // Calculate instr. text coords.
-    Vector2 instTxtSize = MeasureTextEx(uifont, InstructionsStr::instTxt, FONT_SIZE, 0);
-    short txtX          = boxX + (ui_box.width - instTxtSize.x) / 2;
+    Vector2 instTxtSize = MeasureTextEx(Assets::uifont, InstructionsStr::instTxt, FONT_SIZE, 0);
+    short txtX          = boxX + (Assets::ui_box.width - instTxtSize.x) / 2;
     short txtY          = boxY + 50;
 
     // Init visualization animation
     float frameTimer    = FRAMETIMER_INIT;
     short frameIndex    = FRAME_COUNT;
-    Rectangle frameCrop = {0, 0, static_cast<float>(instruction.width), FRAME_HEIGHT};
+    Rectangle frameCrop = {0, 0, static_cast<float>(Assets::instruction.width), FRAME_HEIGHT};
     Vector2 framePos    = {
-        static_cast<float>((W_WINDOW - instruction.width)/2),
+        static_cast<float>((W_WINDOW - Assets::instruction.width) / 2),
         static_cast<float>((H_WINDOW - FRAME_HEIGHT)/2 - 20)
     };
 
     // Init back btn
-    Button* back = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 140}, &btn, &btn_down);
+    Button* back = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 140}, &Assets::btn, &Assets::btn_down);
     back -> addLabel(MiscMenuStr::back, LIFT, 8);
 
     Vector2 mousePos;
@@ -160,11 +162,11 @@ void Instructions() {
         // Draw elements
         BeginDrawing();
         ClearBackground(PL_YELLOW);
-        TileBG();
+        tileBG();
 
-        DrawTexture(ui_box, boxX, boxY, WHITE);
-        DrawTextEx(uifont, InstructionsStr::instTxt, {static_cast<float>(txtX), static_cast<float>(txtY)}, FONT_SIZE, 0, WHITE);
-        DrawTextureRec(instruction, frameCrop, framePos, WHITE);
+        DrawTexture(Assets::ui_box, boxX, boxY, WHITE);
+        DrawTextEx(Assets::uifont, InstructionsStr::instTxt, {static_cast<float>(txtX), static_cast<float>(txtY)}, FONT_SIZE, 0, WHITE);
+        DrawTextureRec(Assets::instruction, frameCrop, framePos, WHITE);
         back -> draw();
 
         EndDrawing();
@@ -177,15 +179,15 @@ void Instructions() {
 void Credits() {
 
     // Init text
-    short boxX = (W_WINDOW - ui_box.width) / 2;
-    short boxY = (H_WINDOW - ui_box.height) / 2;
+    short boxX = (W_WINDOW - Assets::ui_box.width) / 2;
+    short boxY = (H_WINDOW - Assets::ui_box.height) / 2;
     
-    Vector2 instTxtSize = MeasureTextEx(uifont, CreditsStr::credTxt, FONT_SIZE, 0);
-    short txtX          = boxX + (ui_box.width - instTxtSize.x) / 2;
-    short txtY          = boxY + (ui_box.height - instTxtSize.y) / 2;
+    Vector2 instTxtSize = MeasureTextEx(Assets::uifont, CreditsStr::credTxt, FONT_SIZE, 0);
+    short txtX          = boxX + (Assets::ui_box.width - instTxtSize.x) / 2;
+    short txtY          = boxY + (Assets::ui_box.height - instTxtSize.y) / 2;
 
     // Init back btn
-    Button* back = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 140}, &btn, &btn_down);
+    Button* back = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 140}, &Assets::btn, &Assets::btn_down);
     back -> addLabel(MiscMenuStr::back, LIFT, 8);
 
     Vector2 mousePos;
@@ -199,10 +201,10 @@ void Credits() {
         // Draw elements
         BeginDrawing();
         ClearBackground(PL_YELLOW);
-        TileBG();
+        tileBG();
 
-        DrawTexture(ui_box, boxX, boxY, WHITE);
-        DrawTextEx(uifont, CreditsStr::credTxt, {static_cast<float>(txtX), static_cast<float>(txtY)}, FONT_SIZE, 0, WHITE);
+        DrawTexture(Assets::ui_box, boxX, boxY, WHITE);
+        DrawTextEx(Assets::uifont, CreditsStr::credTxt, {static_cast<float>(txtX), static_cast<float>(txtY)}, FONT_SIZE, 0, WHITE);
         back -> draw();
         
         EndDrawing();
@@ -211,12 +213,4 @@ void Credits() {
 
     delete back;
     
-}
-
-// Tiles the background texture in an animated manner
-void TileBG() {
-    for(int i = 0; i < tileCol; i++)
-        for(int j = 0; j < tileRow; j++)
-            DrawTexture(background, i * background.width - tileAnimOffset, j * background.height - tileAnimOffset, WHITE);
-    tileAnimOffset = tileAnimOffset >= background.width ? 0 : tileAnimOffset + 40 * GetFrameTime();  
 }

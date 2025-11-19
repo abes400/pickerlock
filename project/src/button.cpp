@@ -1,10 +1,9 @@
 #include "gamesetup.h"
 #include "button.hpp"
+#include "assets.hpp"
 
 #include <iostream>
 using namespace std;
-
-extern Font uifont;
 
 Button::Button(Vector2 position, Texture2D* texture, Texture2D* texture_hold) {
     texture_        = currentTexture_ = texture;
@@ -20,7 +19,7 @@ void Button::addLabel(const char* label, bool lifted, short lift_height) {
         label_          = label;
         lift_height_    = lifted ? lift_height : 0;
 
-        Vector2 labelSize   = MeasureTextEx(uifont, label, FONT_SIZE, 0);
+        Vector2 labelSize   = MeasureTextEx(Assets::uifont, label, FONT_SIZE, 0);
         label_pos_          = Vector2 { static_cast<float>(position_.x + (texture_ -> width - labelSize.x) / 2), 
                                         static_cast<float>(position_.y + (texture_ -> height - labelSize.y) / 2 - lift_height)};
 
@@ -33,7 +32,7 @@ void Button::addLabel(const char* label, bool lifted, short lift_height) {
 
 void Button::draw() {
     DrawTextureV(*currentTexture_, position_, WHITE);
-    if(labeled_) DrawTextEx(uifont, label_, label_pos_, FONT_SIZE, 0, BLACK);
+    if(labeled_) DrawTextEx(Assets::uifont, label_, label_pos_, FONT_SIZE, 0, BLACK);
 }
 
 // TODO: Reimplement this dogshoot
