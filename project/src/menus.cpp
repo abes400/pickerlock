@@ -184,9 +184,9 @@ void Credits() {
     short boxX = (W_WINDOW - Assets::ui_box.width) / 2;
     short boxY = (H_WINDOW - Assets::ui_box.height) / 2;
     
-    Vector2 instTxtSize = MeasureTextEx(Assets::uifont, CreditsStr::credTxt, FONT_SIZE, 0);
-    short txtX          = boxX + (Assets::ui_box.width - instTxtSize.x) / 2;
-    short txtY          = boxY + (Assets::ui_box.height - instTxtSize.y) / 2;
+    Vector2 credTxtSize = MeasureTextEx(Assets::uifont, CreditsStr::credTxt, FONT_SIZE, 0);
+    short txtX          = boxX + (Assets::ui_box.width  - credTxtSize.x) / 2;
+    short txtY          = boxY + (Assets::ui_box.height - credTxtSize.y) / 2;
 
     // Init back btn
     Button* back = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 140}, &Assets::btn, &Assets::btn_down);
