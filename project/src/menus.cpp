@@ -6,14 +6,8 @@
 #include <iostream>
 using namespace std;
 
-extern Texture2D background, logo;
-extern Texture2D start_btn, start_btn_down, btn, btn_down, ui_box;
-extern Texture2D instruction;
-extern short tileRow;
-extern short tileCol;
-extern float tileAnimOffset;
-extern short scene;
-extern Font uifont;
+#include "globals.h"
+#include "menustr.hpp"
 
 void TileBG();
 
@@ -26,10 +20,10 @@ void MainMenu() {
     Button* start = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 205}, &start_btn, &start_btn_down);
 
     Button* instr = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 140}, &btn, &btn_down);
-    instr -> addLabel("Instructions", LIFT, 8);
+    instr -> addLabel(MainMenuStr::inst, LIFT, 8);
 
     Button* crdts = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 80}, &btn, &btn_down);
-    crdts -> addLabel("Credits", LIFT, 8);
+    crdts -> addLabel(MainMenuStr::cred, LIFT, 8);
     
     Vector2 mousePos;
     bool mousePressed;
@@ -79,24 +73,23 @@ void Difficulty() {
     short boxX = (W_WINDOW - ui_box.width) / 2;
     short boxY = (H_WINDOW - ui_box.height) / 2;
 
-    const char* diffTxt ="Select Difficulty to begin:";
     
-    Vector2 instTxtSize = MeasureTextEx(uifont, diffTxt, FONT_SIZE, 0);
+    Vector2 instTxtSize = MeasureTextEx(uifont, DiffStr::diffTxt, FONT_SIZE, 0);
     short txtX = boxX + (ui_box.width - instTxtSize.x) / 2;
     short txtY = boxY + 100;
 
     // Init btuttons
     Button* back = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 140}, &btn, &btn_down);
-    back -> addLabel("Back", LIFT, 8);
+    back -> addLabel(MiscMenuStr::back, LIFT, 8);
 
     Button* easy = new Button(Vector2 {CENTER_X_WINDOW - 160, CENTER_Y_WINDOW}, &btn, &btn_down);
-    easy -> addLabel("Easy", LIFT, 8);
+    easy -> addLabel(DiffStr::easy, LIFT, 8);
 
     Button* medi = new Button(Vector2 {CENTER_X_WINDOW, CENTER_Y_WINDOW}, &btn, &btn_down);
-    medi -> addLabel("Medium", LIFT, 8);
+    medi -> addLabel(DiffStr::medi, LIFT, 8);
 
     Button* hard = new Button(Vector2 {CENTER_X_WINDOW + 160, CENTER_Y_WINDOW}, &btn, &btn_down);
-    hard -> addLabel("Hard", LIFT, 8);
+    hard -> addLabel(DiffStr::hard, LIFT, 8);
 
     Vector2 mousePos;
 
@@ -115,7 +108,7 @@ void Difficulty() {
         TileBG();
 
         DrawTexture(ui_box, boxX, boxY, WHITE);
-        DrawTextEx(uifont, diffTxt, {static_cast<float>(txtX), static_cast<float>(txtY)}, FONT_SIZE, 0, WHITE);
+        DrawTextEx(uifont, DiffStr::diffTxt, {static_cast<float>(txtX), static_cast<float>(txtY)}, FONT_SIZE, 0, WHITE);
 
         easy -> draw();
         medi -> draw();
@@ -142,16 +135,7 @@ void Instructions() {
     short boxX = (W_WINDOW - ui_box.width) / 2;
     short boxY = (H_WINDOW - ui_box.height) / 2;
 
-    const char* instTxt = "Objective: \n"
-                    "You are in a lock picking contest. \n"
-                    "You are tasked to pick as many locks as you can in 20 seconds. \n\n\n\n\n\n\n\n"
-
-                    "Instructions: \n"
-                    "Press the arrow keys in the order given on screen to pick each lock. \n"
-                    "As you successfully break a lock, you will be given the next one. \n"
-                    "If you press the wrong button, you'll get disqualified.";
-
-    Vector2 instTxtSize = MeasureTextEx(uifont, instTxt, FONT_SIZE, 0);
+    Vector2 instTxtSize = MeasureTextEx(uifont, InstructionsStr::instTxt, FONT_SIZE, 0);
 
     short txtX = boxX + (ui_box.width - instTxtSize.x) / 2;
     short txtY = boxY + 50;
@@ -165,7 +149,7 @@ void Instructions() {
 
     // Init back btn
     Button* back = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 140}, &btn, &btn_down);
-    back -> addLabel("Back", LIFT, 8);
+    back -> addLabel(MiscMenuStr::back, LIFT, 8);
 
     Vector2 mousePos;
 
@@ -196,7 +180,7 @@ void Instructions() {
         TileBG();
 
         DrawTexture(ui_box, boxX, boxY, WHITE);
-        DrawTextEx(uifont, instTxt, {static_cast<float>(txtX), static_cast<float>(txtY)}, FONT_SIZE, 0, WHITE);
+        DrawTextEx(uifont, InstructionsStr::instTxt, {static_cast<float>(txtX), static_cast<float>(txtY)}, FONT_SIZE, 0, WHITE);
         DrawTextureRec(instruction, frameCrop, framePos, WHITE);
         back -> draw();
 
@@ -211,22 +195,14 @@ void Credits() {
     // Init text
     short boxX = (W_WINDOW - ui_box.width) / 2;
     short boxY = (H_WINDOW - ui_box.height) / 2;
-
-    const char* instTxt =
-                    "Pickerlock 1.0 \n\n"
-                    "---- CREDITS ---- \n"
-                    "Concept, Programming and Artwork : Abes400 \n\n"
-                    "Sound effects (Probably) Obtained from ZapSplat. \n"
-                    "Distributed under MIT License. \n\n"
-                    "Made for 20 Seconds GameJam 2025\n";
     
-    Vector2 instTxtSize = MeasureTextEx(uifont, instTxt, FONT_SIZE, 0);
+    Vector2 instTxtSize = MeasureTextEx(uifont, CreditsStr::credTxt, FONT_SIZE, 0);
     short txtX = boxX + (ui_box.width - instTxtSize.x) / 2;
     short txtY = boxY + (ui_box.height - instTxtSize.y) / 2;
 
     // Init back btn
     Button* back = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 140}, &btn, &btn_down);
-    back -> addLabel("Back", LIFT, 8);
+    back -> addLabel(MiscMenuStr::back, LIFT, 8);
 
     Vector2 mousePos;
 
@@ -245,7 +221,7 @@ void Credits() {
         TileBG();
 
         DrawTexture(ui_box, boxX, boxY, WHITE);
-        DrawTextEx(uifont, instTxt, {static_cast<float>(txtX), static_cast<float>(txtY)}, FONT_SIZE, 0, WHITE);
+        DrawTextEx(uifont, CreditsStr::credTxt, {static_cast<float>(txtX), static_cast<float>(txtY)}, FONT_SIZE, 0, WHITE);
         back -> draw();
         
         EndDrawing();
