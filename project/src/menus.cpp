@@ -11,6 +11,9 @@
 
 #include "assets.hpp"
 
+#include <iostream>
+using namespace std;
+
 
 void MainMenu() {
     
@@ -61,12 +64,11 @@ void MainMenu() {
 void Difficulty() {
 
     // Init text
-    short boxX          = (W_WINDOW - Assets::ui_box.width) / 2;
+    short boxX          = (W_WINDOW - Assets::ui_box.width)  / 2;
     short boxY          = (H_WINDOW - Assets::ui_box.height) / 2;
 
-    
-    Vector2 instTxtSize = MeasureTextEx(Assets::uifont, DiffStr::diffTxt, FONT_SIZE, 0);
-    short txtX          = boxX + (Assets::ui_box.width - instTxtSize.x) / 2;
+    Vector2 diffTxtSize = MeasureTextEx(Assets::uifont, DiffStr::diffTxt, FONT_SIZE, 0);
+    short txtX          = boxX + (Assets::ui_box.width - diffTxtSize.x) / 2;
     short txtY          = boxY + 100;
 
     // Init btuttons

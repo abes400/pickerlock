@@ -8,13 +8,18 @@
 using namespace std;
 
 namespace Assets {
-    Texture2D background, logo;
-    Texture2D start_btn, start_btn_down, btn, btn_down, ui_box;
-    Texture2D instruction;
-    Font uifont;
-    short tileRow;
-    short tileCol;
-    float tileAnimOffset = 0;
+    Texture2D   background,
+                logo,
+                start_btn,
+                start_btn_down,
+                btn, btn_down,
+                ui_box,
+                instruction;
+
+    Font        uifont;
+    short       tileRow,
+                tileCol;
+    float       tileAnimOffset = 0;
 }
 
 
