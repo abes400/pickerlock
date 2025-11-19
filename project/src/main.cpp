@@ -1,5 +1,4 @@
 #include "raylib.h"
-#include "raymath.h"
 
 #include "gamesetup.h"
 #include "gameloops.hpp"

@@ -68,8 +68,10 @@ void Difficulty() {
     short boxY          = (H_WINDOW - Assets::ui_box.height) / 2;
 
     Vector2 diffTxtSize = MeasureTextEx(Assets::uifont, DiffStr::diffTxt, FONT_SIZE, 0);
-    short txtX          = boxX + (Assets::ui_box.width - diffTxtSize.x) / 2;
-    short txtY          = boxY + 100;
+    Vector2 diffTxtPos  = {
+        static_cast<float>(boxX + (Assets::ui_box.width - diffTxtSize.x) / 2),
+        static_cast<float>(boxY + 100)
+    };
 
     // Init btuttons
     Button* back = new Button(Vector2 {CENTER_X_WINDOW,       CENTER_Y_WINDOW + 155 }, &Assets::btn, &Assets::btn_down);
@@ -91,7 +93,10 @@ void Difficulty() {
         mousePos        = GetMousePosition();
         mousePressed    = IsMouseButtonDown(MOUSE_BUTTON_LEFT);
 
-        if(back -> checkClick(mousePos, mousePressed)) { scene = MAIN_MENU; break; }
+        if      (back -> checkClick(mousePos, mousePressed)) { scene = MAIN_MENU; break; }
+        else if (easy -> checkClick(mousePos, mousePressed)) {  }
+        else if (medi -> checkClick(mousePos, mousePressed)) {  }
+        else if (hard -> checkClick(mousePos, mousePressed)) {  }
 
         // Draw elements
         BeginDrawing();
@@ -99,7 +104,7 @@ void Difficulty() {
         tileBG();
 
         DrawTexture(Assets::ui_box, boxX, boxY, WHITE);
-        DrawTextEx(Assets::uifont, DiffStr::diffTxt, {static_cast<float>(txtX), static_cast<float>(txtY)}, FONT_SIZE, 0, WHITE);
+        DrawTextEx(Assets::uifont, DiffStr::diffTxt, diffTxtPos, FONT_SIZE, 0, WHITE);
         easy -> draw();
         medi -> draw();
         hard -> draw();
@@ -127,8 +132,10 @@ void Instructions() {
 
     // Calculate instr. text coords.
     Vector2 instTxtSize = MeasureTextEx(Assets::uifont, InstructionsStr::instTxt, FONT_SIZE, 0);
-    short txtX          = boxX + (Assets::ui_box.width - instTxtSize.x) / 2;
-    short txtY          = boxY + 50;
+    Vector2 instTxtPos = {
+        static_cast<float>(boxX + (Assets::ui_box.width - instTxtSize.x) / 2), 
+        static_cast<float>(boxY + 50)
+    };
 
     // Init visualization animation
     float frameTimer    = FRAMETIMER_INIT;
@@ -167,7 +174,7 @@ void Instructions() {
         tileBG();
 
         DrawTexture(Assets::ui_box, boxX, boxY, WHITE);
-        DrawTextEx(Assets::uifont, InstructionsStr::instTxt, {static_cast<float>(txtX), static_cast<float>(txtY)}, FONT_SIZE, 0, WHITE);
+        DrawTextEx(Assets::uifont, InstructionsStr::instTxt, instTxtPos, FONT_SIZE, 0, WHITE);
         DrawTextureRec(Assets::instruction, frameCrop, framePos, WHITE);
         back -> draw();
 
@@ -185,8 +192,10 @@ void Credits() {
     short boxY = (H_WINDOW - Assets::ui_box.height) / 2;
     
     Vector2 credTxtSize = MeasureTextEx(Assets::uifont, CreditsStr::credTxt, FONT_SIZE, 0);
-    short txtX          = boxX + (Assets::ui_box.width  - credTxtSize.x) / 2;
-    short txtY          = boxY + (Assets::ui_box.height - credTxtSize.y) / 2;
+    Vector2 credTxtPos  = {
+        static_cast<float>(boxX + (Assets::ui_box.width  - credTxtSize.x) / 2),
+        static_cast<float>(boxY + (Assets::ui_box.height - credTxtSize.y) / 2)
+    };
 
     // Init back btn
     Button* back = new Button(Vector2 {CENTER_X_WINDOW, CENTER_Y_WINDOW + 155}, &Assets::btn, &Assets::btn_down);
@@ -206,7 +215,7 @@ void Credits() {
         tileBG();
 
         DrawTexture(Assets::ui_box, boxX, boxY, WHITE);
-        DrawTextEx(Assets::uifont, CreditsStr::credTxt, {static_cast<float>(txtX), static_cast<float>(txtY)}, FONT_SIZE, 0, WHITE);
+        DrawTextEx(Assets::uifont, CreditsStr::credTxt, credTxtPos, FONT_SIZE, 0, WHITE);
         back -> draw();
         
         EndDrawing();
