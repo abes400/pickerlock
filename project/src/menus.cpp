@@ -72,10 +72,10 @@ void Difficulty() {
     short txtY          = boxY + 100;
 
     // Init btuttons
-    Button* back = new Button(Vector2 {CENTER_X_WINDOW,       H_WINDOW - 140 }, &Assets::btn, &Assets::btn_down);
-    Button* easy = new Button(Vector2 {CENTER_X_WINDOW - 160, CENTER_Y_WINDOW}, &Assets::btn, &Assets::btn_down);
-    Button* medi = new Button(Vector2 {CENTER_X_WINDOW,       CENTER_Y_WINDOW}, &Assets::btn, &Assets::btn_down);
-    Button* hard = new Button(Vector2 {CENTER_X_WINDOW + 160, CENTER_Y_WINDOW}, &Assets::btn, &Assets::btn_down);
+    Button* back = new Button(Vector2 {CENTER_X_WINDOW,       CENTER_Y_WINDOW + 155 }, &Assets::btn, &Assets::btn_down);
+    Button* easy = new Button(Vector2 {CENTER_X_WINDOW - 160, CENTER_Y_WINDOW       }, &Assets::btn, &Assets::btn_down);
+    Button* medi = new Button(Vector2 {CENTER_X_WINDOW,       CENTER_Y_WINDOW       }, &Assets::btn, &Assets::btn_down);
+    Button* hard = new Button(Vector2 {CENTER_X_WINDOW + 160, CENTER_Y_WINDOW       }, &Assets::btn, &Assets::btn_down);
 
     back -> addLabel(MiscMenuStr::back, LIFT, 8);
     easy -> addLabel(DiffStr::easy,     LIFT, 8);
@@ -140,7 +140,7 @@ void Instructions() {
     };
 
     // Init back btn
-    Button* back = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 140}, &Assets::btn, &Assets::btn_down);
+    Button* back = new Button(Vector2 {CENTER_X_WINDOW, CENTER_Y_WINDOW + 155}, &Assets::btn, &Assets::btn_down);
     back -> addLabel(MiscMenuStr::back, LIFT, 8);
 
     Vector2 mousePos;
@@ -189,7 +189,7 @@ void Credits() {
     short txtY          = boxY + (Assets::ui_box.height - credTxtSize.y) / 2;
 
     // Init back btn
-    Button* back = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 140}, &Assets::btn, &Assets::btn_down);
+    Button* back = new Button(Vector2 {CENTER_X_WINDOW, CENTER_Y_WINDOW + 155}, &Assets::btn, &Assets::btn_down);
     back -> addLabel(MiscMenuStr::back, LIFT, 8);
 
     Vector2 mousePos;
