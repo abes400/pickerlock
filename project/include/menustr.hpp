@@ -4,7 +4,7 @@ namespace MainMenuStr {
     constexpr const char* play = "Play";
     constexpr const char* inst = "Instructions";
     constexpr const char* cred = "Credits";
-    constexpr const char* byln = "(C) 2025 Abes400 -- Made for 20 Second Game Jam";
+    constexpr const char* byln = "(C) 2025 Abes400 - Made for 20 Second Game Jam";
 }
 
 
@@ -26,7 +26,7 @@ namespace CreditsStr {
                     "Concept, Programming and Artwork : Abes400 \n\n"
                     "Sound effects (Probably) Obtained from ZapSplat. \n"
                     "Distributed under MIT License. \n\n"
-                    "Made for 20 Seconds GameJam 2025\n";
+                    "Made for 20 Second GameJam 2025\n";
 }
 
 namespace DiffStr {

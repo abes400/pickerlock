@@ -17,7 +17,7 @@ namespace Assets {
 
     Font        uifont,
                 numfont;
-                
+
     short       tileRow,
                 tileCol;
     float       tileAnimOffset = 0;

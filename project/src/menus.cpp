@@ -27,6 +27,13 @@ void MainMenu() {
     instr -> addLabel(MainMenuStr::inst, LIFT, 8);
     crdts -> addLabel(MainMenuStr::cred, LIFT, 8);
 
+    // Initialize ByLine
+    Vector2 bylineSize  = MeasureTextEx(Assets::uifont, MainMenuStr::byln, FONT_SIZE, 0);
+    Vector2 bylinePos   = {
+        static_cast<float>(CENTER_X_WINDOW - bylineSize.x / 2),
+        static_cast<float>(H_WINDOW - bylineSize.y ),
+    };
+
     Vector2 mousePos;
     bool    mousePressed;
 
@@ -50,6 +57,7 @@ void MainMenu() {
         start -> draw();
         instr -> draw();
         crdts -> draw();
+        DrawTextEx(Assets::uifont, MainMenuStr::byln, bylinePos, FONT_SIZE, 0, BLACK);
 
         EndDrawing();
     }
