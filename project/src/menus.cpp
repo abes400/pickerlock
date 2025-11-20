@@ -17,7 +17,7 @@ void MainMenu() {
     
     // Init logo coordinates
     short logoX = CENTER_X_WINDOW - Assets::logo.width / 2;
-    short logoY = CENTER_Y_WINDOW - Assets::logo.height;
+    short logoY = CENTER_Y_WINDOW - Assets::logo.height * 2;
 
     // Initialise MainMenu Elements
     Button* start = new Button(Vector2 {CENTER_X_WINDOW, CENTER_Y_WINDOW + 85  }, &Assets::start_btn,   &Assets::start_btn_down);
@@ -31,7 +31,7 @@ void MainMenu() {
     Vector2 bylineSize  = MeasureTextEx(Assets::uifont, MainMenuStr::byln, FONT_SIZE, 0);
     Vector2 bylinePos   = {
         static_cast<float>(CENTER_X_WINDOW - bylineSize.x / 2),
-        static_cast<float>(H_WINDOW - bylineSize.y ),
+        static_cast<float>(H_WINDOW - bylineSize.y * 2 ),
     };
 
     Vector2 mousePos;
