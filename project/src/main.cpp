@@ -23,8 +23,27 @@ namespace Assets {
     float       tileAnimOffset = 0;
 }
 
+namespace Globals {
+    enum Scenes {
+        MAIN_MENU,
+        DIFFICULTY,
+        IN_GAME,
+        INSTRUCTIONS,
+        CREDITS
+    };
 
-short scene;
+    // 3+0 3+1 3+2
+    enum Difficulties {
+        EASY,
+        MEDIUM,
+        HARD
+    };
+
+    enum Scenes scene = MAIN_MENU;
+    enum Difficulties difficulty;
+
+    int highscores[3] = {0, 0, 0};
+}
 
 void init(); void unload();
 
@@ -38,26 +57,27 @@ int main() {
     InitWindow(W_WINDOW, H_WINDOW, "Pickerlock");
     init();
 
-    scene = MAIN_MENU;
+    Globals::scene = Globals::MAIN_MENU;
     while(!WindowShouldClose()) {
 
-        switch(scene) {
-            case MAIN_MENU:
+        switch(Globals::scene) {
+            case Globals::MAIN_MENU:
             MainMenu();
             break;
 
-            case DIFFICULTY:
+            case Globals::DIFFICULTY:
             Difficulty();
             break;
 
-            case IN_GAME:
+            case Globals::IN_GAME:
+            Game();
             break;
 
-            case INSTRUCTIONS:
+            case Globals::INSTRUCTIONS:
             Instructions();
             break;
 
-            case CREDITS:
+            case Globals::CREDITS:
             Credits();
             break;
         }

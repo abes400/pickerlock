@@ -38,15 +38,15 @@ void MainMenu() {
     bool    mousePressed;
 
     // Menu Loop
-    while(scene == MAIN_MENU && !WindowShouldClose()) {
+    while(Globals::scene == Globals::MAIN_MENU && !WindowShouldClose()) {
 
         // Handle Input Events
         mousePos         = GetMousePosition();
         mousePressed     = IsMouseButtonDown(MOUSE_BUTTON_LEFT);
 
-        if      (start -> checkClick(mousePos, mousePressed)) { scene = DIFFICULTY;   break; }
-        else if (instr -> checkClick(mousePos, mousePressed)) { scene = INSTRUCTIONS; break; }
-        else if (crdts -> checkClick(mousePos, mousePressed)) { scene = CREDITS;      break; }
+        if      (start -> checkClick(mousePos, mousePressed)) { Globals::scene = Globals::DIFFICULTY;   break; }
+        else if (instr -> checkClick(mousePos, mousePressed)) { Globals::scene = Globals::INSTRUCTIONS; break; }
+        else if (crdts -> checkClick(mousePos, mousePressed)) { Globals::scene = Globals::CREDITS;      break; }
 
         // Draw elements
         BeginDrawing();
@@ -98,11 +98,15 @@ void Difficulty() {
         static_cast<float>(CENTER_Y_WINDOW + 30)
     };
 
-    int HSeasy = 4, HSmedium = 8, HShard = 120;
 
     // allocate 15 char long string buffer for high score values
     char* hsStr = (char*) malloc(sizeof(char) * 15);
-    sprintf(hsStr, DiffStr::hscr, HSeasy, HSmedium, HShard);
+    sprintf(
+        hsStr, DiffStr::hscr,
+        Globals::highscores[Globals::EASY  ],
+        Globals::highscores[Globals::MEDIUM],
+        Globals::highscores[Globals::HARD  ]
+    );
     
     Vector2 scoreValSize = MeasureTextEx(Assets::uifont, DiffStr::hscr, FONT_SIZE, 0);
     Vector2 scoreValPos  = {
@@ -113,16 +117,27 @@ void Difficulty() {
     Vector2 mousePos;
     bool    mousePressed;
 
-    while(scene == DIFFICULTY && !WindowShouldClose()) {
+    while(Globals::scene == Globals::DIFFICULTY && !WindowShouldClose()) {
 
         // Handle Button Events
         mousePos        = GetMousePosition();
         mousePressed    = IsMouseButtonDown(MOUSE_BUTTON_LEFT);
 
-        if      (back -> checkClick(mousePos, mousePressed)) { scene = MAIN_MENU; break; }
-        else if (easy -> checkClick(mousePos, mousePressed)) {  }
-        else if (medi -> checkClick(mousePos, mousePressed)) {  }
-        else if (hard -> checkClick(mousePos, mousePressed)) {  }
+        if (back -> checkClick(mousePos, mousePressed)) {
+            Globals::scene = Globals::MAIN_MENU; break; 
+        } else if (easy -> checkClick(mousePos, mousePressed)) {
+            Globals::difficulty = Globals::EASY;
+            Globals::scene      = Globals::IN_GAME;
+            break;
+        } else if (medi -> checkClick(mousePos, mousePressed)) {
+            Globals::difficulty = Globals::MEDIUM;
+            Globals::scene      = Globals::IN_GAME;
+            break;
+        } else if (hard -> checkClick(mousePos, mousePressed)) {
+            Globals::difficulty = Globals::HARD;
+            Globals::scene      = Globals::IN_GAME;
+            break;
+        }
 
         // Draw elements
         BeginDrawing();
@@ -181,11 +196,11 @@ void Instructions() {
 
     Vector2 mousePos;
 
-    while(scene == INSTRUCTIONS && !WindowShouldClose()) {
+    while(Globals::scene == Globals::INSTRUCTIONS && !WindowShouldClose()) {
 
         // Handle Button Events
         mousePos = GetMousePosition();
-        if(back -> checkClick(mousePos, IsMouseButtonDown(MOUSE_BUTTON_LEFT))) { scene = MAIN_MENU; break; }
+        if(back -> checkClick(mousePos, IsMouseButtonDown(MOUSE_BUTTON_LEFT))) { Globals::scene = Globals::MAIN_MENU; break; }
 
         // Handle visualisation animation
         frameTimer -= GetFrameTime();
@@ -232,11 +247,11 @@ void Credits() {
 
     Vector2 mousePos;
 
-    while(scene == CREDITS && !WindowShouldClose()) {
+    while(Globals::scene == Globals::CREDITS && !WindowShouldClose()) {
 
         // Handle Button Events
         mousePos = GetMousePosition();
-        if(back -> checkClick(mousePos, IsMouseButtonDown(MOUSE_BUTTON_LEFT))) { scene = MAIN_MENU; break; }
+        if(back -> checkClick(mousePos, IsMouseButtonDown(MOUSE_BUTTON_LEFT))) { Globals::scene = Globals::MAIN_MENU; break; }
 
         // Draw elements
         BeginDrawing();
