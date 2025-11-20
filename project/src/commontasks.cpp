@@ -15,10 +15,11 @@ void init() {
     btn_down        = LoadTexture("assets/texture/button_down.png");
     ui_box          = LoadTexture("assets/texture/uibox.png");
     instruction     = LoadTexture("assets/texture/inst_vis.png");
-    uifont          = LoadFont   ("assets/font/uifont.ttf");
+    uifont          = LoadFont ("assets/font/uifont.ttf");
+    numfont         = LoadFontEx ("assets/font/numfont.ttf", FONT_SIZE, nullptr, 0);
     
     tileRow         = ceil(H_WINDOW / background.height) + 2;
-    tileCol         = ceil(W_WINDOW / background.width ) + 1;
+    tileCol         = ceil(W_WINDOW / background.width ) + 2;
 }
 
 void unload() {
@@ -32,6 +33,7 @@ void unload() {
     UnloadTexture(instruction);
 
     UnloadFont(uifont);
+    UnloadFont(numfont);
 }
 
 // Tiles the background texture in an animated manner

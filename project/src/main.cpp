@@ -15,7 +15,9 @@ namespace Assets {
                 ui_box,
                 instruction;
 
-    Font        uifont;
+    Font        uifont,
+                numfont;
+                
     short       tileRow,
                 tileCol;
     float       tileAnimOffset = 0;

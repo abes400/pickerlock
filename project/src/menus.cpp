@@ -16,35 +16,17 @@
 void MainMenu() {
     
     // Init logo coordinates
-    short logoX = (W_WINDOW - Assets::logo.width) / 2;
+    short logoX = CENTER_X_WINDOW - Assets::logo.width / 2;
+    short logoY = CENTER_Y_WINDOW - Assets::logo.height;
 
     // Initialise MainMenu Elements
-    Button* start = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 177}, &Assets::start_btn,   &Assets::start_btn_down);
-    Button* instr = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 115}, &Assets::btn,         &Assets::btn_down);
-    Button* crdts = new Button(Vector2 {CENTER_X_WINDOW, H_WINDOW - 60 }, &Assets::btn,         &Assets::btn_down);
+    Button* start = new Button(Vector2 {CENTER_X_WINDOW, CENTER_Y_WINDOW + 85  }, &Assets::start_btn,   &Assets::start_btn_down);
+    Button* instr = new Button(Vector2 {CENTER_X_WINDOW, CENTER_Y_WINDOW + 150 }, &Assets::btn,         &Assets::btn_down);
+    Button* crdts = new Button(Vector2 {CENTER_X_WINDOW, CENTER_Y_WINDOW + 210 }, &Assets::btn,         &Assets::btn_down);
 
     instr -> addLabel(MainMenuStr::inst, LIFT, 8);
     crdts -> addLabel(MainMenuStr::cred, LIFT, 8);
 
-    // Init scoreboard strings
-    Vector2 scoreTxtSize = MeasureTextEx(Assets::uifont, MainMenuStr::scrs, FONT_SIZE, 0);
-    Vector2 scoreTxtPos  = {
-        static_cast<float>(logoX + (Assets::ui_box.width - scoreTxtSize.x) / 2),
-        static_cast<float>(Assets::logo.height + 5)
-    };
-
-    int HSeasy = 4, HSmedium = 8, HShard = 120;
-
-    // allocate 15 char long string buffer for high score values
-    char* hsStr = (char*) malloc(sizeof(char) * 15);
-    sprintf(hsStr, MainMenuStr::hscr, HSeasy, HSmedium, HShard);
-    
-    Vector2 scoreValSize = MeasureTextEx(Assets::uifont, MainMenuStr::hscr, FONT_SIZE, 0);
-    Vector2 scoreValPos  = {
-        scoreTxtPos.x + scoreTxtSize.x - scoreValSize.x,
-        scoreTxtPos.y + scoreTxtSize.y/4
-    };
-    
     Vector2 mousePos;
     bool    mousePressed;
 
@@ -64,9 +46,7 @@ void MainMenu() {
         ClearBackground(PL_YELLOW);
         tileBG();
 
-        DrawTexture(Assets::logo, logoX, 0, WHITE);
-        DrawTextEx(Assets::uifont, MainMenuStr::scrs, scoreTxtPos, FONT_SIZE, 0, BLACK);
-        DrawTextEx(Assets::uifont, hsStr,   scoreValPos, FONT_SIZE, 0, BLACK);
+        DrawTexture(Assets::logo, logoX, logoY, WHITE);
         start -> draw();
         instr -> draw();
         crdts -> draw();
@@ -78,7 +58,6 @@ void MainMenu() {
     delete start;
     delete instr;
     delete crdts;
-    free(hsStr);
 }
 
 void Difficulty() {
@@ -95,14 +74,33 @@ void Difficulty() {
 
     // Init btuttons
     Button* back = new Button(Vector2 {CENTER_X_WINDOW,       CENTER_Y_WINDOW + 155 }, &Assets::btn, &Assets::btn_down);
-    Button* easy = new Button(Vector2 {CENTER_X_WINDOW - 160, CENTER_Y_WINDOW       }, &Assets::btn, &Assets::btn_down);
-    Button* medi = new Button(Vector2 {CENTER_X_WINDOW,       CENTER_Y_WINDOW       }, &Assets::btn, &Assets::btn_down);
-    Button* hard = new Button(Vector2 {CENTER_X_WINDOW + 160, CENTER_Y_WINDOW       }, &Assets::btn, &Assets::btn_down);
+    Button* easy = new Button(Vector2 {CENTER_X_WINDOW - 160, CENTER_Y_WINDOW - 35  }, &Assets::btn, &Assets::btn_down);
+    Button* medi = new Button(Vector2 {CENTER_X_WINDOW,       CENTER_Y_WINDOW - 35  }, &Assets::btn, &Assets::btn_down);
+    Button* hard = new Button(Vector2 {CENTER_X_WINDOW + 160, CENTER_Y_WINDOW - 35  }, &Assets::btn, &Assets::btn_down);
 
     back -> addLabel(MiscMenuStr::back, LIFT, 8);
     easy -> addLabel(DiffStr::easy,     LIFT, 8);
     medi -> addLabel(DiffStr::medi,     LIFT, 8);
     hard -> addLabel(DiffStr::hard,     LIFT, 8);
+
+    // Init scoreboard strings
+    Vector2 scoreTxtSize = MeasureTextEx(Assets::uifont, DiffStr::scrs, FONT_SIZE, 0);
+    Vector2 scoreTxtPos  = {
+        static_cast<float>(CENTER_X_WINDOW - scoreTxtSize.x / 2),
+        static_cast<float>(CENTER_Y_WINDOW + 30)
+    };
+
+    int HSeasy = 4, HSmedium = 8, HShard = 120;
+
+    // allocate 15 char long string buffer for high score values
+    char* hsStr = (char*) malloc(sizeof(char) * 15);
+    sprintf(hsStr, DiffStr::hscr, HSeasy, HSmedium, HShard);
+    
+    Vector2 scoreValSize = MeasureTextEx(Assets::uifont, DiffStr::hscr, FONT_SIZE, 0);
+    Vector2 scoreValPos  = {
+        scoreTxtPos.x + scoreTxtSize.x - scoreValSize.x,
+        scoreTxtPos.y + scoreTxtSize.y - scoreValSize.y + 4
+    };
 
     Vector2 mousePos;
     bool    mousePressed;
@@ -125,6 +123,8 @@ void Difficulty() {
 
         DrawTexture(Assets::ui_box, boxX, boxY, WHITE);
         DrawTextEx(Assets::uifont, DiffStr::diffTxt, diffTxtPos, FONT_SIZE, 0, WHITE);
+        DrawTextEx(Assets::uifont,  DiffStr::scrs, scoreTxtPos, FONT_SIZE, 0, WHITE);
+        DrawTextEx(Assets::numfont, hsStr,   scoreValPos, FONT_SIZE, 0, PL_YELLOW);
         easy -> draw();
         medi -> draw();
         hard -> draw();
@@ -137,6 +137,7 @@ void Difficulty() {
     delete easy;
     delete medi;
     delete hard;
+    free(hsStr);
 
 }
 

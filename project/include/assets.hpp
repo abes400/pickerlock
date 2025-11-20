@@ -11,7 +11,9 @@ namespace Assets {
                         ui_box,
                         instruction;
 
-    extern Font         uifont;
+    extern Font         uifont,
+                        numfont;
+                        
     extern short        tileRow,
                         tileCol;
     extern float        tileAnimOffset;

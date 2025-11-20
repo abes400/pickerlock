@@ -4,8 +4,6 @@ namespace MainMenuStr {
     constexpr const char* play = "Play";
     constexpr const char* inst = "Instructions";
     constexpr const char* cred = "Credits";
-    constexpr const char* scrs = "- HIGH SCORES -\nEasy\nMedium\nHard";
-    constexpr const char* hscr = "%04d\n%04d\n%04d"; // "0000\n0000\n0000\0" 20 chars (inc. '\0')
     constexpr const char* byln = "(C) 2025 Abes400 -- Made for 20 Second Game Jam";
 }
 
@@ -23,8 +21,8 @@ namespace InstructionsStr {
 
 namespace CreditsStr {
     constexpr const char* credTxt =
-                    "Pickerlock 1.0 \n\n"
-                    "---- CREDITS ---- \n"
+                    "Pickerlock 1.0 \n\n\n"
+                    "- CREDITS - \n\n"
                     "Concept, Programming and Artwork : Abes400 \n\n"
                     "Sound effects (Probably) Obtained from ZapSplat. \n"
                     "Distributed under MIT License. \n\n"
@@ -36,6 +34,8 @@ namespace DiffStr {
     constexpr const char* easy ="Easy - 3 Tiles";
     constexpr const char* medi ="Med. - 4 Tiles";
     constexpr const char* hard ="Hard - 5 Tiles";
+    constexpr const char* scrs = "- HIGH SCORES -\nEasy\nMedium\nHard";
+    constexpr const char* hscr = "%04d\n%04d\n%04d"; // "0000\n0000\n0000\0" 20 chars (inc. '\0')
 }
 
 
