@@ -101,8 +101,8 @@ void Difficulty() {
 
     // allocate 15 char long string buffer for high score values
     char* hsStr = (char*) malloc(sizeof(char) * 15);
-    sprintf(
-        hsStr, DiffStr::hscr,
+    snprintf(
+        hsStr, 15, DiffStr::hscr,
         Globals::highscores[Globals::EASY  ],
         Globals::highscores[Globals::MEDIUM],
         Globals::highscores[Globals::HARD  ]

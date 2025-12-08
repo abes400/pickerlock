@@ -35,7 +35,7 @@ namespace DiffStr {
     constexpr const char* medi ="Med. - 4 Tiles";
     constexpr const char* hard ="Hard - 5 Tiles";
     constexpr const char* scrs = "- HIGH SCORES -\nEasy\nMedium\nHard";
-    constexpr const char* hscr = "%04d\n%04d\n%04d"; // "0000\n0000\n0000\0" 20 chars (inc. '\0')
+    constexpr const char* hscr = "%04d\n%04d\n%04d"; // "0000\n0000\n0000\0" 15 chars (inc. '\0')
 }
 
 
