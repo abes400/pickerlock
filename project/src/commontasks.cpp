@@ -15,6 +15,8 @@ void init() {
     btn_down        = LoadTexture("assets/texture/button_down.png");
     ui_box          = LoadTexture("assets/texture/uibox.png");
     instruction     = LoadTexture("assets/texture/inst_vis.png");
+    lockwindow      = LoadTexture("assets/texture/lock.png");
+    hand            = LoadTexture("assets/texture/hand.png");
     uifont          = LoadFont ("assets/font/uifont.ttf");
     numfont         = LoadFontEx ("assets/font/numfont.ttf", FONT_SIZE, nullptr, 0);
     
@@ -31,6 +33,8 @@ void unload() {
     UnloadTexture(btn_down);
     UnloadTexture(ui_box);
     UnloadTexture(instruction);
+    UnloadTexture(lockwindow);
+    UnloadTexture(hand);
 
     UnloadFont(uifont);
     UnloadFont(numfont);

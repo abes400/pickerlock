@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "globals.h"
 #include "commonvisuals.h"
+#include "assets.hpp"
 
 #include <iostream>
 using namespace std;
@@ -18,6 +19,7 @@ void Game() {
         // Draw Elements
         BeginDrawing();
         tileBG();
+        DrawTexture(Assets::lockwindow, 0, 0, WHITE);
         EndDrawing();
     }
     

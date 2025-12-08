@@ -9,7 +9,9 @@ namespace Assets {
                         start_btn_down,
                         btn, btn_down,
                         ui_box,
-                        instruction;
+                        instruction,
+                        lockwindow,
+                        hand;
 
     extern Font         uifont,
                         numfont;
