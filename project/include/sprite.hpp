@@ -16,8 +16,8 @@ class SpriteV {
     public:
         SpriteV(Vector2 position, Texture2D* spriteSheet, float frameHeight, short frameCount);
         void setFrame(short frame);
+        bool isLastFrame();
         void draw();
-
 };
 
 class AnimatedSprite : public SpriteV {

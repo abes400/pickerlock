@@ -17,6 +17,10 @@ void SpriteV::setFrame(short frame) {
     frame_crop_.y   = current_frame_ * frameH_;
 }
 
+bool SpriteV::isLastFrame() {
+    return current_frame_ == frameCount_ - 1;
+}
+
 void SpriteV::draw() {
     DrawTextureRec(*texture_, frame_crop_, position_, WHITE);
 }
