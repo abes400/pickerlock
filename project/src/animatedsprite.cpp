@@ -1,4 +1,4 @@
-#include "animatedsprite.h"
+#include "animatedsprite.hpp"
 
 AnimatedSprite::AnimatedSprite(Vector2 position, Texture2D* spriteSheet, 
     float frameHeight, short frameCount, float frameTimeSecond, int frameIndex = 0)

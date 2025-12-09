@@ -1,4 +1,4 @@
-#include "sprite.h"
+#include "sprite.hpp"
 
 SpriteV::SpriteV(Vector2 position, Texture2D* spriteSheet, float frameHeight, short frameCount, short frameIndex = 0) {
     texture_ = spriteSheet;

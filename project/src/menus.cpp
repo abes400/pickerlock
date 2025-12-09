@@ -11,6 +11,7 @@
 #include "button.hpp"
 
 #include "assets.hpp"
+#include "animatedsprite.hpp"
 
 
 void MainMenu() {

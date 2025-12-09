@@ -1,6 +1,6 @@
 #pragma once
 #include "raylib.h"
-#include "sprite.h"
+#include "sprite.hpp"
 
 class AnimatedSprite : public SpriteV {
     private:
