@@ -22,11 +22,13 @@ class SpriteV {
 
 class AnimatedSprite : public SpriteV {
     private:
-        float frame_time_init_;
-        float frame_timer_;
+        float   frame_time_init_;
+        float   frame_timer_;
 
     public:
+        bool    loop = false;
+
         AnimatedSprite(Vector2 position, Texture2D* spriteSheet, float frameHeight, short frameCount, float frameTimeSecond);
-        bool updateFrame(float deltaTime = GetFrameTime());
+        void updateFrame(float deltaTime = GetFrameTime());
 
 };

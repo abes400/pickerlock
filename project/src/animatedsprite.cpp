@@ -6,18 +6,16 @@ AnimatedSprite(Vector2 position, Texture2D* spriteSheet, float frameHeight, shor
     frame_time_init_ = frame_timer_ = frameTimeSecond;
 }
 
-bool AnimatedSprite::updateFrame(float deltaTime) {
+void AnimatedSprite::updateFrame(float deltaTime) {
     frame_timer_ -= deltaTime;
-    
-    if(frame_timer_ < 0) {
-        frame_timer_ = frame_time_init_;
-        current_frame_ ++;
-        if(current_frame_ >= frameCount_)
-            current_frame_ = 0;
 
-        frame_crop_.y = current_frame_ * frameH_;
-        return true;
+    while(frame_timer_ < 0) {
+        frame_timer_ += frame_time_init_;
+        current_frame_ ++;
+        
+        if(current_frame_ >= frameCount_)
+            current_frame_ = loop ? 0 : frameCount_ - 1;
     }
 
-    return false;
+    frame_crop_.y = current_frame_ * frameH_;
 }

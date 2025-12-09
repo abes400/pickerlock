@@ -11,6 +11,7 @@ using namespace std;
 void Game() {
     // Init game vars
     short tileCount = Globals::difficulty + 3;
+    
     cout << "The difficulty is " << Globals::difficulty << " so the tile count will be " << tileCount << endl;
 
 
@@ -35,5 +36,6 @@ void Game() {
     }
 
     // De-init game vars in heap
+    delete lockSprite;
     
 }
