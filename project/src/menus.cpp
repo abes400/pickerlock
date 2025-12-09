@@ -11,7 +11,7 @@
 #include "button.hpp"
 
 #include "assets.hpp"
-#include "animatedsprite.hpp"
+#include "sprite.hpp"
 
 
 void MainMenu() {
@@ -182,14 +182,10 @@ void Instructions() {
         static_cast<float>(boxY + 50)
     };
 
-    // Init visualization animation
-    float frameTimer    = FRAMETIMER_INIT;
-    short frameIndex    = FRAME_COUNT;
-    Rectangle frameCrop = {0, 0, static_cast<float>(Assets::instruction.width), FRAME_HEIGHT};
-    Vector2 framePos    = {
-        static_cast<float>((W_WINDOW - Assets::instruction.width) / 2),
-        static_cast<float>((H_WINDOW - FRAME_HEIGHT)/2 - 20)
-    };
+    // Init visualization sprite
+    AnimatedSprite* instructionVis = new AnimatedSprite(
+        Vector2{CENTER_X_WINDOW, CENTER_Y_WINDOW - 20}, &Assets::instruction, FRAME_HEIGHT, FRAME_COUNT, FRAMETIMER_INIT
+    );
 
     // Init back btn
     Button* back = new Button(Vector2 {CENTER_X_WINDOW, CENTER_Y_WINDOW + 155}, &Assets::btn, &Assets::btn_down);
@@ -204,14 +200,7 @@ void Instructions() {
         if(back -> checkClick(mousePos, IsMouseButtonDown(MOUSE_BUTTON_LEFT))) { Globals::scene = Globals::MAIN_MENU; break; }
 
         // Handle visualisation animation
-        frameTimer -= GetFrameTime();
-        if(frameTimer < 0) {
-            frameTimer = FRAMETIMER_INIT;
-            frameIndex++;
-            if(frameIndex >= FRAME_COUNT)
-                frameIndex = 0;
-            frameCrop.y = frameIndex * FRAME_HEIGHT;
-        }
+        instructionVis -> updateFrame(GetFrameTime());
 
         // Draw elements
         BeginDrawing();
@@ -220,12 +209,13 @@ void Instructions() {
 
         DrawTexture(Assets::ui_box, boxX, boxY, WHITE);
         DrawTextEx(Assets::uifont, InstructionsStr::instTxt, instTxtPos, FONT_SIZE, 0, WHITE);
-        DrawTextureRec(Assets::instruction, frameCrop, framePos, WHITE);
+        instructionVis -> draw();
         back -> draw();
 
         EndDrawing();
     }
 
+    delete instructionVis;
     delete back;
 
 }

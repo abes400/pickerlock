@@ -14,8 +14,19 @@ class SpriteV {
         Rectangle frame_crop_;
 
     public:
-        SpriteV(Vector2 position, Texture2D* spriteSheet, float frameHeight, short frameCount, short frameIndex);
+        SpriteV(Vector2 position, Texture2D* spriteSheet, float frameHeight, short frameCount);
         void setFrame(short frame);
         void draw();
+
+};
+
+class AnimatedSprite : public SpriteV {
+    private:
+        float frame_time_init_;
+        float frame_timer_;
+
+    public:
+        AnimatedSprite(Vector2 position, Texture2D* spriteSheet, float frameHeight, short frameCount, float frameTimeSecond);
+        bool updateFrame(float deltaTime = GetFrameTime());
 
 };
