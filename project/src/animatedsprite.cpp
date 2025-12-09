@@ -1,9 +1,10 @@
 #include "sprite.hpp"
 
 AnimatedSprite::
-AnimatedSprite(Vector2 position, Texture2D* spriteSheet, float frameHeight, short frameCount, float frameTimeSecond)
+AnimatedSprite(Vector2 position, Texture2D* spriteSheet, float frameHeight, short frameCount, float frameTimeSecond, bool loop)
 : SpriteV(position, spriteSheet, frameHeight, frameCount) {
     frame_time_init_ = frame_timer_ = frameTimeSecond;
+    this -> loop = loop;
 }
 
 void AnimatedSprite::updateFrame(float deltaTime) {

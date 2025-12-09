@@ -20,6 +20,9 @@ class SpriteV {
         void draw();
 };
 
+#define LOOPABLE true
+#define NOT_LOOPABLE false
+
 class AnimatedSprite : public SpriteV {
     private:
         float   frame_time_init_;
@@ -28,7 +31,7 @@ class AnimatedSprite : public SpriteV {
     public:
         bool    loop = false;
 
-        AnimatedSprite(Vector2 position, Texture2D* spriteSheet, float frameHeight, short frameCount, float frameTimeSecond);
+        AnimatedSprite(Vector2 position, Texture2D* spriteSheet, float frameHeight, short frameCount, float frameTimeSecond, bool loop = NOT_LOOPABLE);
         void updateFrame(float deltaTime = GetFrameTime());
 
 };
