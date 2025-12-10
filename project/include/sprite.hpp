@@ -2,7 +2,7 @@
 #include "raylib.h"
 
 template <typename T>
-class SpriteProp {
+class SpriteVProp {
     private:
         Texture2D* texture_;
         float frameH_;
@@ -11,7 +11,7 @@ class SpriteProp {
         friend T;
 
     public:
-        SpriteProp(Texture2D* spriteSheet, float frameHeight, short frameCount);
+        SpriteVProp(Texture2D* spriteSheet, float frameHeight, short frameCount);
 };
 
 

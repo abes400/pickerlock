@@ -1,5 +1,14 @@
 #include "sprite.hpp"
 
+/////////////////// IMPLEMENTATION OF SPRITEVPROP ///////////////////
+template<typename T>
+SpriteVProp<T>::SpriteVProp(Texture2D* spriteSheet, float frameHeight, short frameCount)
+: texture_(spriteSheet), frameH_(frameHeight), frameCount_(frameCount) {}
+
+/////////////////////////////////////////////////////////////////////
+
+
+/////////////////// IMPLEMENTATION OF SPRITEV ///////////////////
 SpriteV::SpriteV(Vector2 position, Texture2D* spriteSheet, float frameHeight, short frameCount) {
     texture_    = spriteSheet;
     position_   = position;
@@ -24,11 +33,10 @@ bool SpriteV::isLastFrame() {
 void SpriteV::draw() {
     DrawTextureRec(*texture_, frame_crop_, position_, WHITE);
 }
+/////////////////////////////////////////////////////////////////
 
 
-
-
-
+/////////////////// IMPLEMENTATION OF ANIMATEDSPRITE ///////////////////
 AnimatedSprite::
 AnimatedSprite(Vector2 position, Texture2D* spriteSheet, float frameHeight, short frameCount, float frameTimeSecond, bool loop)
 : SpriteV(position, spriteSheet, frameHeight, frameCount) {
@@ -49,4 +57,4 @@ void AnimatedSprite::updateFrame(float deltaTime) {
 
     frame_crop_.y = current_frame_ * frameH_;
 }
-
+////////////////////////////////////////////////////////////////////////
