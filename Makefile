@@ -1,5 +1,5 @@
 CC 						= g++
-STD 					= 11
+STD 					= 17
 
 INCLUDE_DIRS 			= project/include
 LIB_INCLUDE_DIRS		= project/lib/include

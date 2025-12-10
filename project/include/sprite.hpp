@@ -1,37 +1,29 @@
 #pragma once
 #include "raylib.h"
 
-template <typename T>
-class SpriteVProp {
-    private:
-        Texture2D* texture_;
-        float frameH_;
-        short frameCount_;
-
-        friend T;
-
-    public:
-        SpriteVProp(Texture2D* spriteSheet, float frameHeight, short frameCount);
+struct SpriteVProp {
+    const Texture2D* texture_;
+    const float      frameH_;
+    const short      frame_count_;
 };
 
-
 class SpriteV {
-    private:
-        Texture2D* texture_;
-
     protected:
+        SpriteVProp* prop_;
         Vector2 position_;
-        float frameH_;
-        short frameCount_;
         short current_frame_ = 0;
 
         Rectangle frame_crop_;
 
     public:
-        SpriteV(Vector2 position, Texture2D* spriteSheet, float frameHeight, short frameCount);
+        SpriteV(Vector2 position, SpriteVProp* spriteProperty);
         void setFrame(short frame);
         bool isLastFrame();
         void draw();
+};
+
+struct AnimatedSpriteProp : public SpriteVProp {
+    const float frame_timer_second_;
 };
 
 #define LOOPABLE true
@@ -39,13 +31,12 @@ class SpriteV {
 
 class AnimatedSprite : public SpriteV {
     private:
-        float   frame_time_init_;
         float   frame_timer_;
-
+        
     public:
         bool    loop = false;
 
-        AnimatedSprite(Vector2 position, Texture2D* spriteSheet, float frameHeight, short frameCount, float frameTimeSecond, bool loop = NOT_LOOPABLE);
+        AnimatedSprite(Vector2 position, AnimatedSpriteProp* spriteProperty, bool loop = NOT_LOOPABLE);
         void updateFrame(float deltaTime = GetFrameTime());
 
 };

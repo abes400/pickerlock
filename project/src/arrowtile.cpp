@@ -5,6 +5,7 @@ using namespace std;
 using namespace std;
 #include "arrowtile.hpp"
 
+/*
 bool ArrowTile::seeded_ = false;
 
 ArrowTile::
@@ -21,3 +22,5 @@ void ArrowTile::decideDirection() {
     direction = static_cast<Directions>(rand() % 4);
     rotation_  = 90 * static_cast<short>(direction);
 }
+
+*/

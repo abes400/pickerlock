@@ -183,9 +183,8 @@ void Instructions() {
     };
 
     // Init visualization sprite
-    AnimatedSprite* instructionVis = new AnimatedSprite(
-        Vector2{CENTER_X_WINDOW, CENTER_Y_WINDOW - 20}, &Assets::instruction, FRAME_HEIGHT, FRAME_COUNT, FRAMETIMER_INIT, LOOPABLE
-    );
+    //AnimatedSprite( Vector2{CENTER_X_WINDOW, CENTER_Y_WINDOW - 20}, &Assets::instruction, FRAME_HEIGHT, FRAME_COUNT, FRAMETIMER_INIT, LOOPABLE);
+
 
     // Init back btn
     Button* back = new Button(Vector2 {CENTER_X_WINDOW, CENTER_Y_WINDOW + 155}, &Assets::btn, &Assets::btn_down);
@@ -200,7 +199,7 @@ void Instructions() {
         if(back -> checkClick(mousePos, IsMouseButtonDown(MOUSE_BUTTON_LEFT))) { Globals::scene = Globals::MAIN_MENU; break; }
 
         // Handle visualisation animation
-        instructionVis -> updateFrame(GetFrameTime());
+        //instructionVis -> updateFrame(GetFrameTime());
 
         // Draw elements
         BeginDrawing();
@@ -209,13 +208,13 @@ void Instructions() {
 
         DrawTexture(Assets::ui_box, boxX, boxY, WHITE);
         DrawTextEx(Assets::uifont, InstructionsStr::instTxt, instTxtPos, FONT_SIZE, 0, WHITE);
-        instructionVis -> draw();
+        //instructionVis -> draw();
         back -> draw();
 
         EndDrawing();
     }
 
-    delete instructionVis;
+    //delete instructionVis;
     delete back;
 
 }
