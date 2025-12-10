@@ -11,7 +11,8 @@ namespace Assets {
                         ui_box,
                         instruction,
                         lockwindow,
-                        hand;
+                        hand,
+                        arrowtile;
 
     extern Font         uifont,
                         numfont;

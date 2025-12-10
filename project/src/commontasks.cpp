@@ -17,6 +17,8 @@ void init() {
     instruction     = LoadTexture("assets/texture/inst_vis.png");
     lockwindow      = LoadTexture("assets/texture/lock.png");
     hand            = LoadTexture("assets/texture/hand.png");
+    arrowtile       = LoadTexture("assets/texture/arrow.png");
+
     uifont          = LoadFont ("assets/font/uifont.ttf");
     numfont         = LoadFontEx ("assets/font/numfont.ttf", FONT_SIZE, nullptr, 0);
     
@@ -35,6 +37,7 @@ void unload() {
     UnloadTexture(instruction);
     UnloadTexture(lockwindow);
     UnloadTexture(hand);
+    UnloadTexture(arrowtile);
 
     UnloadFont(uifont);
     UnloadFont(numfont);
