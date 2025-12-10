@@ -1,6 +1,20 @@
 #pragma once
 #include "raylib.h"
 
+template <typename T>
+class SpriteProp {
+    private:
+        Texture2D* texture_;
+        float frameH_;
+        short frameCount_;
+
+        friend T;
+
+    public:
+        SpriteProp(Texture2D* spriteSheet, float frameHeight, short frameCount);
+};
+
+
 class SpriteV {
     private:
         Texture2D* texture_;
