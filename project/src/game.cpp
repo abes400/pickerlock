@@ -17,6 +17,9 @@ using namespace std;
 #define ARROW_FRAME_COUNT 8
 #define ARROW_FRAME_TIME  0.05
 
+#define HAND_HEIGHT       311
+#define HAND_FRAME_COUNT  6
+
 void Game() {
     ////////////////////
     // Init game vars //
@@ -26,6 +29,11 @@ void Game() {
     static const AnimatedSpriteProp lockProp = AnimatedSpriteProp { &Assets::lockwindow, LOCK_HEIGHT, LOCK_FRAME_COUNT, LOCK_FRAME_TIME };
     AnimatedSprite* lockAnim                 = new AnimatedSprite ( Vector2{CENTER_X_WINDOW, CENTER_Y_WINDOW - 100}, &lockProp, LOOPABLE );
     lockAnim -> setOriginAsCenter();
+
+    // Initialize Hand Animation Sprite
+    static const SpriteVProp        handProp = SpriteVProp { &Assets::hand, HAND_HEIGHT, HAND_FRAME_COUNT };
+    SpriteV* hand                            = new SpriteV(Vector2{CENTER_X_WINDOW + 120, CENTER_Y_WINDOW - 102}, &handProp); 
+    hand -> setOriginAsCenter();
 
     // Initialize arrow tiles
     static const AnimatedSpriteProp tileProp = AnimatedSpriteProp { &Assets::arrowtile, ARROW_HEIGHT, ARROW_FRAME_COUNT, ARROW_FRAME_TIME };
@@ -37,7 +45,7 @@ void Game() {
     ArrowTile* tiles[tileCount];
     for(short i = 0 ; i < tileCount ; i++) {
         tiles[i] = new ArrowTile(Vector2{tileX, tileY}, &tileProp);
-        tileX += Assets::arrowtile.width;
+        tileX   += Assets::arrowtile.width;
     }
 
     short tile_i;
@@ -53,7 +61,7 @@ void Game() {
                 
 
         // Update states
-        lockAnim -> updateFrame();
+        //lockAnim -> updateFrame();
         for(tile_i = 0 ; tile_i < tileCount; tile_i++)
             tiles[tile_i] -> updateFrame();
                 
@@ -61,6 +69,7 @@ void Game() {
         BeginDrawing();
         tileBG();
         lockAnim -> draw();
+        hand     -> draw();
         for(tile_i = 0 ; tile_i < tileCount; tile_i++)
             tiles[tile_i] -> draw();
 
@@ -70,6 +79,7 @@ void Game() {
 
     // De-init game vars in heap
     delete lockAnim;
+    delete hand;
     for(tile_i = 0 ; tile_i < tileCount ; tile_i++)
         delete tiles[tile_i];
     
