@@ -9,7 +9,9 @@ SpriteV::SpriteV (Vector2 position, const SpriteVProp* spriteProperty) {
     position_   = position;
 
     frame_crop_ = {0, 0, static_cast<float>(prop_ -> texture_ -> width), prop_ -> frameH_};
+}
 
+void SpriteV::setOriginAsCenter() {
     position_.x -= prop_ -> texture_ -> width/2;
     position_.y -= prop_ -> frameH_/2;
 }

@@ -17,6 +17,7 @@ class SpriteV {
 
     public:
         SpriteV(Vector2 position, const SpriteVProp* spriteProperty);
+        void setOriginAsCenter();
         void setFrame(short frame);
         bool isLastFrame();
         void draw();
