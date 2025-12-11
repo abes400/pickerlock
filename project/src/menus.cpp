@@ -183,11 +183,8 @@ void Instructions() {
     };
 
     // Init visualization sprite
-    static const AnimatedSpriteProp instProp = AnimatedSpriteProp {
-        &Assets::instruction,
-        FRAME_HEIGHT,
-        FRAME_COUNT,
-        FRAMETIMER_INIT
+    static const AnimatedSpriteProp instProp = AnimatedSpriteProp { 
+        &Assets::instruction, FRAME_HEIGHT, FRAME_COUNT, FRAMETIMER_INIT
     };
     AnimatedSprite* instAnim = new AnimatedSprite(Vector2{CENTER_X_WINDOW, CENTER_Y_WINDOW - 20}, &instProp, LOOPABLE);
 

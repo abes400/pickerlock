@@ -5,16 +5,22 @@ using namespace std;
 using namespace std;
 #include "arrowtile.hpp"
 
-/*
-bool ArrowTile::seeded_ = false;
+bool ArrowTile::inst_before_ = false;
+Vector2 ArrowTile::frame_origin_;
 
 ArrowTile::
-ArrowTile(Vector2 position, Texture2D* spriteSheet, float frameHeight, short frameCount, float frameTimeSecond, bool loop)
-: AnimatedSprite (position, spriteSheet, frameHeight, frameCount, frameTimeSecond, loop){
-    if(!seeded_) {
+ArrowTile(Vector2 position, AnimatedSpriteProp* spriteProperty, bool loop)
+: AnimatedSprite (position, spriteProperty, loop){
+    if(!inst_before_) {
         srand(time(NULL));
-        cout << "RNG for direction decision is seeded\n";
-        seeded_ = true;
+
+        frame_origin_ = {
+            static_cast<float>(spriteProperty -> texture_ -> width) / 2,
+            static_cast<float>(spriteProperty -> frameH_) / 2
+        };
+
+        inst_before_ = true;
+        cout << "Since this was the first instance, the RNG seeded and frame origin calculated\n";
     }
 }
 
@@ -22,5 +28,3 @@ void ArrowTile::decideDirection() {
     direction = static_cast<Directions>(rand() % 4);
     rotation_  = 90 * static_cast<short>(direction);
 }
-
-*/
