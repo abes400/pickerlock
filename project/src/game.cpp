@@ -27,14 +27,6 @@ void Game() {
 
     // Initialize arrow tiles
     const  short tileCount = Globals::difficulty + 3;
-    static const AnimatedSpriteProp tileProp = AnimatedSpriteProp { &Assets::arrowtile, ARROW_HEIGHT, ARROW_FRAME_COUNT, ARROW_FRAME_TIME };
-    float tileX                       = CENTER_X_WINDOW - Assets::arrowtile.width * (tileCount - 1) / 2;
-    float tileY                       = CENTER_Y_WINDOW + 100;
-    AnimatedSprite* tiles[tileCount];
-    for(short i = 0; i < tileCount; i++) {
-        tiles[i] = new AnimatedSprite(Vector2 {tileX, tileY}, &tileProp);
-        tileX += Assets::arrowtile.width;
-    }
 
     short tile_i;
 
@@ -53,12 +45,10 @@ void Game() {
         BeginDrawing();
         tileBG();
         lockAnim -> draw();
-        for(tile_i = 0; tile_i < tileCount; tile_i++) tiles[tile_i] -> draw();
         EndDrawing();
     }
 
     // De-init game vars in heap
-    for(tile_i = 0; tile_i < tileCount; tile_i++) delete tiles[tile_i];
     delete lockAnim;
     
 }
