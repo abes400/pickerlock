@@ -21,6 +21,7 @@ class SpriteV {
         void setFrame(short frame);
         bool isLastFrame();
         void draw();
+        ~SpriteV();
 };
 
 struct AnimatedSpriteProp : public SpriteVProp {
@@ -38,6 +39,7 @@ class AnimatedSprite : public SpriteV {
         bool    loop = false;
 
         AnimatedSprite(Vector2 position, const AnimatedSpriteProp* spriteProperty, bool loop = NOT_LOOPABLE);
+        void setFrame(short frame);
         void updateFrame(float deltaTime = GetFrameTime());
 
 };

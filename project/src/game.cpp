@@ -46,8 +46,11 @@ void Game() {
     while (Globals::scene == Globals::IN_GAME && !WindowShouldClose()) {
         // Handle Input Events
         if(IsKeyPressed(KEY_SPACE))
-            for(tile_i = 0 ; tile_i < tileCount; tile_i++)
+            for(tile_i = 0 ; tile_i < tileCount; tile_i++) {
                 tiles[tile_i] -> decideDirection();
+                tiles[tile_i] -> setFrame(0);
+            }
+                
 
         // Update states
         lockAnim -> updateFrame();

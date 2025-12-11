@@ -62,6 +62,7 @@ int main() {
 
     Globals::scene = Globals::MAIN_MENU;
     while(!WindowShouldClose()) {
+        cout << "______________NEW SCENE_________________\n";
 
         switch(Globals::scene) {
             case Globals::MAIN_MENU:
