@@ -183,7 +183,13 @@ void Instructions() {
     };
 
     // Init visualization sprite
-    //AnimatedSprite( Vector2{CENTER_X_WINDOW, CENTER_Y_WINDOW - 20}, &Assets::instruction, FRAME_HEIGHT, FRAME_COUNT, FRAMETIMER_INIT, LOOPABLE);
+    static const AnimatedSpriteProp instProp = AnimatedSpriteProp {
+        &Assets::instruction,
+        FRAME_HEIGHT,
+        FRAME_COUNT,
+        FRAMETIMER_INIT
+    };
+    AnimatedSprite* instAnim = new AnimatedSprite(Vector2{CENTER_X_WINDOW, CENTER_Y_WINDOW - 20}, &instProp, LOOPABLE);
 
 
     // Init back btn
@@ -199,6 +205,7 @@ void Instructions() {
         if(back -> checkClick(mousePos, IsMouseButtonDown(MOUSE_BUTTON_LEFT))) { Globals::scene = Globals::MAIN_MENU; break; }
 
         // Handle visualisation animation
+        instAnim -> updateFrame();
 
         // Draw elements
         BeginDrawing();
@@ -207,12 +214,13 @@ void Instructions() {
 
         DrawTexture(Assets::ui_box, boxX, boxY, WHITE);
         DrawTextEx(Assets::uifont, InstructionsStr::instTxt, instTxtPos, FONT_SIZE, 0, WHITE);
-
+        instAnim -> draw();
         back -> draw();
 
         EndDrawing();
     }
 
+    delete instAnim;
     delete back;
 
 }
