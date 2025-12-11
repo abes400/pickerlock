@@ -199,7 +199,6 @@ void Instructions() {
         if(back -> checkClick(mousePos, IsMouseButtonDown(MOUSE_BUTTON_LEFT))) { Globals::scene = Globals::MAIN_MENU; break; }
 
         // Handle visualisation animation
-        //instructionVis -> updateFrame(GetFrameTime());
 
         // Draw elements
         BeginDrawing();
@@ -208,13 +207,12 @@ void Instructions() {
 
         DrawTexture(Assets::ui_box, boxX, boxY, WHITE);
         DrawTextEx(Assets::uifont, InstructionsStr::instTxt, instTxtPos, FONT_SIZE, 0, WHITE);
-        //instructionVis -> draw();
+
         back -> draw();
 
         EndDrawing();
     }
 
-    //delete instructionVis;
     delete back;
 
 }
