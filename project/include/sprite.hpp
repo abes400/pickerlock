@@ -9,14 +9,14 @@ struct SpriteVProp {
 
 class SpriteV {
     protected:
-        SpriteVProp* prop_;
+        const SpriteVProp* prop_;
         Vector2 position_;
         short current_frame_ = 0;
 
         Rectangle frame_crop_;
 
     public:
-        SpriteV(Vector2 position, SpriteVProp* spriteProperty);
+        SpriteV(Vector2 position, const SpriteVProp* spriteProperty);
         void setFrame(short frame);
         bool isLastFrame();
         void draw();
@@ -36,7 +36,7 @@ class AnimatedSprite : public SpriteV {
     public:
         bool    loop = false;
 
-        AnimatedSprite(Vector2 position, AnimatedSpriteProp* spriteProperty, bool loop = NOT_LOOPABLE);
+        AnimatedSprite(Vector2 position, const AnimatedSpriteProp* spriteProperty, bool loop = NOT_LOOPABLE);
         void updateFrame(float deltaTime = GetFrameTime());
 
 };

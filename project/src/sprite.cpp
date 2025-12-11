@@ -3,7 +3,7 @@
 
 
 /////////////////// IMPLEMENTATION OF SPRITEV ///////////////////
-SpriteV::SpriteV (Vector2 position, SpriteVProp* spriteProperty) {
+SpriteV::SpriteV (Vector2 position, const SpriteVProp* spriteProperty) {
 
     prop_ = spriteProperty;
     position_   = position;
@@ -32,7 +32,7 @@ void SpriteV::draw() {
 
 /////////////////// IMPLEMENTATION OF ANIMATEDSPRITE ///////////////////
 AnimatedSprite::
-AnimatedSprite(Vector2 position, AnimatedSpriteProp* spriteProperty, bool loop)
+AnimatedSprite(Vector2 position, const AnimatedSpriteProp* spriteProperty, bool loop)
 : SpriteV(position, spriteProperty) {
     frame_timer_ = spriteProperty -> frame_timer_second_;
     this -> loop = loop;
@@ -42,7 +42,7 @@ void AnimatedSprite::updateFrame(float deltaTime) {
     frame_timer_ -= deltaTime;
 
     while(frame_timer_ < 0) {
-        frame_timer_ += static_cast<AnimatedSpriteProp*>(prop_) -> frame_timer_second_;
+        frame_timer_ += static_cast<const AnimatedSpriteProp*>(prop_) -> frame_timer_second_;
         current_frame_ ++;
         
         if(current_frame_ >= prop_ -> frame_count_)
