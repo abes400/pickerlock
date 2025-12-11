@@ -40,7 +40,7 @@ void Game() {
     
     const short tileCount   = Globals::difficulty + 3;
     float       tileX       = CENTER_X_WINDOW - Assets::arrowtile.width * (tileCount - 1) / 2;
-    float       tileY       = CENTER_Y_WINDOW + 200;
+    float       tileY       = CENTER_Y_WINDOW + 80;
     
     ArrowTile* tiles[tileCount];
     for(short i = 0 ; i < tileCount ; i++) {
