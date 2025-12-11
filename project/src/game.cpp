@@ -63,6 +63,8 @@ void Game() {
         lockAnim -> draw();
         for(tile_i = 0 ; tile_i < tileCount; tile_i++)
             tiles[tile_i] -> draw();
+
+        DrawFPS(0, 0);
         EndDrawing();
     }
 
