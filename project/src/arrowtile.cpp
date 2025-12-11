@@ -9,7 +9,7 @@ bool ArrowTile::inst_before_ = false;
 Vector2 ArrowTile::frame_origin_;
 
 ArrowTile::
-ArrowTile(Vector2 position, AnimatedSpriteProp* spriteProperty, bool loop)
+ArrowTile(Vector2 position, const AnimatedSpriteProp* spriteProperty, bool loop)
 : AnimatedSprite (position, spriteProperty, loop){
     if(!inst_before_) {
         srand(time(NULL));

@@ -11,6 +11,6 @@ class ArrowTile : public AnimatedSprite {
 
     public:
         enum Directions direction = UP;
-        ArrowTile(Vector2 position, AnimatedSpriteProp* spriteProperty, bool loop = NOT_LOOPABLE);
+        ArrowTile(Vector2 position, const AnimatedSpriteProp* spriteProperty, bool loop = NOT_LOOPABLE);
         void decideDirection();
 };
