@@ -7,6 +7,7 @@ using namespace std;
 
 bool ArrowTile::inst_before_ = false;
 Vector2 ArrowTile::frame_origin_;
+float ArrowTile::width_, ArrowTile::height_;
 
 ArrowTile::
 ArrowTile(Vector2 position, const AnimatedSpriteProp* spriteProperty, bool loop)
@@ -14,9 +15,12 @@ ArrowTile(Vector2 position, const AnimatedSpriteProp* spriteProperty, bool loop)
     if(!inst_before_) {
         srand(time(NULL));
 
+        width_ = spriteProperty -> texture_ -> width;
+        height_ = spriteProperty -> frameH_;
+
         frame_origin_ = {
-            static_cast<float>(spriteProperty -> texture_ -> width) / 2,
-            static_cast<float>(spriteProperty -> frameH_) / 2
+            width_ / 2,
+            height_ / 2
         };
 
         inst_before_ = true;
@@ -27,4 +31,15 @@ ArrowTile(Vector2 position, const AnimatedSpriteProp* spriteProperty, bool loop)
 void ArrowTile::decideDirection() {
     direction = static_cast<Directions>(rand() % 4);
     rotation_  = 90 * static_cast<short>(direction);
+}
+
+void ArrowTile::draw() {
+    DrawTexturePro(
+        *(prop_ -> texture_),
+        frame_crop_,
+        Rectangle{position_.x, position_.y, width_, height_},
+        frame_origin_,
+        rotation_,
+        WHITE
+    );
 }
