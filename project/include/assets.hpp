@@ -12,7 +12,8 @@ namespace Assets {
                         instruction,
                         lockwindow,
                         hand,
-                        arrowtile;
+                        arrowtile,
+                        cards;
 
     extern Font         uifont,
                         numfont;
