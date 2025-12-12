@@ -29,6 +29,7 @@ struct AnimatedSpriteProp : public SpriteVProp {
 };
 
 enum Loopability { LOOPABLE = true, NOT_LOOPABLE = false };
+enum PlayState   { PLAY     = true, PAUSE        = false };
 
 class AnimatedSprite : public SpriteV {
     private:
@@ -36,6 +37,7 @@ class AnimatedSprite : public SpriteV {
         
     public:
         enum Loopability    loop;
+        enum PlayState      is_playing = PAUSE;
 
         AnimatedSprite(Vector2 position, const AnimatedSpriteProp* spriteProperty, Loopability loopable = NOT_LOOPABLE);
         void setFrame(short frame);

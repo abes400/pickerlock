@@ -54,16 +54,18 @@ void AnimatedSprite::setFrame(short frame) {
 }
 
 void AnimatedSprite::updateFrame(float deltaTime) {
-    frame_timer_ -= deltaTime;
 
-    while(frame_timer_ < 0) {
-        frame_timer_ += static_cast<const AnimatedSpriteProp*>(prop_) -> frame_timer_second_;
-        current_frame_ ++;
-        
-        if(current_frame_ >= prop_ -> frame_count_)
-            current_frame_ = loop ? 0 : prop_ -> frame_count_ - 1;
+    if(is_playing) {
+        frame_timer_ -= deltaTime;
+        while(frame_timer_ < 0) {
+            frame_timer_ += static_cast<const AnimatedSpriteProp*>(prop_) -> frame_timer_second_;
+            current_frame_ ++;
+            
+            if(current_frame_ >= prop_ -> frame_count_)
+                current_frame_ = loop ? 0 : prop_ -> frame_count_ - 1;
+        }
+        frame_crop_.y   = current_frame_ * prop_ -> frameH_;
     }
-
-    frame_crop_.y   = current_frame_ * prop_ -> frameH_;
+    
 }
 ////////////////////////////////////////////////////////////////////////

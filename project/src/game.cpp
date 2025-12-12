@@ -58,6 +58,7 @@ void Game() {
     static const AnimatedSpriteProp lockProp = AnimatedSpriteProp { &Assets::lockwindow, LOCK_HEIGHT, LOCK_FRAME_COUNT, LOCK_FRAME_TIME };
     AnimatedSprite* lockAnim                 = new AnimatedSprite ( Vector2{CENTER_X_WINDOW, CENTER_Y_WINDOW - 100}, &lockProp, LOOPABLE );
     lockAnim -> setOriginAsCenter();
+    lockAnim -> is_playing = PLAY;
 
     // Initialize Hand Animation Sprite
     static const SpriteVProp        handProp = SpriteVProp { &Assets::hand, HAND_HEIGHT, HAND_FRAME_COUNT };
