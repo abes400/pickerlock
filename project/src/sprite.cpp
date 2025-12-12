@@ -25,10 +25,6 @@ void SpriteV::setFrame(short frame) {
     frame_crop_.y   = current_frame_ * prop_ -> frameH_;
 }
 
-bool SpriteV::isLastFrame() {
-    return current_frame_ == prop_ -> frame_count_ - 1;
-}
-
 void SpriteV::draw() {
     DrawTextureRec(*(prop_ -> texture_), frame_crop_, position_, WHITE);
 }
@@ -44,7 +40,7 @@ AnimatedSprite::
 AnimatedSprite(Vector2 position, const AnimatedSpriteProp* spriteProperty, Loopability loopable)
 : SpriteV(position, spriteProperty) {
     frame_timer_ = spriteProperty -> frame_timer_second_;
-    loop = loop;
+    loop = loopable;
 }
 
 void AnimatedSprite::setFrame(short frame) {
@@ -61,8 +57,17 @@ void AnimatedSprite::updateFrame(float deltaTime) {
             frame_timer_ += static_cast<const AnimatedSpriteProp*>(prop_) -> frame_timer_second_;
             current_frame_ ++;
             
-            if(current_frame_ >= prop_ -> frame_count_)
-                current_frame_ = loop ? 0 : prop_ -> frame_count_ - 1;
+            if(current_frame_ >= prop_ -> frame_count_) {
+                if(loop) {
+                    current_frame_ = 0;
+                    cout << "Looping...\n";
+                }
+                else {
+                    current_frame_ = prop_ -> frame_count_ - 1;
+                    is_playing = PAUSE;
+                    cout << "Paused animation \n";
+                }
+            }
         }
         frame_crop_.y   = current_frame_ * prop_ -> frameH_;
     }

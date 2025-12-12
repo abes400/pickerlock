@@ -57,9 +57,8 @@ void Game() {
 
     // Initialize Lock Animation Sprite
     static const AnimatedSpriteProp lockProp = AnimatedSpriteProp { &Assets::lockwindow, LOCK_HEIGHT, LOCK_FRAME_COUNT, LOCK_FRAME_TIME };
-    AnimatedSprite* lockAnim                 = new AnimatedSprite ( Vector2{CENTER_X_WINDOW, CENTER_Y_WINDOW - 100}, &lockProp, LOOPABLE );
+    AnimatedSprite* lockAnim                 = new AnimatedSprite ( Vector2{CENTER_X_WINDOW, CENTER_Y_WINDOW - 100}, &lockProp );
     lockAnim -> setOriginAsCenter();
-    lockAnim -> is_playing = PLAY;
 
     // Initialize Hand Animation Sprite
     static const SpriteVProp        handProp = SpriteVProp { &Assets::hand, HAND_HEIGHT, HAND_FRAME_COUNT };
@@ -94,15 +93,15 @@ void Game() {
             case INPUT:
                 if(IsKeyPressed(KEY_SPACE)) {
                     hand -> setFrame(1);
+                    lockAnim -> is_playing = PLAY;
                     gameState = ADVANCE;
                 }
             break;
             case ADVANCE:
                 lockAnim -> updateFrame();
-                if(lockAnim -> isLastFrame()) {
-                    lockAnim -> setFrame(0);
+                if(lockAnim -> is_playing == PAUSE) {
                     hand -> setFrame(0);
-                    decideDirectionForAll(tileCount, tiles);
+                    lockAnim -> setFrame(0);
                     gameState = INPUT;
                 }
             break;
