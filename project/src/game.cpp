@@ -25,6 +25,30 @@ enum GameState {
     INPUT, ADVANCE, TIME_UP, DISQUALIFIED
 };
 
+void decideDirectionForAll (short tileCount, ArrowTile** arrowTiles) {
+    for(short i = 0; i < tileCount; i++)
+        arrowTiles[i] -> decideDirection();
+}
+
+Directions getDirectionFromKey (short* frameNumber) {
+    if      (IsKeyPressed(KEY_UP)) {
+        *frameNumber = 0;
+        return UP;
+    }     
+    else if (IsKeyPressed(KEY_DOWN)) {
+        *frameNumber = 0;
+        return DOWN;
+    }
+    else if (IsKeyPressed(KEY_LEFT)) {
+        *frameNumber = 3;
+        return LEFT;
+    }   
+    else if (IsKeyPressed(KEY_RIGHT)) {
+        *frameNumber = 2;
+        return RIGHT;
+    }  
+}
+
 void Game() {
     ////////////////////
     // Init game vars //
@@ -57,6 +81,8 @@ void Game() {
 
     short tile_i;
 
+    decideDirectionForAll(tileCount, tiles);
+
     // Game Loop
     while (Globals::scene == Globals::IN_GAME && !WindowShouldClose()) {
 
@@ -74,6 +100,7 @@ void Game() {
                 if(lockAnim -> isLastFrame()) {
                     lockAnim -> setFrame(0);
                     hand -> setFrame(0);
+                    decideDirectionForAll(tileCount, tiles);
                     gameState = INPUT;
                 }
             break;
