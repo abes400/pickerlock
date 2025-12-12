@@ -11,7 +11,7 @@ using namespace std;
 
 #define LOCK_HEIGHT       325
 #define LOCK_FRAME_COUNT  7
-#define LOCK_FRAME_TIME   0.05
+#define LOCK_FRAME_TIME   0.03
 
 #define ARROW_HEIGHT      100
 #define ARROW_FRAME_COUNT 8
@@ -19,6 +19,11 @@ using namespace std;
 
 #define HAND_HEIGHT       311
 #define HAND_FRAME_COUNT  6
+
+enum GameState {
+    GET_READY = 0,
+    INPUT, ADVANCE, TIME_UP, DISQUALIFIED
+};
 
 void Game() {
     ////////////////////
@@ -48,22 +53,35 @@ void Game() {
         tileX   += Assets::arrowtile.width;
     }
 
+    enum GameState gameState = INPUT;
+
     short tile_i;
 
     // Game Loop
     while (Globals::scene == Globals::IN_GAME && !WindowShouldClose()) {
-        // Handle Input Events
-        if(IsKeyPressed(KEY_SPACE))
-            for(tile_i = 0 ; tile_i < tileCount; tile_i++) {
-                tiles[tile_i] -> decideDirection();
-                tiles[tile_i] -> setFrame(0);
-            }
-                
 
-        // Update states
-        //lockAnim -> updateFrame();
-        for(tile_i = 0 ; tile_i < tileCount; tile_i++)
-            tiles[tile_i] -> updateFrame();
+        switch(gameState) {
+            case GET_READY:
+            break;
+            case INPUT:
+                if(IsKeyPressed(KEY_SPACE)) {
+                    hand -> setFrame(1);
+                    gameState = ADVANCE;
+                }
+            break;
+            case ADVANCE:
+                lockAnim -> updateFrame();
+                if(lockAnim -> isLastFrame()) {
+                    lockAnim -> setFrame(0);
+                    hand -> setFrame(0);
+                    gameState = INPUT;
+                }
+            break;
+            case TIME_UP:
+            break;
+            case DISQUALIFIED:
+            break;
+        }
                 
         // Draw Elements
         BeginDrawing();
