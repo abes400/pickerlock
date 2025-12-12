@@ -52,3 +52,12 @@ void tileBG() {
             DrawTexture(background, i * background.width - tileAnimOffset, j * background.height - tileAnimOffset, WHITE);
     tileAnimOffset = tileAnimOffset >= background.width ? 0 : tileAnimOffset + 40 * GetFrameTime();  
 }
+
+bool delayIsOver (float deltaTime, float* timer, float delayLength) {
+    *timer -= deltaTime;
+    if(*timer <= 0) {
+        *timer += delayLength;
+        return true;
+    }
+    return false;
+}

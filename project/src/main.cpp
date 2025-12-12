@@ -2,6 +2,7 @@
 
 #include "gamesetup.h"
 #include "gameloops.hpp"
+#include "commontasks.hpp"
 
 #include <iostream>
 using namespace std;
@@ -48,8 +49,6 @@ namespace Globals {
 
     int highscores[3] = {0, 0, 0};
 }
-
-void init(); void unload();
 
 
 int main() {

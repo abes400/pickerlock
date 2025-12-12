@@ -5,7 +5,7 @@
 
 #include "gamesetup.h"
 #include "globals.h"
-#include "commonvisuals.h"
+#include "commontasks.hpp"
 
 #include "menustr.hpp"
 #include "button.hpp"
