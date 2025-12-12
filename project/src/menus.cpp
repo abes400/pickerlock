@@ -188,6 +188,7 @@ void Instructions() {
     };
     AnimatedSprite* instAnim = new AnimatedSprite(Vector2{CENTER_X_WINDOW, CENTER_Y_WINDOW - 20}, &instProp, LOOPABLE);
     instAnim -> setOriginAsCenter();
+    instAnim -> is_playing = PLAY;
 
     // Init back btn
     Button* back = new Button(Vector2 {CENTER_X_WINDOW, CENTER_Y_WINDOW + 155}, &Assets::btn, &Assets::btn_down);
