@@ -15,7 +15,7 @@ using namespace std;
 
 #define ARROW_HEIGHT      100
 #define ARROW_FRAME_COUNT 8
-#define ARROW_FRAME_TIME  0.05
+#define ARROW_FRAME_TIME  0.03
 
 #define HAND_HEIGHT       311
 #define HAND_FRAME_COUNT  6
@@ -28,6 +28,18 @@ enum GameState {
 void decideDirectionForAll (short tileCount, ArrowTile** arrowTiles) {
     for(short i = 0; i < tileCount; i++)
         arrowTiles[i] -> decideDirection();
+}
+
+void updateAllTiles (short tileCount, ArrowTile** arrowTiles, float deltaTime) {
+    for(short i = 0; i < tileCount; i++)
+        arrowTiles[i] -> updateFrame(deltaTime);
+}
+
+void resetAllTiles (short tileCount, ArrowTile** arrowTiles) {
+    for(short i = 0; i < tileCount; i++) {
+        arrowTiles[i] -> is_playing = PAUSE;
+        arrowTiles[i] -> setFrame(1);
+    }   
 }
 
 Directions getDirectionFromKey (short* frameNumber) {
@@ -81,27 +93,47 @@ void Game() {
     enum GameState gameState = INPUT;
 
     short tile_i;
+    short current_tile = 0;
+    enum  Directions keyDirection = NONE;
+    short handFrame = 0;
+    float deltaTime;
 
     decideDirectionForAll(tileCount, tiles);
 
     // Game Loop
     while (Globals::scene == Globals::IN_GAME && !WindowShouldClose()) {
+        deltaTime = GetFrameTime();
 
         switch(gameState) {
             case GET_READY:
             break;
             case INPUT:
-                if(IsKeyPressed(KEY_SPACE)) {
-                    hand -> setFrame(1);
-                    lockAnim -> is_playing = PLAY;
-                    gameState = ADVANCE;
-                }
+                keyDirection = getDirectionFromKey(&handFrame);
+                if(keyDirection != NONE) {
+                    hand -> setFrame(handFrame);
+                    if(tiles[current_tile] -> direction == keyDirection) {
+                        tiles[current_tile] -> is_playing = PLAY;
+                        current_tile++;
+
+                        if(current_tile >= tileCount) {
+                            current_tile = 0;
+                            hand -> setFrame(1);
+                            lockAnim -> is_playing = PLAY;
+                            gameState = ADVANCE;
+                        }
+                    } else {
+                        hand -> setFrame(5);
+                        tiles[current_tile] -> setFrame(0);
+                    }
+                }                
             break;
             case ADVANCE:
-                lockAnim -> updateFrame();
+                lockAnim -> updateFrame(deltaTime);
                 if(lockAnim -> is_playing == PAUSE) {
                     hand -> setFrame(0);
                     lockAnim -> setFrame(0);
+                    decideDirectionForAll(tileCount, tiles);
+                    resetAllTiles(tileCount, tiles);
                     gameState = INPUT;
                 }
             break;
@@ -110,6 +142,8 @@ void Game() {
             case DISQUALIFIED:
             break;
         }
+
+        updateAllTiles(tileCount, tiles, deltaTime);
                 
         // Draw Elements
         BeginDrawing();
