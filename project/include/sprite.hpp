@@ -28,17 +28,16 @@ struct AnimatedSpriteProp : public SpriteVProp {
     const float frame_timer_second_;
 };
 
-#define LOOPABLE true
-#define NOT_LOOPABLE false
+enum Loopability { LOOPABLE = true, NOT_LOOPABLE = false };
 
 class AnimatedSprite : public SpriteV {
     private:
         float   frame_timer_;
         
     public:
-        bool    loop = false;
+        enum Loopability    loop;
 
-        AnimatedSprite(Vector2 position, const AnimatedSpriteProp* spriteProperty, bool loop = NOT_LOOPABLE);
+        AnimatedSprite(Vector2 position, const AnimatedSpriteProp* spriteProperty, Loopability loopable = NOT_LOOPABLE);
         void setFrame(short frame);
         void updateFrame(float deltaTime = GetFrameTime());
 

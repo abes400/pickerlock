@@ -41,10 +41,10 @@ SpriteV::~SpriteV() {
 
 /////////////////// IMPLEMENTATION OF ANIMATEDSPRITE ///////////////////
 AnimatedSprite::
-AnimatedSprite(Vector2 position, const AnimatedSpriteProp* spriteProperty, bool loop)
+AnimatedSprite(Vector2 position, const AnimatedSpriteProp* spriteProperty, Loopability loopable)
 : SpriteV(position, spriteProperty) {
     frame_timer_ = spriteProperty -> frame_timer_second_;
-    this -> loop = loop;
+    loop = loop;
 }
 
 void AnimatedSprite::setFrame(short frame) {

@@ -10,7 +10,7 @@ Vector2 ArrowTile::frame_origin_;
 float ArrowTile::width_, ArrowTile::height_;
 
 ArrowTile::
-ArrowTile(Vector2 position, const AnimatedSpriteProp* spriteProperty, bool loop)
+ArrowTile(Vector2 position, const AnimatedSpriteProp* spriteProperty, Loopability loop)
 : AnimatedSprite (position, spriteProperty, loop){
     if(!inst_before_) {
         srand(time(NULL));
