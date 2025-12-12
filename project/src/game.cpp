@@ -47,6 +47,7 @@ Directions getDirectionFromKey (short* frameNumber) {
         *frameNumber = 2;
         return RIGHT;
     }  
+    return NONE;
 }
 
 void Game() {
