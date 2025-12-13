@@ -20,7 +20,7 @@ void init() {
     arrowtile       = LoadTexture("assets/texture/arrow.png");
     cards           = LoadTexture("assets/texture/cards.png");
 
-    uifont          = LoadFont ("assets/font/uifont.ttf");
+    uifont          = LoadFont ("assets/font/uifont.png");
     numfont         = LoadFontEx ("assets/font/numfont.ttf", FONT_SIZE, nullptr, 0);
     
     tileRow         = ceil(H_WINDOW / background.height) + 2;

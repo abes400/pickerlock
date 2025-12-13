@@ -22,18 +22,16 @@ namespace InstructionsStr {
 namespace CreditsStr {
     constexpr const char* credTxt =
                     "Pickerlock 1.0 \n\n\n"
-                    "- CREDITS - \n\n"
-                    "Concept, Programming and Artwork : Abes400 \n\n"
-                    "Sound effects (Probably) Obtained from ZapSplat. \n"
+                    "Concept, Programming and Artwork : Abes400 \n\n\n"
                     "Distributed under MIT License. \n\n"
                     "Made for 20 Second GameJam 2025\n";
 }
 
 namespace DiffStr {
     constexpr const char* diffTxt ="Select Difficulty to begin:";
-    constexpr const char* easy ="Easy - 3 Tiles";
-    constexpr const char* medi ="Med. - 4 Tiles";
-    constexpr const char* hard ="Hard - 5 Tiles";
+    constexpr const char* easy ="Easy: 3 Tiles";
+    constexpr const char* medi ="Med.: 4 Tiles";
+    constexpr const char* hard ="Hard: 5 Tiles";
     constexpr const char* scrs = "- HIGH SCORES -\nEasy\nMedium\nHard";
     constexpr const char* hscr = "%04d\n%04d\n%04d"; // "0000\n0000\n0000\0" 15 chars (inc. '\0')
 }
