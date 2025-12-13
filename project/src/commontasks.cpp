@@ -19,7 +19,7 @@ void init() {
     hand            = LoadTexture("assets/texture/hand.png");
     arrowtile       = LoadTexture("assets/texture/arrow.png");
     cards           = LoadTexture("assets/texture/cards.png");
-    statBox          = LoadTexture("assets/texture/statbox.png");
+    statbox          = LoadTexture("assets/texture/statbox.png");
 
     uifont          = LoadFont ("assets/font/uifont.png");
     numfont         = LoadFont ("assets/font/numfont.png");
@@ -41,7 +41,7 @@ void unload() {
     UnloadTexture(hand);
     UnloadTexture(arrowtile);
     UnloadTexture(cards);
-    UnloadTexture(statBox);
+    UnloadTexture(statbox);
 
     UnloadFont(uifont);
     UnloadFont(numfont);
@@ -62,4 +62,17 @@ bool delayIsOver (float deltaTime, float* timer, float delayLength) {
         return true;
     }
     return false;
+}
+
+#include<iostream>
+using namespace std;
+
+void close() {
+    unload();
+    CloseWindow();
+}
+
+void terminate(int code) {
+    close();
+    exit(code);
 }

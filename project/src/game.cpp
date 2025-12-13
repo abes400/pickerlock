@@ -5,6 +5,7 @@
 #include "sprite.hpp"
 #include "gamesetup.h"
 #include "arrowtile.hpp"
+#include "gamestr.hpp"
 
 #include <iostream>
 using namespace std;
@@ -26,6 +27,9 @@ using namespace std;
 #define READY_TIME 1
 #define START_TIME 1
 #define GMEND_TIME 3
+
+#define SCORE_STR_LEN 5
+#define TIME_STR_LEN  5
 
 enum GameState {
     GET_READY = 0,
@@ -86,6 +90,26 @@ void Game() {
     bool  timerActive = false;
     short gameTimer = 20;
     float gameTimerDelay = 1;
+    
+    int   score = 0;
+
+    short boxX = CENTER_X_WINDOW - Assets::statbox.width  / 2;
+    short boxY = CENTER_Y_WINDOW + 150;
+
+    char* scoreStr = (char*) malloc(sizeof(char) * 5);
+    char* timeStr  = (char*) malloc(sizeof(char) * 5);
+
+    Vector2 statTxtPos  = Vector2{boxX + 70, boxY + 35 };
+    Vector2 timeTxtPos  = Vector2{statTxtPos.x + 80, statTxtPos.y};
+    Vector2 scoreTxtPos = Vector2{timeTxtPos.x, timeTxtPos.y + 19 };
+    
+    // Clean up and kill the program, because if allocation fails
+    // it won't make any sense anymore at this point
+    if(!scoreStr || !timeStr) 
+        terminate(EXIT_FAILURE);
+
+    snprintf(scoreStr, SCORE_STR_LEN, GameStr::scoref, score    );
+    snprintf(timeStr,  TIME_STR_LEN,  GameStr::timef,  gameTimer);
 
     decideDirectionForAll(tileCount, tiles);
     resetAllTiles(tileCount, tiles);
@@ -111,6 +135,8 @@ void Game() {
                         current_tile++;
 
                         if(current_tile >= tileCount) {
+                            snprintf(scoreStr, SCORE_STR_LEN, GameStr::scoref, ++score);
+                            cout << "newscore: " << score << endl;
                             current_tile = 0;
                             hand -> setFrame(1);
                             lockAnim -> is_playing = PLAY;
@@ -148,11 +174,13 @@ void Game() {
         if(timerActive && delayIsOver(deltaTime, &gameTimerDelay, 1)) {
             gameTimer--;
             gameTimerDelay = 1;
-            cout << "Update timer string to " << gameTimer << endl;
+            snprintf(timeStr,  TIME_STR_LEN,  GameStr::timef,  gameTimer);
             if(gameTimer == 0) {
                 timerActive = false;
                 card -> setFrame(2);
                 hand -> setFrame(4);
+                if(score > Globals::highscores[Globals::difficulty])
+                    Globals::highscores[Globals::difficulty] = score;
                 cardVisible = true;
                 cardTimer = GMEND_TIME;
                 gameState = TIME_UP;
@@ -166,6 +194,11 @@ void Game() {
         hand     -> draw();
         for(tile_i = 0 ; tile_i < tileCount; tile_i++)
             tiles[tile_i] -> draw();
+        
+        DrawTexture(Assets::statbox, boxX, boxY, WHITE);
+        DrawTextEx(Assets::uifont, GameStr::statTxt, statTxtPos, Assets::uifont.baseSize, FONT_SPACING, WHITE);
+        DrawTextEx(Assets::numfont, timeStr, timeTxtPos, Assets::numfont.baseSize, 1, WHITE);
+        DrawTextEx(Assets::numfont, scoreStr, scoreTxtPos, Assets::numfont.baseSize, 1, WHITE);
 
         if(cardVisible)
             card -> draw();
@@ -175,6 +208,9 @@ void Game() {
     }
 
     // De-init game vars in heap
+    free (scoreStr);
+    free (timeStr );
+
     delete lockAnim;
     delete hand;
     delete card;

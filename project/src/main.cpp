@@ -19,7 +19,7 @@ namespace Assets {
                 hand,
                 arrowtile,
                 cards,
-                statBox;
+                statbox;
 
     Font        uifont,
                 numfont;
@@ -48,7 +48,7 @@ namespace Globals {
     enum Scenes scene = MAIN_MENU;
     enum Difficulties difficulty;
 
-    int highscores[3] = {0, 112, 3247};
+    int highscores[3] = {0, 0, 0};
 }
 
 
@@ -89,7 +89,6 @@ int main() {
 
     }
     
-    unload();
-    CloseWindow();
+    close();
     return 0;
 }

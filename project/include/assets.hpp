@@ -14,7 +14,7 @@ namespace Assets {
                         hand,
                         arrowtile,
                         cards,
-                        statBox;
+                        statbox;
 
     extern Font         uifont,
                         numfont;
