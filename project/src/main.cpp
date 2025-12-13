@@ -47,7 +47,7 @@ namespace Globals {
     enum Scenes scene = MAIN_MENU;
     enum Difficulties difficulty;
 
-    int highscores[3] = {0, 0, 0};
+    int highscores[3] = {0, 112, 3247};
 }
 
 

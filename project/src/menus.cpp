@@ -109,9 +109,9 @@ void Difficulty() {
         Globals::highscores[Globals::HARD  ]
     );
     
-    Vector2 scoreValSize = MeasureTextEx(Assets::numfont, DiffStr::hscr, Assets::numfont.baseSize, FONT_SPACING);
+    Vector2 scoreValSize = MeasureTextEx(Assets::numfont, DiffStr::hscr, Assets::numfont.baseSize, 0);
     Vector2 scoreValPos  = {
-        scoreTxtPos.x + scoreTxtSize.x - scoreValSize.x,
+        scoreTxtPos.x + scoreTxtSize.x - scoreValSize.x - 20,
         scoreTxtPos.y + scoreTxtSize.y - scoreValSize.y + 4
     };
 
@@ -148,7 +148,7 @@ void Difficulty() {
         DrawTexture(Assets::ui_box, boxX, boxY, WHITE);
         DrawTextEx(Assets::uifont, DiffStr::diffTxt, diffTxtPos, Assets::uifont.baseSize, FONT_SPACING, WHITE);
         DrawTextEx(Assets::uifont,  DiffStr::scrs, scoreTxtPos, Assets::uifont.baseSize, FONT_SPACING, WHITE);
-        DrawTextEx(Assets::numfont, hsStr,   scoreValPos, Assets::numfont.baseSize, FONT_SPACING, PL_YELLOW);
+        DrawTextEx(Assets::numfont, hsStr,   scoreValPos, Assets::numfont.baseSize, 0, WHITE);
         easy -> draw();
         medi -> draw();
         hard -> draw();

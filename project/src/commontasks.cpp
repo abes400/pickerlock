@@ -21,7 +21,7 @@ void init() {
     cards           = LoadTexture("assets/texture/cards.png");
 
     uifont          = LoadFont ("assets/font/uifont.png");
-    numfont         = LoadFontEx ("assets/font/numfont.ttf", FONT_SIZE, nullptr, 0);
+    numfont         = LoadFont ("assets/font/numfont.png");
     
     tileRow         = ceil(H_WINDOW / background.height) + 2;
     tileCol         = ceil(W_WINDOW / background.width ) + 2;
