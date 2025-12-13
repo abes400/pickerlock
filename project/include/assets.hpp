@@ -13,7 +13,8 @@ namespace Assets {
                         lockwindow,
                         hand,
                         arrowtile,
-                        cards;
+                        cards,
+                        statBox;
 
     extern Font         uifont,
                         numfont;
