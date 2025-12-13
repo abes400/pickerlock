@@ -20,10 +20,12 @@ using namespace std;
 #define HAND_HEIGHT       311
 #define HAND_FRAME_COUNT  6
 
-#define CARD_HEIGHT       67
+#define CARD_HEIGHT       100
 #define CARD_FRAME_COUNT  3
 
-#define CARD_TIME 1
+#define READY_TIME 1
+#define START_TIME 1
+#define GMEND_TIME 3
 
 enum GameState {
     GET_READY = 0,
@@ -66,7 +68,7 @@ void Game() {
 
     // Initialize game cards
     static const SpriteVProp        cardProp = SpriteVProp { &Assets::cards, CARD_HEIGHT, CARD_FRAME_COUNT };
-    SpriteV* card                            = new SpriteV( Vector2{CENTER_X_WINDOW, CENTER_Y_WINDOW}, &cardProp );
+    SpriteV* card                            = new SpriteV( Vector2{CENTER_X_WINDOW, CENTER_Y_WINDOW+80}, &cardProp );
     card -> setOriginAsCenter();
     card -> setFrame(0);
 
@@ -78,10 +80,15 @@ void Game() {
     short handFrame = 0;
     float deltaTime;
 
-    float cardTimer = CARD_TIME;
+    float cardTimer = READY_TIME;
     bool  cardVisible = true;
 
+    bool  timerActive = false;
+    short gameTimer = 20;
+    float gameTimerDelay = 1;
+
     decideDirectionForAll(tileCount, tiles);
+    resetAllTiles(tileCount, tiles);
 
     // Game Loop
     while (Globals::scene == Globals::IN_GAME && !WindowShouldClose()) {
@@ -89,8 +96,9 @@ void Game() {
 
         switch(gameState) {
             case GET_READY:
-                if (delayIsOver(deltaTime, &cardTimer, CARD_TIME)) {
+                if (delayIsOver(deltaTime, &cardTimer, READY_TIME)) {
                     cardVisible = false;
+                    timerActive = true;
                     gameState = INPUT;
                 }
             break;
@@ -111,9 +119,10 @@ void Game() {
                     } else {
                         hand -> setFrame(5);
                         tiles[current_tile] -> setFrame(0);
-                        card -> setFrame(2);
+                        card -> setFrame(3);
                         cardVisible = true;
-                        cardTimer = CARD_TIME;
+                        timerActive = false;
+                        cardTimer = GMEND_TIME;
                         gameState = DISQUALIFIED;
                     }
                 }                
@@ -127,19 +136,28 @@ void Game() {
                     resetAllTiles(tileCount, tiles);
                     gameState = INPUT;
                 }
-            break;
-            case TIME_UP:
-            break;
-            case DISQUALIFIED:
-                if(delayIsOver(deltaTime, &cardTimer, CARD_TIME)) {
-                    cout << "game should end here\n";
-                }
-            
 
+            break;
+            case DISQUALIFIED: case TIME_UP:
+                if(delayIsOver(deltaTime, &cardTimer, GMEND_TIME))
+                    Globals::scene = Globals::DIFFICULTY;
             break;
         }
 
         updateAllTiles(tileCount, tiles, deltaTime);
+        if(timerActive && delayIsOver(deltaTime, &gameTimerDelay, 1)) {
+            gameTimer--;
+            gameTimerDelay = 1;
+            cout << "Update timer string to " << gameTimer << endl;
+            if(gameTimer == 0) {
+                timerActive = false;
+                card -> setFrame(2);
+                hand -> setFrame(4);
+                cardVisible = true;
+                cardTimer = GMEND_TIME;
+                gameState = TIME_UP;
+            }      
+        }
                 
         // Draw Elements
         BeginDrawing();
