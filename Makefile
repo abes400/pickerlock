@@ -79,6 +79,7 @@ web:
 	--preload-file $(WASM_PRELOAD) 							\
 	-s TOTAL_STACK=$(WASM_STACK_MB)MB 						\
     -s INITIAL_MEMORY=$(WASM_INIT_MEM_MB)MB 				\
+	-s EXPORTED_RUNTIME_METHODS=['HEAPF32','HEAPU8']		\
 	--shell-file project/web/$(WASM_SHELL)					\
 	-s $(WASM_FLAGS)
 

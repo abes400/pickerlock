@@ -48,8 +48,8 @@ void Game() {
 
     // Coordinates for the stat box. 
     // Stored as variables since it has to adapt to different screen resolutions.
-    short boxX = Globals::winCenterX - Assets::statbox.width  / 2;
-    short boxY = Globals::winCenterY + 150;
+    float boxX = Globals::winCenterX - Assets::statbox.width  / 2;
+    float boxY = Globals::winCenterY + 150;
 
     Vector2 statTxtPos  = Vector2{boxX + 70, boxY + 35 };
     Vector2 timeTxtPos  = Vector2{statTxtPos.x + 80, statTxtPos.y};
