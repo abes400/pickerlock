@@ -31,35 +31,44 @@ using namespace std;
 #define SCORE_STR_LEN 5
 #define TIME_STR_LEN  5
 
-enum GameState {
-    GET_READY = 0,
-    INPUT, ADVANCE, TIME_UP, DISQUALIFIED
-};
+enum GameState { GET_READY = 0, INPUT, ADVANCE, TIME_UP, DISQUALIFIED };
 
 void updateAllTiles         (short tileCount, ArrowTile** arrowTiles, float deltaTime);
 void decideDirectionForAll  (short tileCount, ArrowTile** arrowTiles);
 void resetAllTiles          (short tileCount, ArrowTile** arrowTiles);
+void drawAllTiles           (short tileCount, ArrowTile** arrowTiles);
 
 Directions getDirectionFromKey (short* frameNumber);
 
 void Game() {
-    ////////////////////
-    // Init game vars //
-    ////////////////////
 
-    // Initialize Lock Animation Sprite
-    static const AnimatedSpriteProp lockProp = AnimatedSpriteProp { &Assets::lockwindow, LOCK_HEIGHT, LOCK_FRAME_COUNT, LOCK_FRAME_TIME };
-    AnimatedSprite* lockAnim                 = new AnimatedSprite ( Vector2{CENTER_X_WINDOW, CENTER_Y_WINDOW - 100}, &lockProp );
-    lockAnim -> setOriginAsCenter();
+    // Coordinates for the stat box. 
+    // Stored as variables since it has to adapt to different screen resolutions.
+    short boxX = CENTER_X_WINDOW - Assets::statbox.width  / 2;
+    short boxY = CENTER_Y_WINDOW + 150;
 
-    // Initialize Hand Animation Sprite
-    static const SpriteVProp        handProp = SpriteVProp { &Assets::hand, HAND_HEIGHT, HAND_FRAME_COUNT };
-    SpriteV* hand                            = new SpriteV(Vector2{CENTER_X_WINDOW + 120, CENTER_Y_WINDOW - 102}, &handProp); 
-    hand -> setOriginAsCenter();
+    Vector2 statTxtPos  = Vector2{boxX + 70, boxY + 35 };
+    Vector2 timeTxtPos  = Vector2{statTxtPos.x + 80, statTxtPos.y};
+    Vector2 scoreTxtPos = Vector2{timeTxtPos.x, timeTxtPos.y + 19 };
 
-    // Initialize arrow tiles
-    static const AnimatedSpriteProp tileProp = AnimatedSpriteProp { &Assets::arrowtile, ARROW_HEIGHT, ARROW_FRAME_COUNT, ARROW_FRAME_TIME };
+    // Initialize Sprite Properties
+    static const AnimatedSpriteProp lockProp = AnimatedSpriteProp   { &Assets::lockwindow, LOCK_HEIGHT, LOCK_FRAME_COUNT, LOCK_FRAME_TIME };
+    static const AnimatedSpriteProp tileProp = AnimatedSpriteProp   { &Assets::arrowtile, ARROW_HEIGHT, ARROW_FRAME_COUNT, ARROW_FRAME_TIME };
+    static const SpriteVProp        handProp = SpriteVProp          { &Assets::hand, HAND_HEIGHT, HAND_FRAME_COUNT };
+    static const SpriteVProp        cardProp = SpriteVProp          { &Assets::cards, CARD_HEIGHT, CARD_FRAME_COUNT };
+
+    // Initialize Sprite Objects
+    AnimatedSprite* lockAnim     = new AnimatedSprite   ( Vector2{CENTER_X_WINDOW, CENTER_Y_WINDOW - 100}, &lockProp );
+    SpriteV*        hand         = new SpriteV          ( Vector2{CENTER_X_WINDOW + 120, CENTER_Y_WINDOW - 102}, &handProp); 
+    SpriteV*        card         = new SpriteV          ( Vector2{CENTER_X_WINDOW, CENTER_Y_WINDOW+80}, &cardProp );
+
+    // Centralize Origins
+    lockAnim    -> setOriginAsCenter();
+    hand        -> setOriginAsCenter();
+    card        -> setOriginAsCenter();
+    card        -> setFrame(0);
     
+    // Initialize Tiles (Do not centralize origins as theirs are kinda done automatically)
     const short tileCount   = Globals::difficulty + 3;
     float       tileX       = CENTER_X_WINDOW - Assets::arrowtile.width * (tileCount - 1) / 2;
     float       tileY       = CENTER_Y_WINDOW + 80;
@@ -70,41 +79,35 @@ void Game() {
         tileX   += Assets::arrowtile.width;
     }
 
-    // Initialize game cards
-    static const SpriteVProp        cardProp = SpriteVProp { &Assets::cards, CARD_HEIGHT, CARD_FRAME_COUNT };
-    SpriteV* card                            = new SpriteV( Vector2{CENTER_X_WINDOW, CENTER_Y_WINDOW+80}, &cardProp );
-    card -> setOriginAsCenter();
-    card -> setFrame(0);
 
-    enum GameState gameState = GET_READY;
+    // Game Context (ntbcw. "OpenGL context") variables
+    enum  GameState  gameState      = GET_READY;
+    enum  Directions keyDirection   = NONE;
 
-    short tile_i;
-    short current_tile = 0;
-    enum  Directions keyDirection = NONE;
-    short handFrame = 0;
     float deltaTime;
 
-    float cardTimer = READY_TIME;
-    bool  cardVisible = true;
+    short current_tile      = 0;
+    short handFrame         = 0;
 
-    bool  timerActive = false;
-    short gameTimer = 20;
-    float gameTimerDelay = 1;
-    
-    int   score = 0;
+    float cardTimer         = READY_TIME;
+    bool  cardVisible       = true;
 
-    short boxX = CENTER_X_WINDOW - Assets::statbox.width  / 2;
-    short boxY = CENTER_Y_WINDOW + 150;
+    // The overall gameplay time is stored as discrete integer.
+    // It has nothing to do with delays.
+    // Actual inter-frame delays are held by gameTimerDelay variable.
+    bool  timerActive       = false;
+    float gameTimerDelay    = 1;
 
+    short gameTimer         = 20;
+    int   score             = 0;
+
+
+    // Allocating string buffers to be fed into RayLib to show timer and score
     char* scoreStr = (char*) malloc(sizeof(char) * 5);
     char* timeStr  = (char*) malloc(sizeof(char) * 5);
-
-    Vector2 statTxtPos  = Vector2{boxX + 70, boxY + 35 };
-    Vector2 timeTxtPos  = Vector2{statTxtPos.x + 80, statTxtPos.y};
-    Vector2 scoreTxtPos = Vector2{timeTxtPos.x, timeTxtPos.y + 19 };
     
-    // Clean up and kill the program, because if allocation fails
-    // it won't make any sense anymore at this point
+    // Clean up and kill the program if allocation fails
+    // bc. it won't make any sense to run the process anymore at this point
     if(!scoreStr || !timeStr) 
         terminate(EXIT_FAILURE);
 
@@ -177,10 +180,10 @@ void Game() {
             snprintf(timeStr,  TIME_STR_LEN,  GameStr::timef,  gameTimer);
             if(gameTimer == 0) {
                 timerActive = false;
-                card -> setFrame(2);
-                hand -> setFrame(4);
                 if(score > Globals::highscores[Globals::difficulty])
                     Globals::highscores[Globals::difficulty] = score;
+                card -> setFrame(2);
+                hand -> setFrame(4);
                 cardVisible = true;
                 cardTimer = GMEND_TIME;
                 gameState = TIME_UP;
@@ -192,17 +195,12 @@ void Game() {
         tileBG();
         lockAnim -> draw();
         hand     -> draw();
-        for(tile_i = 0 ; tile_i < tileCount; tile_i++)
-            tiles[tile_i] -> draw();
-        
+        drawAllTiles(tileCount, tiles);
         DrawTexture(Assets::statbox, boxX, boxY, WHITE);
         DrawTextEx(Assets::uifont, GameStr::statTxt, statTxtPos, Assets::uifont.baseSize, FONT_SPACING, WHITE);
         DrawTextEx(Assets::numfont, timeStr, timeTxtPos, Assets::numfont.baseSize, 1, WHITE);
         DrawTextEx(Assets::numfont, scoreStr, scoreTxtPos, Assets::numfont.baseSize, 1, WHITE);
-
-        if(cardVisible)
-            card -> draw();
-
+        if(cardVisible) card -> draw();
         DrawFPS(0, 0);
         EndDrawing();
     }
@@ -214,8 +212,8 @@ void Game() {
     delete lockAnim;
     delete hand;
     delete card;
-    for(tile_i = 0 ; tile_i < tileCount ; tile_i++)
-        delete tiles[tile_i];
+    for(short i = 0 ; i < tileCount ; i++)
+        delete tiles[i];
     
 }
 
@@ -235,6 +233,11 @@ void resetAllTiles (short tileCount, ArrowTile** arrowTiles) {
         arrowTiles[i] -> is_playing = PAUSE;
         arrowTiles[i] -> setFrame(1);
     }   
+}
+
+void drawAllTiles (short tileCount, ArrowTile** arrowTiles) {
+    for(short i = 0; i < tileCount; i++)
+        arrowTiles[i] -> draw();
 }
 
 Directions getDirectionFromKey (short* frameNumber) {
