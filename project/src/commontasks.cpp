@@ -1,6 +1,6 @@
 #include "assets.hpp"
 #include <math.h>
-#include "gamesetup.h"
+#include "globals.h"
 
 using namespace Assets;
 
@@ -24,8 +24,8 @@ void init() {
     uifont          = LoadFont ("assets/font/uifont.png");
     numfont         = LoadFont ("assets/font/numfont.png");
     
-    tileRow         = ceil(H_WINDOW / background.height) + 2;
-    tileCol         = ceil(W_WINDOW / background.width ) + 2;
+    tileRow         = ceil(Globals::windowHeight / background.height) + 2;
+    tileCol         = ceil(Globals::windowWidth / background.width ) + 2;
 }
 
 void unload() {

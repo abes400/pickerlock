@@ -18,6 +18,11 @@ namespace Globals {
         HARD
     };
 
+    extern int   windowWidth;
+    extern int   windowHeight;
+    extern float winCenterX;
+    extern float winCenterY;
+
     extern enum Scenes scene;
     extern enum Difficulties difficulty;
 

@@ -13,26 +13,27 @@
 #include "assets.hpp"
 #include "sprite.hpp"
 
+#include<iostream>
+using namespace std;
 
 void MainMenu() {
     
     // Init logo coordinates
-    short logoX = CENTER_X_WINDOW - Assets::logo.width / 2;
-    short logoY = CENTER_Y_WINDOW - Assets::logo.height * 2;
+    short logoX = Globals::winCenterX - Assets::logo.width / 2;
+    short logoY = Globals::winCenterY - Assets::logo.height * 2;
 
     // Initialise MainMenu Elements
-    Button* start = new Button(Vector2 {CENTER_X_WINDOW, CENTER_Y_WINDOW + 85  }, &Assets::start_btn,   &Assets::start_btn_down);
-    Button* instr = new Button(Vector2 {CENTER_X_WINDOW, CENTER_Y_WINDOW + 150 }, &Assets::btn,         &Assets::btn_down);
-    Button* crdts = new Button(Vector2 {CENTER_X_WINDOW, CENTER_Y_WINDOW + 210 }, &Assets::btn,         &Assets::btn_down);
+    Button* start = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 85  }, &Assets::start_btn,   &Assets::start_btn_down);
+    Button* instr = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 150 }, &Assets::btn,         &Assets::btn_down);
+    Button* crdts = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 210 }, &Assets::btn,         &Assets::btn_down);
 
     instr -> addLabel(MainMenuStr::inst, LIFT, 8);
     crdts -> addLabel(MainMenuStr::cred, LIFT, 8);
 
     // Initialize ByLine
-    Vector2 bylineSize  = MeasureTextEx(Assets::uifont, MainMenuStr::byln, Assets::uifont.baseSize, FONT_SPACING);
     Vector2 bylinePos   = {
-        static_cast<float>(CENTER_X_WINDOW - bylineSize.x / 2),
-        static_cast<float>(H_WINDOW - bylineSize.y * 2 ),
+        static_cast<float>(Globals::winCenterX - 230),
+        static_cast<float>(Globals::windowHeight - 32),
     };
 
     Vector2 mousePos;
@@ -72,20 +73,16 @@ void MainMenu() {
 void Difficulty() {
 
     // Init text
-    short boxX          = (W_WINDOW - Assets::ui_box.width)  / 2;
-    short boxY          = (H_WINDOW - Assets::ui_box.height) / 2;
+    float boxX          = (Globals::windowWidth - Assets::ui_box.width)  / 2;
+    float boxY          = (Globals::windowHeight - Assets::ui_box.height) / 2;
 
-    Vector2 diffTxtSize = MeasureTextEx(Assets::uifont, DiffStr::diffTxt, Assets::uifont.baseSize, FONT_SPACING);
-    Vector2 diffTxtPos  = {
-        static_cast<float>(boxX + (Assets::ui_box.width - diffTxtSize.x) / 2),
-        static_cast<float>(boxY + 50)
-    };
+    Vector2 diffTxtPos  = { boxX + 231, boxY + 50 };
 
     // Init btuttons
-    Button* back = new Button(Vector2 {CENTER_X_WINDOW,       CENTER_Y_WINDOW + 155 }, &Assets::btn, &Assets::btn_down);
-    Button* easy = new Button(Vector2 {CENTER_X_WINDOW - 170, CENTER_Y_WINDOW - 35  }, &Assets::btn, &Assets::btn_down);
-    Button* medi = new Button(Vector2 {CENTER_X_WINDOW,       CENTER_Y_WINDOW - 35  }, &Assets::btn, &Assets::btn_down);
-    Button* hard = new Button(Vector2 {CENTER_X_WINDOW + 170, CENTER_Y_WINDOW - 35  }, &Assets::btn, &Assets::btn_down);
+    Button* back = new Button(Vector2 {Globals::winCenterX,       Globals::winCenterY + 155 }, &Assets::btn, &Assets::btn_down);
+    Button* easy = new Button(Vector2 {Globals::winCenterX - 170, Globals::winCenterY - 35  }, &Assets::btn, &Assets::btn_down);
+    Button* medi = new Button(Vector2 {Globals::winCenterX,       Globals::winCenterY - 35  }, &Assets::btn, &Assets::btn_down);
+    Button* hard = new Button(Vector2 {Globals::winCenterX + 170, Globals::winCenterY - 35  }, &Assets::btn, &Assets::btn_down);
 
     back -> addLabel(MiscMenuStr::back, LIFT, 8);
     easy -> addLabel(DiffStr::easy,     LIFT, 8);
@@ -93,12 +90,7 @@ void Difficulty() {
     hard -> addLabel(DiffStr::hard,     LIFT, 8);
 
     // Init scoreboard strings
-    Vector2 scoreTxtSize = MeasureTextEx(Assets::uifont, DiffStr::scrs, Assets::uifont.baseSize, FONT_SPACING);
-    Vector2 scoreTxtPos  = {
-        static_cast<float>(CENTER_X_WINDOW - scoreTxtSize.x / 2),
-        static_cast<float>(CENTER_Y_WINDOW + 30)
-    };
-
+    Vector2 scoreTxtPos  = { Globals::winCenterX - 77, Globals::winCenterY + 30};
 
     // allocate 15 char long string buffer for high score values
     char* hsStr = (char*) malloc(sizeof(char) * 15);
@@ -109,11 +101,7 @@ void Difficulty() {
         Globals::highscores[Globals::HARD  ]
     );
     
-    Vector2 scoreValSize = MeasureTextEx(Assets::numfont, DiffStr::hscr, Assets::numfont.baseSize, 0);
-    Vector2 scoreValPos  = {
-        scoreTxtPos.x + scoreTxtSize.x - scoreValSize.x - 20,
-        scoreTxtPos.y + scoreTxtSize.y - scoreValSize.y + 4
-    };
+    Vector2 scoreValPos  = { scoreTxtPos.x + 105, scoreTxtPos.y + 16 };
 
     Vector2 mousePos;
     bool    mousePressed;
@@ -172,8 +160,8 @@ void Difficulty() {
 void Instructions() {
 
     // Init box coords.
-    short boxX          = (W_WINDOW - Assets::ui_box.width ) / 2;
-    short boxY          = (H_WINDOW - Assets::ui_box.height) / 2;
+    short boxX          = (Globals::windowWidth - Assets::ui_box.width ) / 2;
+    short boxY          = (Globals::windowHeight - Assets::ui_box.height) / 2;
 
     // Calculate instr. text coords.
     Vector2 instTxtSize = MeasureTextEx(Assets::uifont, InstructionsStr::instTxt, Assets::uifont.baseSize, FONT_SPACING);
@@ -186,12 +174,12 @@ void Instructions() {
     static const AnimatedSpriteProp instProp = AnimatedSpriteProp { 
         &Assets::instruction, FRAME_HEIGHT, FRAME_COUNT, FRAMETIMER_INIT
     };
-    AnimatedSprite* instAnim = new AnimatedSprite(Vector2{CENTER_X_WINDOW, CENTER_Y_WINDOW - 20}, &instProp, LOOPABLE);
+    AnimatedSprite* instAnim = new AnimatedSprite(Vector2{Globals::winCenterX, Globals::winCenterY - 20}, &instProp, LOOPABLE);
     instAnim -> setOriginAsCenter();
     instAnim -> is_playing = PLAY;
 
     // Init back btn
-    Button* back = new Button(Vector2 {CENTER_X_WINDOW, CENTER_Y_WINDOW + 155}, &Assets::btn, &Assets::btn_down);
+    Button* back = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 155}, &Assets::btn, &Assets::btn_down);
     back -> addLabel(MiscMenuStr::back, LIFT, 8);
 
     Vector2 mousePos;
@@ -226,8 +214,8 @@ void Instructions() {
 void Credits() {
 
     // Init text
-    short boxX = (W_WINDOW - Assets::ui_box.width) / 2;
-    short boxY = (H_WINDOW - Assets::ui_box.height) / 2;
+    short boxX = (Globals::windowWidth - Assets::ui_box.width) / 2;
+    short boxY = (Globals::windowHeight - Assets::ui_box.height) / 2;
     
     Vector2 credTxtSize = MeasureTextEx(Assets::uifont, CreditsStr::credTxt, Assets::uifont.baseSize, FONT_SPACING);
     Vector2 credTxtPos  = {
@@ -236,7 +224,7 @@ void Credits() {
     };
 
     // Init back btn
-    Button* back = new Button(Vector2 {CENTER_X_WINDOW, CENTER_Y_WINDOW + 155}, &Assets::btn, &Assets::btn_down);
+    Button* back = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 155}, &Assets::btn, &Assets::btn_down);
     back -> addLabel(MiscMenuStr::back, LIFT, 8);
 
     Vector2 mousePos;

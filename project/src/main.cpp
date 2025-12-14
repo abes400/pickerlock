@@ -45,6 +45,11 @@ namespace Globals {
         HARD
     };
 
+    int   windowWidth  = W_WINDOW;
+    int   windowHeight = H_WINDOW;
+    float winCenterX   = windowWidth / 2;
+    float winCenterY   = windowHeight / 2;
+
     enum Scenes scene = MAIN_MENU;
     enum Difficulties difficulty;
 
@@ -58,7 +63,7 @@ int main() {
 
     // Init game window
     SetConfigFlags(FLAG_VSYNC_HINT);
-    InitWindow(W_WINDOW, H_WINDOW, "Pickerlock");
+    InitWindow(Globals::windowWidth, Globals::windowHeight, "Pickerlock");
     init();
 
     Globals::scene = Globals::MAIN_MENU;

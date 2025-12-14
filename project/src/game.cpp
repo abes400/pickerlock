@@ -40,12 +40,16 @@ void drawAllTiles           (short tileCount, ArrowTile** arrowTiles);
 
 Directions getDirectionFromKey (short* frameNumber);
 
+struct GameSprites {
+
+};
+
 void Game() {
 
     // Coordinates for the stat box. 
     // Stored as variables since it has to adapt to different screen resolutions.
-    short boxX = CENTER_X_WINDOW - Assets::statbox.width  / 2;
-    short boxY = CENTER_Y_WINDOW + 150;
+    short boxX = Globals::winCenterX - Assets::statbox.width  / 2;
+    short boxY = Globals::winCenterY + 150;
 
     Vector2 statTxtPos  = Vector2{boxX + 70, boxY + 35 };
     Vector2 timeTxtPos  = Vector2{statTxtPos.x + 80, statTxtPos.y};
@@ -58,9 +62,9 @@ void Game() {
     static const SpriteVProp        cardProp = SpriteVProp          { &Assets::cards, CARD_HEIGHT, CARD_FRAME_COUNT };
 
     // Initialize Sprite Objects
-    AnimatedSprite* lockAnim     = new AnimatedSprite   ( Vector2{CENTER_X_WINDOW, CENTER_Y_WINDOW - 100}, &lockProp );
-    SpriteV*        hand         = new SpriteV          ( Vector2{CENTER_X_WINDOW + 120, CENTER_Y_WINDOW - 102}, &handProp); 
-    SpriteV*        card         = new SpriteV          ( Vector2{CENTER_X_WINDOW, CENTER_Y_WINDOW+80}, &cardProp );
+    AnimatedSprite* lockAnim     = new AnimatedSprite   ( Vector2{Globals::winCenterX, Globals::winCenterY - 100}, &lockProp );
+    SpriteV*        hand         = new SpriteV          ( Vector2{Globals::winCenterX + 120, Globals::winCenterY - 102}, &handProp); 
+    SpriteV*        card         = new SpriteV          ( Vector2{Globals::winCenterX, Globals::winCenterY+80}, &cardProp );
 
     // Centralize Origins
     lockAnim    -> setOriginAsCenter();
@@ -70,8 +74,8 @@ void Game() {
     
     // Initialize Tiles (Do not centralize origins as theirs are kinda done automatically)
     const short tileCount   = Globals::difficulty + 3;
-    float       tileX       = CENTER_X_WINDOW - Assets::arrowtile.width * (tileCount - 1) / 2;
-    float       tileY       = CENTER_Y_WINDOW + 80;
+    float       tileX       = Globals::winCenterX - Assets::arrowtile.width * (tileCount - 1) / 2;
+    float       tileY       = Globals::winCenterY + 80;
     
     ArrowTile* tiles[tileCount];
     for(short i = 0 ; i < tileCount ; i++) {
@@ -193,19 +197,24 @@ void Game() {
         // Draw Elements
         BeginDrawing();
         tileBG();
+
         lockAnim -> draw();
         hand     -> draw();
+
         drawAllTiles(tileCount, tiles);
-        DrawTexture(Assets::statbox, boxX, boxY, WHITE);
-        DrawTextEx(Assets::uifont, GameStr::statTxt, statTxtPos, Assets::uifont.baseSize, FONT_SPACING, WHITE);
-        DrawTextEx(Assets::numfont, timeStr, timeTxtPos, Assets::numfont.baseSize, 1, WHITE);
-        DrawTextEx(Assets::numfont, scoreStr, scoreTxtPos, Assets::numfont.baseSize, 1, WHITE);
+
+        DrawTexture (Assets::statbox, boxX, boxY, WHITE);
+        DrawTextEx  (Assets::uifont, GameStr::statTxt, statTxtPos, Assets::uifont.baseSize, FONT_SPACING, WHITE);
+        DrawTextEx  (Assets::numfont, timeStr, timeTxtPos, Assets::numfont.baseSize, 1, WHITE);
+        DrawTextEx  (Assets::numfont, scoreStr, scoreTxtPos, Assets::numfont.baseSize, 1, WHITE);
+
         if(cardVisible) card -> draw();
         DrawFPS(0, 0);
+        
         EndDrawing();
     }
 
-    // De-init game vars in heap
+    // Clean heap
     free (scoreStr);
     free (timeStr );
 
