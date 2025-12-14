@@ -31,7 +31,7 @@ using namespace std;
 #define SCORE_STR_LEN 5
 #define TIME_STR_LEN  5
 
-enum GameState { GET_READY = 0, INPUT, ADVANCE, TIME_UP, DISQUALIFIED };
+enum GameState { GET_READY = 0, START, INPUT, ADVANCE, TIME_UP, DISQUALIFIED };
 
 void updateAllTiles         (short tileCount, ArrowTile** arrowTiles, float deltaTime);
 void decideDirectionForAll  (short tileCount, ArrowTile** arrowTiles);
@@ -128,9 +128,15 @@ void Game() {
         switch(gameState) {
             case GET_READY:
                 if (delayIsOver(deltaTime, &cardTimer, READY_TIME)) {
-                    cardVisible = false;
-                    timerActive = true;
-                    gameState = INPUT;
+                    card -> setFrame(1);
+                    gameState = START;
+                }
+            break;
+            case START:
+                if (delayIsOver(deltaTime, &cardTimer, START_TIME)) {
+                        cardVisible = false;
+                        timerActive = true;
+                        gameState = INPUT;
                 }
             break;
             case INPUT:
