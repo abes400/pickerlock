@@ -19,13 +19,17 @@ void init() {
     hand            = LoadTexture("assets/texture/hand.png");
     arrowtile       = LoadTexture("assets/texture/arrow.png");
     cards           = LoadTexture("assets/texture/cards.png");
-    statbox          = LoadTexture("assets/texture/statbox.png");
+    statbox         = LoadTexture("assets/texture/statbox.png");
 
     uifont          = LoadFont ("assets/font/uifont.png");
     numfont         = LoadFont ("assets/font/numfont.png");
     
     tileRow         = ceil(Globals::windowHeight / background.height) + 2;
     tileCol         = ceil(Globals::windowWidth / background.width ) + 2;
+
+    buttonSnd          = LoadSound("assets/audio/beep1.wav");
+    dialSnd            = LoadSound("assets/audio/dial.wav");
+    unlockSnd          = LoadSound("assets/audio/unlock.wav");
 }
 
 void unload() {
@@ -45,6 +49,10 @@ void unload() {
 
     UnloadFont(uifont);
     UnloadFont(numfont);
+
+    UnloadSound(buttonSnd);
+    UnloadSound(dialSnd);
+    UnloadSound(unlockSnd);
 }
 
 // Tiles the background texture in an animated manner
@@ -69,6 +77,7 @@ using namespace std;
 
 void close() {
     unload();
+    CloseAudioDevice();
     CloseWindow();
 }
 

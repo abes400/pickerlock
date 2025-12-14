@@ -27,6 +27,11 @@ namespace Assets {
     short       tileRow,
                 tileCol;
     float       tileAnimOffset = 0;
+
+    Sound       buttonSnd,
+                dialSnd,
+                unlockSnd;
+    Music       bgMusic;
 }
 
 namespace Globals {
@@ -64,6 +69,7 @@ int main() {
     // Init game window
     SetConfigFlags(FLAG_VSYNC_HINT);
     InitWindow(Globals::windowWidth, Globals::windowHeight, "Pickerlock");
+    InitAudioDevice();
     init();
 
     Globals::scene = Globals::MAIN_MENU;
@@ -93,7 +99,6 @@ int main() {
         }
 
     }
-    
     close();
     return 0;
 }

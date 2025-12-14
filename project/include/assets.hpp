@@ -1,7 +1,6 @@
 #pragma once
 #include "raylib.h"
  
-//a.y. 196B
 namespace Assets {
     extern Texture2D    background,
                         logo,
@@ -22,4 +21,9 @@ namespace Assets {
     extern short        tileRow,
                         tileCol;
     extern float        tileAnimOffset;
+
+    extern Sound        buttonSnd,
+                        dialSnd,
+                        unlockSnd;
+    extern Music        bgMusic;
 }

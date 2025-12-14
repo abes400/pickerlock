@@ -142,6 +142,7 @@ void Game() {
             case INPUT:
                 keyDirection = getDirectionFromKey(&handFrame);
                 if(keyDirection != NONE) {
+                    PlaySound(Assets::dialSnd);
                     hand -> setFrame(handFrame);
                     if(tiles[current_tile] -> direction == keyDirection) {
                         tiles[current_tile] -> is_playing = PLAY;
@@ -153,6 +154,7 @@ void Game() {
                             current_tile = 0;
                             hand -> setFrame(1);
                             lockAnim -> is_playing = PLAY;
+                            PlaySound(Assets::unlockSnd);
                             gameState = ADVANCE;
                         }
                     } else {
