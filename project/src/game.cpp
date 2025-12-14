@@ -77,7 +77,7 @@ void Game() {
     float       tileX       = Globals::winCenterX - Assets::arrowtile.width * (tileCount - 1) / 2;
     float       tileY       = Globals::winCenterY + 80;
     
-    ArrowTile* tiles[tileCount];
+    ArrowTile* tiles[5];
     for(short i = 0 ; i < tileCount ; i++) {
         tiles[i] = new ArrowTile(Vector2{tileX, tileY}, &tileProp);
         tileX   += Assets::arrowtile.width;
