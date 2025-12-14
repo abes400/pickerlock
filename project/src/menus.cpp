@@ -19,8 +19,8 @@ using namespace std;
 void MainMenu() {
     
     // Init logo coordinates
-    short logoX = Globals::winCenterX - Assets::logo.width / 2;
-    short logoY = Globals::winCenterY - Assets::logo.height * 2;
+    float logoX = Globals::winCenterX - Assets::logo.width / 2;
+    float logoY = Globals::winCenterY - Assets::logo.height * 2;
 
     // Initialise MainMenu Elements
     Button* start = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 85  }, &Assets::start_btn,   &Assets::start_btn_down);
@@ -31,10 +31,7 @@ void MainMenu() {
     crdts -> addLabel(MainMenuStr::cred, LIFT, 8);
 
     // Initialize ByLine
-    Vector2 bylinePos   = {
-        static_cast<float>(Globals::winCenterX - 230),
-        static_cast<float>(Globals::windowHeight - 32),
-    };
+    Vector2 bylinePos   = { static_cast<float>(Globals::winCenterX - 230), static_cast<float>(Globals::windowHeight - 32) };
 
     Vector2 mousePos;
     bool    mousePressed;
@@ -94,6 +91,12 @@ void Difficulty() {
 
     // allocate 15 char long string buffer for high score values
     char* hsStr = (char*) malloc(sizeof(char) * 15);
+
+    // Clean up and kill the program if allocation fails
+    // bc. it won't make any sense to run the process anymore at this point
+    if(!hsStr) 
+        terminate(EXIT_FAILURE);
+
     snprintf(
         hsStr, 15, DiffStr::hscr,
         Globals::highscores[Globals::EASY  ],
@@ -136,7 +139,7 @@ void Difficulty() {
         DrawTexture(Assets::ui_box, boxX, boxY, WHITE);
         DrawTextEx(Assets::uifont, DiffStr::diffTxt, diffTxtPos, Assets::uifont.baseSize, FONT_SPACING, WHITE);
         DrawTextEx(Assets::uifont,  DiffStr::scrs, scoreTxtPos, Assets::uifont.baseSize, FONT_SPACING, WHITE);
-        DrawTextEx(Assets::numfont, hsStr,   scoreValPos, Assets::numfont.baseSize, 0, WHITE);
+        DrawTextEx(Assets::numfont, hsStr,   scoreValPos, Assets::numfont.baseSize, NUMF_SPACING, WHITE);
         easy -> draw();
         medi -> draw();
         hard -> draw();
@@ -160,15 +163,11 @@ void Difficulty() {
 void Instructions() {
 
     // Init box coords.
-    short boxX          = (Globals::windowWidth - Assets::ui_box.width ) / 2;
-    short boxY          = (Globals::windowHeight - Assets::ui_box.height) / 2;
+    float boxX          = (Globals::windowWidth - Assets::ui_box.width ) / 2;
+    float boxY          = (Globals::windowHeight - Assets::ui_box.height) / 2;
 
     // Calculate instr. text coords.
-    Vector2 instTxtSize = MeasureTextEx(Assets::uifont, InstructionsStr::instTxt, Assets::uifont.baseSize, FONT_SPACING);
-    Vector2 instTxtPos = {
-        static_cast<float>(boxX + (Assets::ui_box.width - instTxtSize.x) / 2), 
-        static_cast<float>(boxY + 30)
-    };
+    Vector2 instTxtPos = { boxX + 23, boxY + 30 };
 
     // Init visualization sprite
     static const AnimatedSpriteProp instProp = AnimatedSpriteProp { 
@@ -214,14 +213,10 @@ void Instructions() {
 void Credits() {
 
     // Init text
-    short boxX = (Globals::windowWidth - Assets::ui_box.width) / 2;
-    short boxY = (Globals::windowHeight - Assets::ui_box.height) / 2;
+    float boxX = (Globals::windowWidth - Assets::ui_box.width) / 2;
+    float boxY = (Globals::windowHeight - Assets::ui_box.height) / 2;
     
-    Vector2 credTxtSize = MeasureTextEx(Assets::uifont, CreditsStr::credTxt, Assets::uifont.baseSize, FONT_SPACING);
-    Vector2 credTxtPos  = {
-        static_cast<float>(boxX + (Assets::ui_box.width  - credTxtSize.x) / 2),
-        static_cast<float>(boxY + (Assets::ui_box.height - credTxtSize.y) / 2)
-    };
+    Vector2 credTxtPos  = { boxX + 142, boxY + 210 };
 
     // Init back btn
     Button* back = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 155}, &Assets::btn, &Assets::btn_down);

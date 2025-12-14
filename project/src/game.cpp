@@ -205,8 +205,8 @@ void Game() {
 
         DrawTexture (Assets::statbox, boxX, boxY, WHITE);
         DrawTextEx  (Assets::uifont, GameStr::statTxt, statTxtPos, Assets::uifont.baseSize, FONT_SPACING, WHITE);
-        DrawTextEx  (Assets::numfont, timeStr, timeTxtPos, Assets::numfont.baseSize, 1, WHITE);
-        DrawTextEx  (Assets::numfont, scoreStr, scoreTxtPos, Assets::numfont.baseSize, 1, WHITE);
+        DrawTextEx  (Assets::numfont, timeStr, timeTxtPos, Assets::numfont.baseSize, NUMF_SPACING, WHITE);
+        DrawTextEx  (Assets::numfont, scoreStr, scoreTxtPos, Assets::numfont.baseSize, NUMF_SPACING, WHITE);
 
         if(cardVisible) card -> draw();
         DrawFPS(0, 0);
