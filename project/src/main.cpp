@@ -28,10 +28,14 @@ namespace Assets {
                 tileCol;
     float       tileAnimOffset = 0;
 
-    Sound       buttonSnd,
-                dialSnd,
-                unlockSnd;
-    Music       bgMusic;
+    Sound       beep,
+                buzzer,
+                dial,
+                grunt,
+                slam,
+                unlock,
+                wohoo;
+    Music       bgm;
 }
 
 namespace Globals {

@@ -29,9 +29,9 @@ using namespace std;
 #define GMEND_TIME 3
 
 #define SCORE_STR_LEN 5
-#define TIME_STR_LEN  5
+#define TIME_STR_LEN  3
 
-enum GameState { GET_READY = 0, START, INPUT, ADVANCE, TIME_UP, DISQUALIFIED };
+enum GameState { GET_READY = 0, START, INPUT, ADVANCE, WRONG_MOVE, TIME_UP, DISQUALIFIED };
 
 void updateAllTiles         (short tileCount, ArrowTile** arrowTiles, float deltaTime);
 void decideDirectionForAll  (short tileCount, ArrowTile** arrowTiles);
@@ -121,14 +121,19 @@ void Game() {
     decideDirectionForAll(tileCount, tiles);
     resetAllTiles(tileCount, tiles);
 
+    PlaySound(Assets::beep);
+    PlayMusicStream(Assets::bgm);
+
     // Game Loop
     while (Globals::scene == Globals::IN_GAME && !WindowShouldClose()) {
+        UpdateMusicStream(Assets::bgm);
         deltaTime = GetFrameTime();
 
         switch(gameState) {
             case GET_READY:
                 if (delayIsOver(deltaTime, &cardTimer, READY_TIME)) {
                     card -> setFrame(1);
+                    PlaySound(Assets::slam);
                     gameState = START;
                 }
             break;
@@ -142,7 +147,7 @@ void Game() {
             case INPUT:
                 keyDirection = getDirectionFromKey(&handFrame);
                 if(keyDirection != NONE) {
-                    PlaySound(Assets::dialSnd);
+                    PlaySound(Assets::dial);
                     hand -> setFrame(handFrame);
                     if(tiles[current_tile] -> direction == keyDirection) {
                         tiles[current_tile] -> is_playing = PLAY;
@@ -154,17 +159,15 @@ void Game() {
                             current_tile = 0;
                             hand -> setFrame(1);
                             lockAnim -> is_playing = PLAY;
-                            PlaySound(Assets::unlockSnd);
+                            PlaySound(Assets::unlock);
                             gameState = ADVANCE;
                         }
                     } else {
-                        hand -> setFrame(5);
                         tiles[current_tile] -> setFrame(0);
-                        card -> setFrame(3);
-                        cardVisible = true;
                         timerActive = false;
-                        cardTimer = GMEND_TIME;
-                        gameState = DISQUALIFIED;
+                        StopMusicStream(Assets::bgm);
+                        PlaySound(Assets::buzzer);
+                        gameState = WRONG_MOVE;
                     }
                 }                
             break;
@@ -179,9 +182,22 @@ void Game() {
                 }
 
             break;
+            case WRONG_MOVE:
+                if(delayIsOver(deltaTime, &cardTimer, GMEND_TIME)) {
+                    hand -> setFrame(5);
+                    card -> setFrame(3);
+                    cardVisible = true;
+                    cardTimer = GMEND_TIME;
+                    PlaySound(Assets::grunt);
+                    gameState = DISQUALIFIED;
+                }
+            break;
             case DISQUALIFIED: case TIME_UP:
-                if(delayIsOver(deltaTime, &cardTimer, GMEND_TIME))
+                if(delayIsOver(deltaTime, &cardTimer, GMEND_TIME)) {
+                    StopMusicStream(Assets::bgm);
                     Globals::scene = Globals::DIFFICULTY;
+                }
+                    
             break;
         }
 
@@ -197,6 +213,7 @@ void Game() {
                 card -> setFrame(2);
                 hand -> setFrame(4);
                 cardVisible = true;
+                PlaySound(Assets::wohoo);
                 cardTimer = GMEND_TIME;
                 gameState = TIME_UP;
             }      
@@ -213,7 +230,7 @@ void Game() {
 
         DrawTexture (Assets::statbox, boxX, boxY, WHITE);
         DrawTextEx  (Assets::uifont, GameStr::statTxt, statTxtPos, Assets::uifont.baseSize, FONT_SPACING, WHITE);
-        DrawTextEx  (Assets::numfont, timeStr, timeTxtPos, Assets::numfont.baseSize, NUMF_SPACING, WHITE);
+        DrawTextEx  (Assets::numfont, timeStr, timeTxtPos, Assets::numfont.baseSize, NUMF_SPACING, PL_YELLOW);
         DrawTextEx  (Assets::numfont, scoreStr, scoreTxtPos, Assets::numfont.baseSize, NUMF_SPACING, WHITE);
 
         if(cardVisible) card -> draw();

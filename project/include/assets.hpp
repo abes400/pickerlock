@@ -22,8 +22,12 @@ namespace Assets {
                         tileCol;
     extern float        tileAnimOffset;
 
-    extern Sound        buttonSnd,
-                        dialSnd,
-                        unlockSnd;
-    extern Music        bgMusic;
+    extern Sound        beep,
+                        buzzer,
+                        dial,
+                        grunt,
+                        slam,
+                        unlock,
+                        wohoo;
+    extern Music        bgm;
 }

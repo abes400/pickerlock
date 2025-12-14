@@ -58,7 +58,7 @@ bool Button::checkClick(Vector2& mousePos, bool mousePressed) {
             currentTexture_ = texture_;
             label_pos_.y -= lift_height_;
             if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
-                PlaySound(Assets::dialSnd);
+                PlaySound(Assets::dial);
                 return true;
             }
         }

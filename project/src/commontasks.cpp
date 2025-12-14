@@ -21,15 +21,23 @@ void init() {
     cards           = LoadTexture("assets/texture/cards.png");
     statbox         = LoadTexture("assets/texture/statbox.png");
 
-    uifont          = LoadFont ("assets/font/uifont.png");
-    numfont         = LoadFont ("assets/font/numfont.png");
+    uifont          = LoadFont("assets/font/uifont.png");
+    numfont         = LoadFont("assets/font/numfont.png");
     
     tileRow         = ceil(Globals::windowHeight / background.height) + 2;
     tileCol         = ceil(Globals::windowWidth / background.width ) + 2;
 
-    buttonSnd          = LoadSound("assets/audio/beep1.wav");
-    dialSnd            = LoadSound("assets/audio/dial.wav");
-    unlockSnd          = LoadSound("assets/audio/unlock.wav");
+    beep            = LoadSound("assets/audio/beep.wav");
+    buzzer          = LoadSound("assets/audio/buzzer.wav");
+    dial            = LoadSound("assets/audio/dial.wav");
+    grunt           = LoadSound("assets/audio/grunt.wav");
+    slam            = LoadSound("assets/audio/slam.wav");
+    unlock          = LoadSound("assets/audio/unlock.wav");
+    beep            = LoadSound("assets/audio/beep.wav");
+    wohoo           = LoadSound("assets/audio/wohoo.wav");
+
+    bgm             = LoadMusicStream("assets/audio/bgm.wav");
+    
 }
 
 void unload() {
@@ -50,9 +58,16 @@ void unload() {
     UnloadFont(uifont);
     UnloadFont(numfont);
 
-    UnloadSound(buttonSnd);
-    UnloadSound(dialSnd);
-    UnloadSound(unlockSnd);
+    UnloadSound(beep);
+    UnloadSound(buzzer);
+    UnloadSound(dial);
+    UnloadSound(grunt);
+    UnloadSound(slam);
+    UnloadSound(unlock);
+    UnloadSound(wohoo);
+
+    UnloadMusicStream(bgm);
+
 }
 
 // Tiles the background texture in an animated manner
