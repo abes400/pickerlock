@@ -22,7 +22,8 @@ namespace InstructionsStr {
 namespace CreditsStr {
     constexpr const char* credTxt =
                     "Pickerlock 1.0 \n\n\n"
-                    "Concept, Programming and Artwork : Abes400 \n\n\n"
+                    "Concept, Programming and Artwork : Abes400 \n"
+                    "Background Music : \"A Journey Awaits\" by Pierre Bondoerffer\n\n\n"
                     "Distributed under MIT License. \n\n"
                     "Made for 20 Second GameJam 2025\n";
 }
