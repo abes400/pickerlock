@@ -2,10 +2,6 @@
 #include "button.hpp"
 #include "globals.hpp"
 
-
-#include <iostream>
-using namespace std;
-
 Button::Button(Vector2 position, Texture2D* texture, Texture2D* texture_hold) {
     texture_        = currentTexture_ = texture;
     texture_hold_   = texture_hold;
@@ -74,8 +70,4 @@ bool Button::checkClick(Vector2& mousePos, bool mousePressed) {
     }
 
     return false;
-}
-
-Button::~Button() {
-    cout << "APP: Button deallocated\n";
 }

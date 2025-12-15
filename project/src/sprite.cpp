@@ -1,9 +1,5 @@
-#include "sprite.hpp"
 #include "raylib.h"
-
-#include <iostream>
-using namespace std;
-
+#include "sprite.hpp"
 
 /////////////////// IMPLEMENTATION OF SPRITEV ///////////////////
 SpriteV::SpriteV (Vector2 position, const SpriteVProp* spriteProperty) {
@@ -28,10 +24,6 @@ void SpriteV::setFrame(short frame) {
 void SpriteV::draw() {
     DrawTextureRec(*(prop_ -> texture_), frame_crop_, position_, WHITE);
 }
-
-SpriteV::~SpriteV() {
-    cout << "APP: Sprite deallocated\n";
-}
 /////////////////////////////////////////////////////////////////
 
 
@@ -46,7 +38,6 @@ AnimatedSprite(Vector2 position, const AnimatedSpriteProp* spriteProperty, Loopa
 void AnimatedSprite::setFrame(short frame) {
     SpriteV::setFrame(frame);
     frame_timer_ = static_cast<const AnimatedSpriteProp*>(prop_) -> frame_timer_second_;
-    cout << "APP: reset frametimer\n";
 }
 
 void AnimatedSprite::updateFrame(float deltaTime) {
@@ -60,12 +51,10 @@ void AnimatedSprite::updateFrame(float deltaTime) {
             if(current_frame_ >= prop_ -> frame_count_) {
                 if(loop) {
                     current_frame_ = 0;
-                    cout << "Looping...\n";
                 }
                 else {
                     current_frame_ = prop_ -> frame_count_ - 1;
                     is_playing = PAUSE;
-                    cout << "Paused animation \n";
                 }
             }
         }

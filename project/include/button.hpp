@@ -1,5 +1,4 @@
 #pragma once
-
 #include "raylib.h"
 
 #define LIFT true
@@ -25,6 +24,4 @@ class Button {
         void addLabelWithoutMeasuring(const char* label);
         void draw();
         bool checkClick(Vector2& mousePos, bool mousePressed);
-
-        ~Button();
 };

@@ -1,8 +1,6 @@
 using namespace std;
 #include <stdlib.h>
 #include <time.h>
-#include <iostream>
-using namespace std;
 #include "arrowtile.hpp"
 
 bool ArrowTile::inst_before_ = false;
@@ -24,7 +22,6 @@ ArrowTile(Vector2 position, const AnimatedSpriteProp* spriteProperty, Loopabilit
         };
 
         inst_before_ = true;
-        cout << "Since this was the first instance, the RNG seeded and frame origin calculated\n";
     }
 }
 

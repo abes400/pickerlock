@@ -1,14 +1,14 @@
-#include "raylib.h"
-#include "globals.hpp"
-#include "commontasks.hpp"
+#include <stdlib.h>
+#include <stdio.h>
 
-#include "sprite.hpp"
+#include "raylib.h"
+
 #include "gamesetup.h"
+#include "globals.hpp"
+#include "sprite.hpp"
 #include "arrowtile.hpp"
 #include "gamestr.hpp"
-
-#include <iostream>
-using namespace std;
+#include "commontasks.hpp"
 
 #define LOCK_HEIGHT       325
 #define LOCK_FRAME_COUNT  7
@@ -155,7 +155,6 @@ void Game() {
 
                         if(current_tile >= tileCount) {
                             snprintf(scoreStr, SCORE_STR_LEN, GameStr::scoref, ++score);
-                            cout << "newscore: " << score << endl;
                             current_tile = 0;
                             hand -> setFrame(1);
                             lockAnim -> is_playing = PLAY;

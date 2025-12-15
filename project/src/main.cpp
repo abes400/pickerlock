@@ -1,13 +1,8 @@
 #include "raylib.h"
 
-#include "gamesetup.h"
+#include "globals.hpp"
 #include "gameloops.hpp"
 #include "commontasks.hpp"
-#include "globals.hpp"
-
-#include <iostream>
-using namespace std;
-
 
 int main(int argc, char** argv) {
     
@@ -23,7 +18,6 @@ int main(int argc, char** argv) {
 
     Globals::scene = Globals::MAIN_MENU;
     while(!WindowShouldClose()) {
-        cout << "______________NEW SCENE_________________\n";
 
         switch(Globals::scene) {
             case Globals::MAIN_MENU:

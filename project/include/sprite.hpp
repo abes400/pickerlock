@@ -20,7 +20,6 @@ class SpriteV {
         void setOriginAsCenter();
         void setFrame(short frame);
         void draw();
-        ~SpriteV();
 };
 
 struct AnimatedSpriteProp : public SpriteVProp {

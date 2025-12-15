@@ -93,9 +93,6 @@ bool delayIsOver (float* timer, float delayLength, float deltaTime) {
     return false;
 }
 
-#include<iostream>
-using namespace std;
-
 void close() {
     unload();
     CloseAudioDevice();
