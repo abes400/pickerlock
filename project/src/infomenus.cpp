@@ -35,6 +35,7 @@ void Instructions() {
     Vector2 mousePos;
 
     while(Globals::scene == Globals::INSTRUCTIONS && !WindowShouldClose()) {
+        UpdateMusicStream(Assets::menuBgm);
 
         // Handle Button Events
         mousePos = GetMousePosition();
@@ -76,6 +77,7 @@ void Credits() {
     Vector2 mousePos;
 
     while(Globals::scene == Globals::CREDITS && !WindowShouldClose()) {
+        UpdateMusicStream(Assets::menuBgm);
 
         // Handle Button Events
         mousePos = GetMousePosition();

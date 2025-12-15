@@ -25,8 +25,8 @@ namespace CreditsStr {
                     "Pickerlock 1.0 \n\n\n"
                     "Concept, Programming and Artwork: Abes400 \n\n"
                     "- Music -\n\n" 
-                    "\"A Journey Awaits\" by Pierre Bondoerffer - opengameart.org: pbondoer\n"
-                    "\"Safe At Home\" by Marcelo Fernandez - marcelofernandezmusic.com\n\n"
+                    "\"Safe At Home\" by Marcelo Fernandez - marcelofernandezmusic.com\n"
+                    "\"A Journey Awaits\" by Pierre Bondoerffer - opengameart.org: pbondoer\n\n"
                     "Distributed under MIT License. \n\n"
                     "Made for 20 Second GameJam 2025\n";
 }

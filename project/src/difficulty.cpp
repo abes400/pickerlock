@@ -11,6 +11,9 @@
 
 void Difficulty() {
 
+    if(!IsMusicStreamPlaying(Assets::menuBgm))
+        PlayMusicStream(Assets::menuBgm);
+
     // Init text
     float boxX          = (Globals::windowWidth - Assets::ui_box.width)  / 2;
     float boxY          = (Globals::windowHeight - Assets::ui_box.height) / 2;
@@ -46,12 +49,13 @@ void Difficulty() {
         Globals::highscores[Globals::HARD  ]
     );
     
-    Vector2 scoreValPos  = { scoreTxtPos.x + 105, scoreTxtPos.y + 16 };
+    Vector2 scoreValPos  = { scoreTxtPos.x + 95, scoreTxtPos.y + 16 };
 
     Vector2 mousePos;
     bool    mousePressed;
 
     while(Globals::scene == Globals::DIFFICULTY && !WindowShouldClose()) {
+        UpdateMusicStream(Assets::menuBgm);
 
         // Handle Button Events
         mousePos        = GetMousePosition();
@@ -62,14 +66,17 @@ void Difficulty() {
         } else if (easy -> checkClick(mousePos, mousePressed)) {
             Globals::difficulty = Globals::EASY;
             Globals::scene      = Globals::IN_GAME;
+            StopMusicStream(Assets::menuBgm);
             break;
         } else if (medi -> checkClick(mousePos, mousePressed)) {
             Globals::difficulty = Globals::MEDIUM;
             Globals::scene      = Globals::IN_GAME;
+            StopMusicStream(Assets::menuBgm);
             break;
         } else if (hard -> checkClick(mousePos, mousePressed)) {
             Globals::difficulty = Globals::HARD;
             Globals::scene      = Globals::IN_GAME;
+            StopMusicStream(Assets::menuBgm);
             break;
         }
 

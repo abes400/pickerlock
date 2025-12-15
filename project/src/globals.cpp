@@ -28,7 +28,8 @@ namespace Assets {
                 slam,
                 unlock,
                 wohoo;
-    Music       gameBgm;
+    Music       gameBgm,
+                menuBgm;
 }
 
 namespace Globals {

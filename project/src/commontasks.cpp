@@ -37,6 +37,7 @@ void init() {
     wohoo           = LoadSound("assets/audio/wohoo.wav");
 
     gameBgm         = LoadMusicStream("assets/audio/gamebgm.wav");
+    menuBgm         = LoadMusicStream("assets/audio/menubgm.wav");
     
 }
 
@@ -67,6 +68,7 @@ void unload() {
     UnloadSound(wohoo);
 
     UnloadMusicStream(gameBgm);
+    UnloadMusicStream(menuBgm);
 
 }
 

@@ -33,6 +33,7 @@ void Options() {
     bool    mousePressed;
 
     while(Globals::scene == Globals::OPTIONS && !WindowShouldClose()) {
+        UpdateMusicStream(Assets::menuBgm);
 
         // Handle Button Events
         mousePos        = GetMousePosition();
@@ -43,7 +44,9 @@ void Options() {
         } else if (music -> checkClick(mousePos, mousePressed)) {
             Opts::msc = !Opts::msc;
             music -> addLabelWithoutMeasuring(Opts::msc ? OptsStr::enbl : OptsStr::dsbl);
-            SetMusicVolume(Assets::gameBgm, Opts::msc ? 1 : 0);
+            float newVol = Opts::msc ? 1: 0;
+            SetMusicVolume(Assets::gameBgm, newVol);
+            SetMusicVolume(Assets::menuBgm, newVol);
         } else if (sfx -> checkClick(mousePos, mousePressed)) {
             Opts::sfx = !Opts::sfx;
             sfx -> addLabelWithoutMeasuring(Opts::sfx ? OptsStr::enbl : OptsStr::dsbl);

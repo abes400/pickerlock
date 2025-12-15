@@ -7,6 +7,8 @@
 #include "commontasks.hpp"
 
 void MainMenu() {
+    if(!IsMusicStreamPlaying(Assets::menuBgm))
+        PlayMusicStream(Assets::menuBgm);
     
     // Init logo coordinates
     float logoX = Globals::winCenterX - Assets::logo.width / 2;
@@ -30,6 +32,7 @@ void MainMenu() {
 
     // Menu Loop
     while(Globals::scene == Globals::MAIN_MENU && !WindowShouldClose()) {
+        UpdateMusicStream(Assets::menuBgm);
 
         // Handle Input Events
         mousePos         = GetMousePosition();
