@@ -80,7 +80,6 @@ void Game() {
         tileX   += Assets::arrowtile.width;
     }
 
-
     // Game Context (ntbcw. "OpenGL context") variables
     enum  GameState  gameState      = GET_READY;
     enum  Directions keyDirection   = NONE;
