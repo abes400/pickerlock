@@ -36,7 +36,7 @@ void init() {
     beep            = LoadSound("assets/audio/beep.wav");
     wohoo           = LoadSound("assets/audio/wohoo.wav");
 
-    bgm             = LoadMusicStream("assets/audio/bgm.wav");
+    gameBgm         = LoadMusicStream("assets/audio/gamebgm.wav");
     
 }
 
@@ -66,7 +66,7 @@ void unload() {
     UnloadSound(unlock);
     UnloadSound(wohoo);
 
-    UnloadMusicStream(bgm);
+    UnloadMusicStream(gameBgm);
 
 }
 

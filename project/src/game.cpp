@@ -122,11 +122,11 @@ void Game() {
     resetAllTiles(tileCount, tiles);
 
     PlaySound(Assets::beep);
-    PlayMusicStream(Assets::bgm);
+    PlayMusicStream(Assets::gameBgm);
 
     // Game Loop
     while (Globals::scene == Globals::IN_GAME && !WindowShouldClose()) {
-        UpdateMusicStream(Assets::bgm);
+        UpdateMusicStream(Assets::gameBgm);
         deltaTime = GetFrameTime();
 
         switch(gameState) {
@@ -165,7 +165,7 @@ void Game() {
                     } else {
                         tiles[current_tile] -> setFrame(0);
                         timerActive = false;
-                        StopMusicStream(Assets::bgm);
+                        StopMusicStream(Assets::gameBgm);
                         PlaySound(Assets::buzzer);
                         gameState = WRONG_MOVE;
                     }
@@ -194,7 +194,7 @@ void Game() {
             break;
             case DISQUALIFIED: case TIME_UP:
                 if(delayIsOver(deltaTime, &cardTimer, GMEND_TIME)) {
-                    StopMusicStream(Assets::bgm);
+                    StopMusicStream(Assets::gameBgm);
                     Globals::scene = Globals::DIFFICULTY;
                 }
                     

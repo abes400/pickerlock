@@ -67,7 +67,7 @@ void Credits() {
     float boxX = (Globals::windowWidth - Assets::ui_box.width) / 2;
     float boxY = (Globals::windowHeight - Assets::ui_box.height) / 2;
     
-    Vector2 credTxtPos  = { boxX + 82, boxY + 70 };
+    Vector2 credTxtPos  = { boxX + 22, boxY + 32 };
 
     // Init back btn
     Button* back = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 155}, &Assets::btn, &Assets::btn_down);

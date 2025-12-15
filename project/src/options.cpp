@@ -43,7 +43,7 @@ void Options() {
         } else if (music -> checkClick(mousePos, mousePressed)) {
             Opts::msc = !Opts::msc;
             music -> addLabelWithoutMeasuring(Opts::msc ? OptsStr::enbl : OptsStr::dsbl);
-            SetMusicVolume(Assets::bgm, Opts::msc ? 1 : 0);
+            SetMusicVolume(Assets::gameBgm, Opts::msc ? 1 : 0);
         } else if (sfx -> checkClick(mousePos, mousePressed)) {
             Opts::sfx = !Opts::sfx;
             sfx -> addLabelWithoutMeasuring(Opts::sfx ? OptsStr::enbl : OptsStr::dsbl);

@@ -30,7 +30,7 @@ namespace Assets {
                         slam,
                         unlock,
                         wohoo;
-    extern Music        bgm;
+    extern Music        gameBgm;
 }
 
 namespace Globals {
