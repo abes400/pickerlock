@@ -131,14 +131,14 @@ void Game() {
 
         switch(gameState) {
             case GET_READY:
-                if (delayIsOver(deltaTime, &cardTimer, READY_TIME)) {
+                if (delayIsOver(&cardTimer, READY_TIME, deltaTime)) {
                     card -> setFrame(1);
                     PlaySound(Assets::slam);
                     gameState = START;
                 }
             break;
             case START:
-                if (delayIsOver(deltaTime, &cardTimer, START_TIME)) {
+                if (delayIsOver(&cardTimer, START_TIME, deltaTime)) {
                         cardVisible = false;
                         timerActive = true;
                         gameState = INPUT;
@@ -183,7 +183,7 @@ void Game() {
 
             break;
             case WRONG_MOVE:
-                if(delayIsOver(deltaTime, &cardTimer, GMEND_TIME)) {
+                if(delayIsOver(&cardTimer, GMEND_TIME, deltaTime)) {
                     hand -> setFrame(5);
                     card -> setFrame(3);
                     cardVisible = true;
@@ -193,7 +193,7 @@ void Game() {
                 }
             break;
             case DISQUALIFIED: case TIME_UP:
-                if(delayIsOver(deltaTime, &cardTimer, GMEND_TIME)) {
+                if(delayIsOver(&cardTimer, GMEND_TIME, deltaTime)) {
                     StopMusicStream(Assets::gameBgm);
                     Globals::scene = Globals::DIFFICULTY;
                 }
@@ -202,7 +202,7 @@ void Game() {
         }
 
         updateAllTiles(tileCount, tiles, deltaTime);
-        if(timerActive && delayIsOver(deltaTime, &gameTimerDelay, 1)) {
+        if(timerActive && delayIsOver(&gameTimerDelay, 1, deltaTime)) {
             gameTimer--;
             gameTimerDelay = 1;
             snprintf(timeStr,  TIME_STR_LEN,  GameStr::timef,  gameTimer);
@@ -221,6 +221,7 @@ void Game() {
                 
         // Draw Elements
         BeginDrawing();
+        ClearBackground(PL_YELLOW);
         tileBG();
 
         lockAnim -> draw();

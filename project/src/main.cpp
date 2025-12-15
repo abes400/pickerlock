@@ -19,6 +19,8 @@ int main(int argc, char** argv) {
     InitAudioDevice();
     init();
 
+    Splash();
+
     Globals::scene = Globals::MAIN_MENU;
     while(!WindowShouldClose()) {
         cout << "______________NEW SCENE_________________\n";

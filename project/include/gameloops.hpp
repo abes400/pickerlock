@@ -1,5 +1,6 @@
 #pragma once
 
+void Splash();
 void MainMenu();
 void Difficulty();
 void Game();

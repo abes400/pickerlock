@@ -84,7 +84,7 @@ void tileBG() {
     tileAnimOffset = tileAnimOffset >= background.width ? 0 : tileAnimOffset + 40 * GetFrameTime();  
 }
 
-bool delayIsOver (float deltaTime, float* timer, float delayLength) {
+bool delayIsOver (float* timer, float delayLength, float deltaTime) {
     *timer -= deltaTime;
     if(*timer <= 0) {
         *timer += delayLength;
