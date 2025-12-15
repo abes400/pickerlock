@@ -39,10 +39,7 @@ void resetAllTiles          (short tileCount, ArrowTile** arrowTiles);
 void drawAllTiles           (short tileCount, ArrowTile** arrowTiles);
 
 Directions getDirectionFromKey (short* frameNumber);
-
-struct GameSprites {
-
-};
+short rotateFrame(short min, short max, short value, short direction);
 
 void Game() {
 
@@ -70,7 +67,7 @@ void Game() {
     lockAnim    -> setOriginAsCenter();
     hand        -> setOriginAsCenter();
     card        -> setOriginAsCenter();
-    card        -> setFrame(0);
+    hand        -> setFrame(2);
     
     // Initialize Tiles (Do not centralize origins as theirs are kinda done automatically)
     const short tileCount   = Globals::difficulty + 3;
@@ -156,7 +153,7 @@ void Game() {
                         if(current_tile >= tileCount) {
                             snprintf(scoreStr, SCORE_STR_LEN, GameStr::scoref, ++score);
                             current_tile = 0;
-                            hand -> setFrame(1);
+                            hand -> setFrame(0);
                             lockAnim -> is_playing = PLAY;
                             PlaySound(Assets::unlock);
                             gameState = ADVANCE;
@@ -173,7 +170,7 @@ void Game() {
             case ADVANCE:
                 lockAnim -> updateFrame(deltaTime);
                 if(lockAnim -> is_playing == PAUSE) {
-                    hand -> setFrame(0);
+                    hand -> setFrame(2);
                     lockAnim -> setFrame(0);
                     decideDirectionForAll(tileCount, tiles);
                     resetAllTiles(tileCount, tiles);
@@ -274,21 +271,28 @@ void drawAllTiles (short tileCount, ArrowTile** arrowTiles) {
         arrowTiles[i] -> draw();
 }
 
+short rotateFrame(short min, short max, short value, short direction) {
+    value += direction;
+    if(value > max) return min;
+    if(value < min) return max;
+    return value;
+}
+
 Directions getDirectionFromKey (short* frameNumber) {
     if      (IsKeyPressed(KEY_UP)) {
-        *frameNumber = 0;
+        *frameNumber = rotateFrame(1, 3, *frameNumber, 1);
         return UP;
     }     
     else if (IsKeyPressed(KEY_DOWN)) {
-        *frameNumber = 0;
+        *frameNumber = rotateFrame(1, 3, *frameNumber, -1);
         return DOWN;
     }
     else if (IsKeyPressed(KEY_LEFT)) {
-        *frameNumber = 3;
+        *frameNumber = rotateFrame(1, 3, *frameNumber, 1);
         return LEFT;
     }   
     else if (IsKeyPressed(KEY_RIGHT)) {
-        *frameNumber = 2;
+        *frameNumber = rotateFrame(1, 3, *frameNumber, -1);
         return RIGHT;
     }  
     return NONE;
