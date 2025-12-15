@@ -3,6 +3,7 @@
 #include "gamesetup.h"
 #include "gameloops.hpp"
 #include "commontasks.hpp"
+#include "globals.hpp"
 
 #include <iostream>
 using namespace std;

@@ -1,6 +1,6 @@
 
 #include <math.h>
-#include "globals.h"
+#include "globals.hpp"
 
 using namespace Assets;
 

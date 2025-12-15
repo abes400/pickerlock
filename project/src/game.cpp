@@ -1,5 +1,5 @@
 #include "raylib.h"
-#include "globals.h"
+#include "globals.hpp"
 #include "commontasks.hpp"
 
 #include "sprite.hpp"

@@ -1,4 +1,5 @@
 #include "raylib.h"
+#include "gamesetup.h"
 namespace Assets {
     Texture2D   background,
                 logo,
