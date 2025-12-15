@@ -22,6 +22,7 @@ void init() {
     statbox         = LoadTexture("assets/texture/statbox.png");
     a400logo        = LoadTexture("assets/texture/a400.png");
     jamlogo         = LoadTexture("assets/texture/20sgj.png");
+    cursor          = LoadTexture("assets/texture/cursor.png");
 
     uifont          = LoadFont("assets/font/uifont.png");
     numfont         = LoadFont("assets/font/numfont.png");
@@ -59,6 +60,7 @@ void unload() {
     UnloadTexture(statbox);
     UnloadTexture(a400logo);
     UnloadTexture(jamlogo);
+    UnloadTexture(cursor);
 
     UnloadFont(uifont);
     UnloadFont(numfont);

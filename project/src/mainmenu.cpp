@@ -54,6 +54,7 @@ void MainMenu() {
         optns -> draw();
         crdts -> draw();
         DrawTextEx(Assets::uifont, MainMenuStr::byln, bylinePos, Assets::uifont.baseSize, FONT_SPACING, WHITE);
+        DrawTextureEx(Assets::cursor, mousePos, 0, 1, WHITE);
 
         EndDrawing();
     }

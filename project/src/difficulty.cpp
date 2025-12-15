@@ -93,6 +93,7 @@ void Difficulty() {
         medi -> draw();
         hard -> draw();
         back -> draw();
+        DrawTextureEx(Assets::cursor, mousePos, 0, 1, WHITE);
         
         EndDrawing();
     }

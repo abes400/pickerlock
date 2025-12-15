@@ -53,6 +53,7 @@ void Instructions() {
         DrawTextEx(Assets::uifont, InstructionsStr::instTxt, instTxtPos, Assets::uifont.baseSize, FONT_SPACING, WHITE);
         instAnim -> draw();
         back -> draw();
+        DrawTextureEx(Assets::cursor, mousePos, 0, 1, WHITE);
 
         EndDrawing();
     }
@@ -95,6 +96,7 @@ void Credits() {
         DrawTexture(Assets::jamlogo, logoX, logoY, WHITE);
         DrawTextEx(Assets::uifont, CreditsStr::credTxt, credTxtPos, Assets::uifont.baseSize, FONT_SPACING, WHITE);
         back -> draw();
+        DrawTextureEx(Assets::cursor, mousePos, 0, 1, WHITE);
         
         EndDrawing();
 

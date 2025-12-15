@@ -71,6 +71,7 @@ void Options() {
         music -> draw();
         sfx   -> draw();
         back  -> draw();
+        DrawTextureEx(Assets::cursor, mousePos, 0, 1, WHITE);
         
         EndDrawing();
     }

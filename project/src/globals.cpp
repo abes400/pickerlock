@@ -14,7 +14,8 @@ namespace Assets {
                 cards,
                 statbox,
                 a400logo,
-                jamlogo;
+                jamlogo,
+                cursor;
 
     Font        uifont,
                 numfont;

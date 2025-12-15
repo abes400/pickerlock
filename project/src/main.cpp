@@ -11,11 +11,18 @@ int main(int argc, char** argv) {
     // Init game window
     SetConfigFlags(FLAG_VSYNC_HINT);
     InitWindow(Globals::windowWidth, Globals::windowHeight, "Pickerlock");
+    HideCursor();
+
+    // Init audio device
     InitAudioDevice();
+
+    // Initialize texture structs
     init();
 
+    // Show splash screen
     Splash();
 
+    // Game loop
     Globals::scene = Globals::MAIN_MENU;
     while(!WindowShouldClose()) {
 
