@@ -12,7 +12,9 @@ namespace Assets {
                 hand,
                 arrowtile,
                 cards,
-                statbox;
+                statbox,
+                a400logo,
+                jamlogo;
 
     Font        uifont,
                 numfont;

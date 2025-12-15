@@ -20,6 +20,8 @@ void init() {
     arrowtile       = LoadTexture("assets/texture/arrow.png");
     cards           = LoadTexture("assets/texture/cards.png");
     statbox         = LoadTexture("assets/texture/statbox.png");
+    a400logo        = LoadTexture("assets/texture/a400.png");
+    jamlogo         = LoadTexture("assets/texture/20sgj.png");
 
     uifont          = LoadFont("assets/font/uifont.png");
     numfont         = LoadFont("assets/font/numfont.png");
@@ -55,6 +57,8 @@ void unload() {
     UnloadTexture(arrowtile);
     UnloadTexture(cards);
     UnloadTexture(statbox);
+    UnloadTexture(a400logo);
+    UnloadTexture(jamlogo);
 
     UnloadFont(uifont);
     UnloadFont(numfont);

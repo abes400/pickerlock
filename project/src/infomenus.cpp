@@ -67,6 +67,9 @@ void Credits() {
     // Init text
     float boxX = (Globals::windowWidth - Assets::ui_box.width) / 2;
     float boxY = (Globals::windowHeight - Assets::ui_box.height) / 2;
+
+    float logoX = boxX + Assets::ui_box.width - Assets::jamlogo.width - 30;
+    float logoY = boxY + 20;
     
     Vector2 credTxtPos  = { boxX + 22, boxY + 32 };
 
@@ -89,6 +92,7 @@ void Credits() {
         tileBG();
 
         DrawTexture(Assets::ui_box, boxX, boxY, WHITE);
+        DrawTexture(Assets::jamlogo, logoX, logoY, WHITE);
         DrawTextEx(Assets::uifont, CreditsStr::credTxt, credTxtPos, Assets::uifont.baseSize, FONT_SPACING, WHITE);
         back -> draw();
         
