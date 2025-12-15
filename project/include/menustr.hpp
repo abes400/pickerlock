@@ -12,11 +12,11 @@ namespace MainMenuStr {
 namespace InstructionsStr {
     constexpr const char* instTxt = "Objective: \n"
                     "You are in a lock picking contest. \n"
-                    "You are tasked to pick as many locks as you can in 20 seconds. \n\n\n\n\n\n\n\n"
+                    "Your task to open as many locks as you can in 20 seconds. \n\n\n\n\n\n\n\n"
 
                     "Instructions: \n"
-                    "Press the arrow keys in the order given on screen to pick each lock. \n"
-                    "As you successfully break a lock, you will be given the next one. \n"
+                    "Press the arrow keys in the order given on screen to open each lock. \n"
+                    "As you successfully open a lock, you will be given the next one. \n"
                     "If you press the wrong button, you'll get disqualified.";
 }
 
@@ -32,10 +32,10 @@ namespace CreditsStr {
 }
 
 namespace DiffStr {
-    constexpr const char* diffTxt ="Select Difficulty to begin:";
-    constexpr const char* easy ="Easy: 3 Tiles";
-    constexpr const char* medi ="Med.: 4 Tiles";
-    constexpr const char* hard ="Hard: 5 Tiles";
+    constexpr const char* diffTxt = "Select Difficulty to begin:";
+    constexpr const char* easy = "Easy: 3 Tiles";
+    constexpr const char* medi = "Med.: 4 Tiles";
+    constexpr const char* hard = "Hard: 5 Tiles";
     constexpr const char* scrs = "- HIGH SCORES -\nEasy\nMedium\nHard";
     constexpr const char* hscr = "%04d\n%04d\n%04d"; // "0000\n0000\n0000\0" 15 chars (inc. '\0')
 }

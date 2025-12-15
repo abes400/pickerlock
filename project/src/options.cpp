@@ -15,7 +15,7 @@ namespace Opts {
 void Options() {
 
     // Init text
-    float boxX          = (Globals::windowWidth - Assets::ui_box.width)  / 2;
+    float boxX          = (Globals::windowWidth - Assets::ui_box.width)   / 2;
     float boxY          = (Globals::windowHeight - Assets::ui_box.height) / 2;
 
     Vector2 optsTxtPos  = { boxX + 231, boxY + 65 };
@@ -23,7 +23,7 @@ void Options() {
     // Init btuttons
     Button* back    = new Button(Vector2 {Globals::winCenterX,       Globals::winCenterY + 155 }, &Assets::btn, &Assets::btn_down);
     Button* music   = new Button(Vector2 {Globals::winCenterX + 50,  Globals::winCenterY - 35  }, &Assets::btn, &Assets::btn_down);
-    Button* sfx     = new Button(Vector2 {Globals::winCenterX + 50,  Globals::winCenterY + 20 }, &Assets::btn, &Assets::btn_down);
+    Button* sfx     = new Button(Vector2 {Globals::winCenterX + 50,  Globals::winCenterY + 20  }, &Assets::btn, &Assets::btn_down);
 
     back    -> addLabel(MiscMenuStr::back, LIFT, 8);
     music   -> addLabel(Opts::msc ? OptsStr::enbl : OptsStr::dsbl,     LIFT, 8);

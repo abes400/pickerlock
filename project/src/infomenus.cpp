@@ -34,20 +34,23 @@ void Instructions() {
 
     Vector2 mousePos;
 
+    float deltaTime;
+
     while(Globals::scene == Globals::INSTRUCTIONS && !WindowShouldClose()) {
         UpdateMusicStream(Assets::menuBgm);
+        deltaTime = GetFrameTime();
 
         // Handle Button Events
         mousePos = GetMousePosition();
         if(back -> checkClick(mousePos, IsMouseButtonDown(MOUSE_BUTTON_LEFT))) { Globals::scene = Globals::MAIN_MENU; break; }
 
         // Handle visualisation animation
-        instAnim -> updateFrame();
+        instAnim -> updateFrame(deltaTime);
 
         // Draw elements
         BeginDrawing();
         ClearBackground(PL_YELLOW);
-        tileBG();
+        tileBG(deltaTime);
 
         DrawTexture(Assets::ui_box, boxX, boxY, WHITE);
         DrawTextEx(Assets::uifont, InstructionsStr::instTxt, instTxtPos, Assets::uifont.baseSize, FONT_SPACING, WHITE);

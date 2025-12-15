@@ -11,7 +11,12 @@ int main(int argc, char** argv) {
     // Init game window
     SetConfigFlags(FLAG_VSYNC_HINT);
     InitWindow(Globals::windowWidth, Globals::windowHeight, "Pickerlock");
+
+    // Cursor not hidden in web build since it malfunctions
+    // Instead, the cursor is hidden in shell.html by CSS
+    #ifndef PLATFORM_WEB
     HideCursor();
+    #endif
 
     // Init audio device
     InitAudioDevice();

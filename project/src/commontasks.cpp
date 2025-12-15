@@ -79,11 +79,11 @@ void unload() {
 }
 
 // Tiles the background texture in an animated manner
-void tileBG() {
+void tileBG(float deltaTime) {
     for(short i = 0; i < tileCol; i++)
         for(short j = 0; j < tileRow; j++)
             DrawTexture(background, i * background.width - tileAnimOffset, j * background.height - tileAnimOffset, WHITE);
-    tileAnimOffset = tileAnimOffset >= background.width ? 0 : tileAnimOffset + 40 * GetFrameTime();  
+    tileAnimOffset = tileAnimOffset >= background.width ? 0 : tileAnimOffset + 40 * deltaTime;  
 }
 
 bool delayIsOver (float* timer, float delayLength, float deltaTime) {

@@ -217,7 +217,7 @@ void Game() {
         // Draw Elements
         BeginDrawing();
         ClearBackground(PL_YELLOW);
-        tileBG();
+        tileBG(deltaTime);
 
         lockAnim -> draw();
         hand     -> draw();
