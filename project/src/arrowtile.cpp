@@ -28,6 +28,7 @@ ArrowTile(Vector2 position, const AnimatedSpriteProp* spriteProperty, Loopabilit
     }
 }
 
+// Randomly decides the direction of the tile
 void ArrowTile::decideDirection() {
     direction = static_cast<Directions>(rand() % 4);
     rotation_  = 90 * static_cast<short>(direction);
