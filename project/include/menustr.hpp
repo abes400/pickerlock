@@ -5,7 +5,7 @@ namespace MainMenuStr {
     constexpr const char* inst = "Instructions";
     constexpr const char* opts = "Options";
     constexpr const char* cred = "Credits";
-    constexpr const char* byln = "(C) 2025 Abes400 - Made for 20 Second Game Jam";
+    constexpr const char* byln = "From Abes400 - Made for 20 Second Game Jam";
 }
 
 
@@ -27,8 +27,9 @@ namespace CreditsStr {
                     "- Music -\n\n" 
                     "\"Safe At Home\" by Marcelo Fernandez - marcelofernandezmusic.com\n"
                     "\"A Journey Awaits\" by Pierre Bondoerffer - opengameart.org: pbondoer\n\n"
-                    "Distributed under MIT License. \n\n"
-                    "Made for 20 Second GameJam 2025\n";
+                    "Distributed under MIT License. \n"
+                    "Written in C++ using Raylib.\n"
+                    "Made for 20 Second GameJam 2025.\n";
 }
 
 namespace DiffStr {
