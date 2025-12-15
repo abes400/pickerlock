@@ -1,7 +1,7 @@
 #include "raylib.h"
 #include "globals.h"
 #include "commontasks.hpp"
-#include "assets.hpp"
+
 #include "sprite.hpp"
 #include "gamesetup.h"
 #include "arrowtile.hpp"

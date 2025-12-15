@@ -1,4 +1,4 @@
-#include "assets.hpp"
+
 #include <math.h>
 #include "globals.h"
 

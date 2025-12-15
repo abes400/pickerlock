@@ -3,6 +3,7 @@
 namespace MainMenuStr {
     constexpr const char* play = "Play";
     constexpr const char* inst = "Instructions";
+    constexpr const char* opts = "Options";
     constexpr const char* cred = "Credits";
     constexpr const char* byln = "(C) 2025 Abes400 - Made for 20 Second Game Jam";
 }
@@ -35,6 +36,12 @@ namespace DiffStr {
     constexpr const char* hard ="Hard: 5 Tiles";
     constexpr const char* scrs = "- HIGH SCORES -\nEasy\nMedium\nHard";
     constexpr const char* hscr = "%04d\n%04d\n%04d"; // "0000\n0000\n0000\0" 15 chars (inc. '\0')
+}
+
+namespace OptsStr {
+    constexpr const char* optsTxt   = "- Options -\n\n\nMusic\n\n\nSFX";
+    constexpr const char* enbl      = "Enabled";
+    constexpr const char* dsbl      = "Disabled";
 }
 
 

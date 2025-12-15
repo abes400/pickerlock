@@ -10,7 +10,7 @@
 #include "menustr.hpp"
 #include "button.hpp"
 
-#include "assets.hpp"
+
 #include "sprite.hpp"
 
 #include<iostream>
@@ -23,11 +23,13 @@ void MainMenu() {
     float logoY = Globals::winCenterY - Assets::logo.height * 2;
 
     // Initialise MainMenu Elements
-    Button* start = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 85  }, &Assets::start_btn,   &Assets::start_btn_down);
-    Button* instr = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 150 }, &Assets::btn,         &Assets::btn_down);
+    Button* start = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 25  }, &Assets::start_btn,   &Assets::start_btn_down);
+    Button* instr = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 90  }, &Assets::btn,         &Assets::btn_down);
+    Button* optns = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 150 }, &Assets::btn,         &Assets::btn_down);
     Button* crdts = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 210 }, &Assets::btn,         &Assets::btn_down);
 
     instr -> addLabel(MainMenuStr::inst, LIFT, 8);
+    optns -> addLabel(MainMenuStr::opts, LIFT, 8);
     crdts -> addLabel(MainMenuStr::cred, LIFT, 8);
 
     // Initialize ByLine
@@ -45,6 +47,7 @@ void MainMenu() {
 
         if      (start -> checkClick(mousePos, mousePressed)) { Globals::scene = Globals::DIFFICULTY;   break; }
         else if (instr -> checkClick(mousePos, mousePressed)) { Globals::scene = Globals::INSTRUCTIONS; break; }
+        else if (optns -> checkClick(mousePos, mousePressed)) { Globals::scene = Globals::OPTIONS;      break; }
         else if (crdts -> checkClick(mousePos, mousePressed)) { Globals::scene = Globals::CREDITS;      break; }
 
         // Draw elements
@@ -55,6 +58,7 @@ void MainMenu() {
         DrawTexture(Assets::logo, logoX, logoY, WHITE);
         start -> draw();
         instr -> draw();
+        optns -> draw();
         crdts -> draw();
         DrawTextEx(Assets::uifont, MainMenuStr::byln, bylinePos, Assets::uifont.baseSize, FONT_SPACING, WHITE);
 
@@ -64,6 +68,7 @@ void MainMenu() {
     // Deallocate Buttons
     delete start;
     delete instr;
+    delete optns;
     delete crdts;
 }
 
@@ -208,6 +213,77 @@ void Instructions() {
     delete instAnim;
     delete back;
 
+}
+
+namespace Opts {
+    bool sfx = true;
+    bool msc = true;
+    // TODO: add fullscreen support
+}
+
+void Options() {
+
+    // Init text
+    float boxX          = (Globals::windowWidth - Assets::ui_box.width)  / 2;
+    float boxY          = (Globals::windowHeight - Assets::ui_box.height) / 2;
+
+    Vector2 optsTxtPos  = { boxX + 231, boxY + 65 };
+
+    // Init btuttons
+    Button* back    = new Button(Vector2 {Globals::winCenterX,       Globals::winCenterY + 155 }, &Assets::btn, &Assets::btn_down);
+    Button* music   = new Button(Vector2 {Globals::winCenterX + 50,  Globals::winCenterY - 35  }, &Assets::btn, &Assets::btn_down);
+    Button* sfx     = new Button(Vector2 {Globals::winCenterX + 50,  Globals::winCenterY + 20 }, &Assets::btn, &Assets::btn_down);
+
+    back    -> addLabel(MiscMenuStr::back, LIFT, 8);
+    music   -> addLabel(Opts::msc ? OptsStr::enbl : OptsStr::dsbl,     LIFT, 8);
+    sfx     -> addLabel(Opts::sfx ? OptsStr::enbl : OptsStr::dsbl,     LIFT, 8);
+
+    Vector2 mousePos;
+    bool    mousePressed;
+
+    while(Globals::scene == Globals::OPTIONS && !WindowShouldClose()) {
+
+        // Handle Button Events
+        mousePos        = GetMousePosition();
+        mousePressed    = IsMouseButtonDown(MOUSE_BUTTON_LEFT);
+
+        if (back -> checkClick(mousePos, mousePressed)) {
+            Globals::scene = Globals::MAIN_MENU; break; 
+        } else if (music -> checkClick(mousePos, mousePressed)) {
+            Opts::msc = !Opts::msc;
+            music -> addLabelWithoutMeasuring(Opts::msc ? OptsStr::enbl : OptsStr::dsbl);
+            SetMusicVolume(Assets::bgm, Opts::msc ? 1 : 0);
+        } else if (sfx -> checkClick(mousePos, mousePressed)) {
+            Opts::sfx = !Opts::sfx;
+            sfx -> addLabelWithoutMeasuring(Opts::sfx ? OptsStr::enbl : OptsStr::dsbl);
+            float newVol = Opts::sfx ? 1: 0;
+
+            SetSoundVolume(Assets::beep,    newVol);
+            SetSoundVolume(Assets::buzzer,  newVol);
+            SetSoundVolume(Assets::dial,    newVol);
+            SetSoundVolume(Assets::grunt,   newVol);
+            SetSoundVolume(Assets::slam,    newVol);
+            SetSoundVolume(Assets::unlock,  newVol);
+            SetSoundVolume(Assets::wohoo,   newVol);
+        }
+
+        // Draw elements
+        BeginDrawing();
+        ClearBackground(PL_YELLOW);
+        tileBG();
+
+        DrawTexture(Assets::ui_box, boxX, boxY, WHITE);
+        DrawTextEx(Assets::uifont, OptsStr::optsTxt, optsTxtPos, Assets::uifont.baseSize, FONT_SPACING, WHITE);
+        music -> draw();
+        sfx   -> draw();
+        back  -> draw();
+        
+        EndDrawing();
+    }
+
+    delete back;
+    delete music;
+    delete sfx;
 }
 
 void Credits() {

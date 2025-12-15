@@ -1,6 +1,6 @@
 #include "gamesetup.h"
 #include "button.hpp"
-#include "assets.hpp"
+
 
 #include <iostream>
 using namespace std;
@@ -23,6 +23,14 @@ void Button::addLabel(const char* label, bool lifted, short lift_height) {
         label_pos_          = Vector2 { static_cast<float>(position_.x + (texture_ -> width - labelSize.x) / 2), 
                                         static_cast<float>(position_.y + (texture_ -> height - labelSize.y) / 2 - lift_height)};
 
+        labeled_ = true;
+    } else
+        labeled_ = false;
+}
+
+void Button::addLabelWithoutMeasuring(const char* label) {
+    if(label != nullptr) {
+        label_   = label;
         labeled_ = true;
     } else
         labeled_ = false;
