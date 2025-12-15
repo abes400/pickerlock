@@ -230,7 +230,7 @@ void Game() {
         DrawTextEx  (Assets::numfont, scoreStr, scoreTxtPos, Assets::numfont.baseSize, NUMF_SPACING, WHITE);
 
         if(cardVisible) card -> draw();
-        DrawFPS(0, 0);
+        //DrawFPS(0, 0);
         
         EndDrawing();
     }
