@@ -5,7 +5,7 @@ namespace MainMenuStr {
     constexpr const char* inst = "Instructions";
     constexpr const char* opts = "Options";
     constexpr const char* cred = "Credits";
-    constexpr const char* byln = "From Abes400 - Made for 20 Second Game Jam";
+    constexpr const char* byln = "by Abes400 - Made for 20 Second Game Jam";
 }
 
 
@@ -22,7 +22,8 @@ namespace InstructionsStr {
 
 namespace CreditsStr {
     constexpr const char* credTxt =
-                    "Pickerlock 1.0 \n\n\n"
+                    "Pickerlock 1.0 \n"
+                    "Version 1.0 - Dec. 12, 2025\n\n"
                     "Concept, Programming and Artwork: Abes400 \n\n"
                     "- Music -\n\n" 
                     "\"Safe At Home\" by Marcelo Fernandez - marcelofernandezmusic.com\n"

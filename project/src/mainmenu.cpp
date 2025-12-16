@@ -25,7 +25,7 @@ void MainMenu() {
     crdts -> addLabel(MainMenuStr::cred, LIFT, 8);
 
     // Initialize ByLine
-    Vector2 bylinePos   = { static_cast<float>(Globals::winCenterX - 230), static_cast<float>(Globals::windowHeight - 32) };
+    Vector2 bylinePos   = { static_cast<float>(Globals::winCenterX - 200), static_cast<float>(Globals::windowHeight - 32) };
 
     Vector2 mousePos;
     bool    mousePressed;
