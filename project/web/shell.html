@@ -65,6 +65,15 @@
             saveAs(blob, localFSname);
         }
     </script>
+    <script>
+        // Disabling arrow key scrolling
+        document.addEventListener("keydown", function(e) {
+            const keys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Space"];
+            if(keys.includes(e.key)) {
+                e.preventDefault();
+            }
+        }, {passive: false});
+    </script>
     </head>
     <body>
         <canvas class=emscripten id=canvas oncontextmenu=event.preventDefault() tabindex=-1></canvas>
