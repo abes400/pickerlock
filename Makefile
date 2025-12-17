@@ -8,6 +8,8 @@ CPP_SRCS 				= project/src/*.cpp
 
 LINKED_LIB_PATH			= project/lib/bin/
 
+EXEC_NAME				= Pickerlock
+
 # windows specific opts
 WINDOWS_LINKED_LIBS 	= -lopengl32 -lgdi32 -lwinmm
 WINDOWS_RAYLIB_LINKED 	= libraylib_windows_x64.a
@@ -21,14 +23,14 @@ win:
 	$(CPP_SRCS) 														\
 	-I$(INCLUDE_DIRS) -I$(LIB_INCLUDE_DIRS) 							\
 	$(LINKED_LIB_PATH)$(WINDOWS_RAYLIB_LINKED) $(WINDOWS_LINKED_LIBS) 	\
-	-o dist/$(WINDOWS_OUTPUT_DIR)/Pickerlock 							\
+	-o dist/$(WINDOWS_OUTPUT_DIR)/$(WINDOWS_OUTPUT_DIR) 				\
 	-static 
 
 	cp -r project/assets dist/$(WINDOWS_OUTPUT_DIR)/
 
 	@echo [ INFO ] WINDOWS BUILD SUCCEEDED. Output located at dist/$(WINDOWS_OUTPUT_DIR)/
 
-	./dist/$(WINDOWS_OUTPUT_DIR)/Pickerlock
+	./dist/$(WINDOWS_OUTPUT_DIR)/$(WINDOWS_OUTPUT_DIR)
 
 # macOS specific opts
 MACOS_ARCHS			= -arch x86_64 -arch arm64
@@ -38,20 +40,25 @@ MACOS_OUTPUT_DIR 	= macosx_universal
 
 osx:
 	clear
-	mkdir -p dist/$(MACOS_OUTPUT_DIR)
+	mkdir -p dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents
+	mkdir -p dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/Resources
+	mkdir -p dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/MacOS
+	cp project/appres/osx/Info.plist dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents
+	cp -r project/assets dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/Resources
+
 
 	$(CC) -std=c++$(STD) 											\
 	$(MACOS_ARCHS) 													\
 	$(CPP_SRCS) 													\
 	-I$(INCLUDE_DIRS) -I$(LIB_INCLUDE_DIRS) 						\
 	$(MACOS_LINKED_LIBS) $(LINKED_LIB_PATH)$(MACOS_RAYLIB_LINKED)	\
-	-o dist/$(MACOS_OUTPUT_DIR)/Pickerlock
+	-o dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/MacOS/$(EXEC_NAME)
 
-	cp -r project/assets dist/$(MACOS_OUTPUT_DIR)/
+	./dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/MacOS/$(EXEC_NAME)
 
 	@echo [ INFO ] MACOS BUILD SUCCEEDED. Output located at dist/$(MACOS_OUTPUT_DIR)/
 
-	./dist/$(MACOS_OUTPUT_DIR)/Pickerlock
+# ./dist/$(MACOS_OUTPUT_DIR)/Pickerlock
 
 
 
