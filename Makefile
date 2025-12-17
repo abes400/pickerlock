@@ -26,7 +26,7 @@ win:
 	-o dist/$(WINDOWS_OUTPUT_DIR)/$(WINDOWS_OUTPUT_DIR) 				\
 	-static 
 
-	cp -r project/assets dist/$(WINDOWS_OUTPUT_DIR)/
+	cp -r project/assets/* dist/$(WINDOWS_OUTPUT_DIR)/
 
 	@echo [ INFO ] WINDOWS BUILD SUCCEEDED. Output located at dist/$(WINDOWS_OUTPUT_DIR)/
 
@@ -44,7 +44,7 @@ osx:
 	mkdir -p dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/Resources
 	mkdir -p dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/MacOS
 	cp project/appres/osx/Info.plist dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents
-	cp -r project/assets dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/Resources
+	cp -r project/assets/* dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/Resources
 
 
 	$(CC) -std=c++$(STD) 											\
@@ -69,7 +69,7 @@ WASM_RAYLIB_LINKED 	= libraylib_wasm.a
 WASM_OUTPUT_DIR 	= web
 WASM_OUTPUT_HTML	= index.html
 
-WASM_PRELOAD		= project/assets@/assets
+WASM_PRELOAD		= project/assets@/
 WASM_STACK_MB		= 64
 WASM_INIT_MEM_MB	= 128
 WASM_SHELL			= shell.html

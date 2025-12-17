@@ -7,40 +7,40 @@ using namespace Assets;
 
 
 void init() {
-    background      = LoadTexture("assets/texture/bg.png");
-    logo            = LoadTexture("assets/texture/logo.png");
-    start_btn       = LoadTexture("assets/texture/start.png");
-    start_btn_down  = LoadTexture("assets/texture/start_down.png");
-    btn             = LoadTexture("assets/texture/button.png");
-    btn_down        = LoadTexture("assets/texture/button_down.png");
-    ui_box          = LoadTexture("assets/texture/uibox.png");
-    instruction     = LoadTexture("assets/texture/inst_vis.png");
-    lockwindow      = LoadTexture("assets/texture/lock.png");
-    hand            = LoadTexture("assets/texture/hand.png");
-    arrowtile       = LoadTexture("assets/texture/arrow.png");
-    cards           = LoadTexture("assets/texture/cards.png");
-    statbox         = LoadTexture("assets/texture/statbox.png");
-    a400logo        = LoadTexture("assets/texture/a400.png");
-    jamlogo         = LoadTexture("assets/texture/20sgj.png");
-    cursor          = LoadTexture("assets/texture/cursor.png");
+    background      = LoadTexture("texture/bg.png");
+    logo            = LoadTexture("texture/logo.png");
+    start_btn       = LoadTexture("texture/start.png");
+    start_btn_down  = LoadTexture("texture/start_down.png");
+    btn             = LoadTexture("texture/button.png");
+    btn_down        = LoadTexture("texture/button_down.png");
+    ui_box          = LoadTexture("texture/uibox.png");
+    instruction     = LoadTexture("texture/inst_vis.png");
+    lockwindow      = LoadTexture("texture/lock.png");
+    hand            = LoadTexture("texture/hand.png");
+    arrowtile       = LoadTexture("texture/arrow.png");
+    cards           = LoadTexture("texture/cards.png");
+    statbox         = LoadTexture("texture/statbox.png");
+    a400logo        = LoadTexture("texture/a400.png");
+    jamlogo         = LoadTexture("texture/20sgj.png");
+    cursor          = LoadTexture("texture/cursor.png");
 
-    uifont          = LoadFont("assets/font/uifont.png");
-    numfont         = LoadFont("assets/font/numfont.png");
+    uifont          = LoadFont("font/uifont.png");
+    numfont         = LoadFont("font/numfont.png");
     
     tileRow         = ceil(Globals::windowHeight / background.height) + 2;
     tileCol         = ceil(Globals::windowWidth / background.width ) + 2;
 
-    beep            = LoadSound("assets/audio/beep.wav");
-    buzzer          = LoadSound("assets/audio/buzzer.wav");
-    dial            = LoadSound("assets/audio/dial.wav");
-    grunt           = LoadSound("assets/audio/grunt.wav");
-    slam            = LoadSound("assets/audio/slam.wav");
-    unlock          = LoadSound("assets/audio/unlock.wav");
-    beep            = LoadSound("assets/audio/beep.wav");
-    wohoo           = LoadSound("assets/audio/wohoo.wav");
+    beep            = LoadSound("audio/beep.wav");
+    buzzer          = LoadSound("audio/buzzer.wav");
+    dial            = LoadSound("audio/dial.wav");
+    grunt           = LoadSound("audio/grunt.wav");
+    slam            = LoadSound("audio/slam.wav");
+    unlock          = LoadSound("audio/unlock.wav");
+    beep            = LoadSound("audio/beep.wav");
+    wohoo           = LoadSound("audio/wohoo.wav");
 
-    gameBgm         = LoadMusicStream("assets/audio/gamebgm.wav");
-    menuBgm         = LoadMusicStream("assets/audio/menubgm.wav");
+    gameBgm         = LoadMusicStream("audio/gamebgm.wav");
+    menuBgm         = LoadMusicStream("audio/menubgm.wav");
     
 }
 
