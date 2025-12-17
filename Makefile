@@ -17,20 +17,20 @@ WINDOWS_OUTPUT_DIR 		= windows_x64
 
 win:
 	clear
-	mkdir -p dist/$(WINDOWS_OUTPUT_DIR)
+	mkdir -p dist/$(WINDOWS_OUTPUT_DIR)/$(EXEC_NAME) 
+	cp -r project/assets/* dist/$(WINDOWS_OUTPUT_DIR)/$(EXEC_NAME) 
 
 	$(CC) -std=c++$(STD) 												\
 	$(CPP_SRCS) 														\
 	-I$(INCLUDE_DIRS) -I$(LIB_INCLUDE_DIRS) 							\
 	$(LINKED_LIB_PATH)$(WINDOWS_RAYLIB_LINKED) $(WINDOWS_LINKED_LIBS) 	\
-	-o dist/$(WINDOWS_OUTPUT_DIR)/$(EXEC_NAME) 							\
-	-static 
-
-	cp -r project/assets/* dist/$(WINDOWS_OUTPUT_DIR)/
+	-o dist/$(WINDOWS_OUTPUT_DIR)/$(EXEC_NAME)/$(EXEC_NAME) 			\
+	-static																\
+#	-mwindows
 
 	@echo [ INFO ] WINDOWS BUILD SUCCEEDED. Output located at dist/$(WINDOWS_OUTPUT_DIR)/
 
-	./dist/$(WINDOWS_OUTPUT_DIR)/$(WINDOWS_OUTPUT_DIR)
+	./dist/$(WINDOWS_OUTPUT_DIR)/$(EXEC_NAME)/$(EXEC_NAME) 
 
 # macOS specific opts
 MACOS_ARCHS			= -arch x86_64 -arch arm64
