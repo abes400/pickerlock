@@ -23,7 +23,7 @@ win:
 	$(CPP_SRCS) 														\
 	-I$(INCLUDE_DIRS) -I$(LIB_INCLUDE_DIRS) 							\
 	$(LINKED_LIB_PATH)$(WINDOWS_RAYLIB_LINKED) $(WINDOWS_LINKED_LIBS) 	\
-	-o dist/$(WINDOWS_OUTPUT_DIR)/$(WINDOWS_OUTPUT_DIR) 				\
+	-o dist/$(WINDOWS_OUTPUT_DIR)/$(EXEC_NAME) 							\
 	-static 
 
 	cp -r project/assets/* dist/$(WINDOWS_OUTPUT_DIR)/
