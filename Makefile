@@ -80,7 +80,7 @@ web:
 	-s TOTAL_STACK=$(WASM_STACK_MB)MB 						\
     -s INITIAL_MEMORY=$(WASM_INIT_MEM_MB)MB 				\
 	-s EXPORTED_RUNTIME_METHODS=['HEAPF32','HEAPU8']		\
-	--shell-file project/web/$(WASM_SHELL)					\
+	--shell-file project/appres/web/$(WASM_SHELL)			\
 	-s $(WASM_FLAGS)
 
 	@echo [ INFO ] WEB BUILD SUCCEEDED. Output located at dist/$(WASM_OUTPUT_DIR)/
