@@ -44,6 +44,7 @@ osx:
 	mkdir -p dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/Resources
 	mkdir -p dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/MacOS
 	cp project/appres/osx/Info.plist dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents
+	cp project/appres/osx/application.icns dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/Resources
 	cp -r project/assets/* dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/Resources
 
 
@@ -54,7 +55,7 @@ osx:
 	$(MACOS_LINKED_LIBS) $(LINKED_LIB_PATH)$(MACOS_RAYLIB_LINKED)	\
 	-o dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/MacOS/$(EXEC_NAME)
 
-	./dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/MacOS/$(EXEC_NAME)
+#	./dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/MacOS/$(EXEC_NAME)
 
 	@echo [ INFO ] MACOS BUILD SUCCEEDED. Output located at dist/$(MACOS_OUTPUT_DIR)/
 
