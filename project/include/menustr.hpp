@@ -23,7 +23,7 @@ namespace InstructionsStr {
 namespace CreditsStr {
     constexpr const char* credTxt =
                     "PICKERLOCK from FLYING MAP ENTERTAINMENT\n"
-                    "Version 1.0 - Browser Edition - Dec. 12, 2025\n\n"
+                    "Version 1.0 - Browser Edition - Dec. 19, 2025\n\n"
 
                     "Concept, Programming, and Artwork : Abes400\n\n"
 
