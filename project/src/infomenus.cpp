@@ -69,11 +69,12 @@ void Instructions() {
 void Credits() {
 
     // Init text
-    float boxX = (Globals::windowWidth - Assets::ui_box.width) / 2;
+    float boxX = (Globals::windowWidth  - Assets::ui_box.width) / 2;
     float boxY = (Globals::windowHeight - Assets::ui_box.height) / 2;
 
-    float logoX = boxX + Assets::ui_box.width - Assets::jamlogo.width - 30;
-    float logoY = boxY + 20;
+    float gjX       = boxX + Assets::ui_box.width - Assets::jamlogo.width - 30;
+    float fmpX      = gjX - Assets::flymaplogo.width - 10;
+    float logosY    = boxY + 20;
     
     Vector2 credTxtPos  = { boxX + 22, boxY + 32 };
 
@@ -95,8 +96,9 @@ void Credits() {
         ClearBackground(PL_YELLOW);
         tileBG();
 
-        DrawTexture(Assets::ui_box, boxX, boxY, WHITE);
-        DrawTexture(Assets::jamlogo, logoX, logoY, WHITE);
+        DrawTexture(Assets::ui_box,     boxX,  boxY,   WHITE);
+        DrawTexture(Assets::jamlogo,    gjX,   logosY, WHITE);
+        DrawTexture(Assets::flymaplogo, fmpX,  logosY, WHITE);
         DrawTextEx(Assets::uifont, CreditsStr::credTxt, credTxtPos, Assets::uifont.baseSize, FONT_SPACING, WHITE);
         back -> draw();
         DrawTextureEx(Assets::cursor, mousePos, 0, 1, WHITE);

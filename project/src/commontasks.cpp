@@ -20,7 +20,7 @@ void init() {
     arrowtile       = LoadTexture("texture/arrow.png");
     cards           = LoadTexture("texture/cards.png");
     statbox         = LoadTexture("texture/statbox.png");
-    a400logo        = LoadTexture("texture/a400.png");
+    flymaplogo      = LoadTexture("texture/flymap.png");
     jamlogo         = LoadTexture("texture/20sgj.png");
     cursor          = LoadTexture("texture/cursor.png");
 
@@ -58,7 +58,7 @@ void unload() {
     UnloadTexture(arrowtile);
     UnloadTexture(cards);
     UnloadTexture(statbox);
-    UnloadTexture(a400logo);
+    UnloadTexture(flymaplogo);
     UnloadTexture(jamlogo);
     UnloadTexture(cursor);
 

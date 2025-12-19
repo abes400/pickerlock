@@ -14,7 +14,7 @@ namespace Assets {
                         arrowtile,
                         cards,
                         statbox,
-                        a400logo,
+                        flymaplogo,
                         jamlogo,
                         cursor;
 

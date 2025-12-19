@@ -55,7 +55,7 @@ osx:
 	$(MACOS_LINKED_LIBS) $(LINKED_LIB_PATH)$(MACOS_RAYLIB_LINKED)	\
 	-o dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/MacOS/$(EXEC_NAME)
 
-#	./dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/MacOS/$(EXEC_NAME)
+	./dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/MacOS/$(EXEC_NAME)
 
 	@echo [ INFO ] MACOS BUILD SUCCEEDED. Output located at dist/$(MACOS_OUTPUT_DIR)/
 
