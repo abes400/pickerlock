@@ -5,7 +5,6 @@
 using namespace Assets;
 
 
-
 void init() {
     background      = LoadTexture("texture/bg.png");
     logo            = LoadTexture("texture/logo.png");
@@ -26,9 +25,16 @@ void init() {
 
     uifont          = LoadFont("font/uifont.png");
     numfont         = LoadFont("font/numfont.png");
+
+    bgRec           = Rectangle{
+        0, 0, 
+        Globals::windowWidth + background.width,
+        Globals::windowHeight + background.height
+    };
     
-    tileRow         = ceil(Globals::windowHeight / background.height) + 2;
-    tileCol         = ceil(Globals::windowWidth / background.width ) + 2;
+    bgPos           = Vector2 {0, 0};
+
+    SetTextureWrap(background, TEXTURE_WRAP_REPEAT);
 
     beep            = LoadSound("audio/beep.wav");
     buzzer          = LoadSound("audio/buzzer.wav");
@@ -79,11 +85,12 @@ void unload() {
 }
 
 // Tiles the background texture in an animated manner
+
 void tileBG(float deltaTime) {
-    for(short i = 0; i < tileCol; i++)
-        for(short j = 0; j < tileRow; j++)
-            DrawTexture(background, i * background.width - tileAnimOffset, j * background.height - tileAnimOffset, WHITE);
-    tileAnimOffset = tileAnimOffset >= background.width ? 0 : tileAnimOffset + 40 * deltaTime;  
+    DrawTextureRec(background, bgRec, bgPos, WHITE);
+    bgPos.x = bgPos.x <= - background.width ? 0 : bgPos.x - 40 * deltaTime;  
+    bgPos.y = bgPos.y <= - background.height ? 0 : bgPos.y - 40 * deltaTime;  
+    DrawFPS(0, 0);
 }
 
 bool delayIsOver (float* timer, float delayLength, float deltaTime) {

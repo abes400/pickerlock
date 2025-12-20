@@ -21,8 +21,8 @@ namespace Assets {
     extern Font         uifont,
                         numfont;
                         
-    extern short        tileRow,
-                        tileCol;
+    extern Rectangle    bgRec;
+    extern Vector2      bgPos;
     extern float        tileAnimOffset;
 
     extern Sound        beep,
@@ -53,8 +53,8 @@ namespace Globals {
         HARD
     };
 
-    extern int   windowWidth;
-    extern int   windowHeight;
+    extern float   windowWidth;
+    extern float   windowHeight;
     extern float winCenterX;
     extern float winCenterY;
 

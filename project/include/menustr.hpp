@@ -23,18 +23,17 @@ namespace InstructionsStr {
 namespace CreditsStr {
     constexpr const char* credTxt =
                     "PICKERLOCK from FLYING MAP ENTERTAINMENT\n"
-                    "Version 1.0 - Browser Edition - Dec. 19, 2025\n\n"
+                    "Version 1.0 - Deluxe Edition - Dec. ??, 2025\n\n"
 
-                    "Concept, Programming, and Artwork : Abes400\n\n"
+                    "- Concept, Programming, and Artwork -\n"
+                    "I. K. Bilir (Abes400)\n\n"
 
                     "- Music -\n" 
                     "\"Safe At Home\" by Marcelo Fernandez - marcelofernandezmusic.com\n"
                     "\"A Journey Awaits\" by Pierre Bondoerffer - opengameart.org: pbondoer\n\n"
 
                     "Distributed under MIT License.\n"
-                    "Written in C++ using Raylib.\n"
-                    "Made for 20 Second Game Jam 2025.\n\n"
-                    "Download the DELUXE EDITION for ENDLESS MODE & Fullscreen support!";
+                    "Made for 20 Second Game Jam 2025.\n\n";;
 }
 
 namespace DiffStr {

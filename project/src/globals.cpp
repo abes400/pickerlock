@@ -20,8 +20,9 @@ namespace Assets {
     Font        uifont,
                 numfont;
 
-    short       tileRow,
-                tileCol;
+    Rectangle   bgRec;
+    Vector2     bgPos;
+
     float       tileAnimOffset = 0;
 
     Sound       beep,
@@ -52,8 +53,8 @@ namespace Globals {
         HARD
     };
 
-    int   windowWidth  = W_WINDOW;
-    int   windowHeight = H_WINDOW;
+    float   windowWidth  = W_WINDOW;
+    float   windowHeight = H_WINDOW;
     float winCenterX   = windowWidth / 2;
     float winCenterY   = windowHeight / 2;
 
