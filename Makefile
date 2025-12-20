@@ -100,6 +100,6 @@ web:
 
 	@echo [ INFO ] WEB BUILD SUCCEEDED. Output located at dist/$(WASM_OUTPUT_DIR)/
 
-make clear:
+clear:
 	rm -rf dist
 	@echo [ INFO ] OUTPUT FILES DELETED.
