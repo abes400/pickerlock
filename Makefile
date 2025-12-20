@@ -7,6 +7,7 @@ LIB_INCLUDE_DIRS		= project/lib/include
 CPP_SRCS 				= project/src/*.cpp
 
 LINKED_LIB_PATH			= project/lib/bin/
+APP_RES_PATH			= appres
 
 EXEC_NAME				= Pickerlock
 
@@ -19,14 +20,20 @@ win:
 	clear
 	mkdir -p dist/$(WINDOWS_OUTPUT_DIR)/$(EXEC_NAME) 
 	cp -r project/assets/* dist/$(WINDOWS_OUTPUT_DIR)/$(EXEC_NAME) 
+	cp -r project/$(APP_RES_PATH)/icon.png dist/$(WINDOWS_OUTPUT_DIR)/$(EXEC_NAME)/texture 
+
+	windres project/$(APP_RES_PATH)/win/win.rc -O coff -o dist/$(WINDOWS_OUTPUT_DIR)/winicon.o
 
 	$(CC) -std=c++$(STD) 												\
+	dist/$(WINDOWS_OUTPUT_DIR)/winicon.o								\
 	$(CPP_SRCS) 														\
 	-I$(INCLUDE_DIRS) -I$(LIB_INCLUDE_DIRS) 							\
 	$(LINKED_LIB_PATH)$(WINDOWS_RAYLIB_LINKED) $(WINDOWS_LINKED_LIBS) 	\
 	-o dist/$(WINDOWS_OUTPUT_DIR)/$(EXEC_NAME)/$(EXEC_NAME) 			\
 	-static																\
-#	-mwindows
+#   -mwindows
+
+	rm dist/$(WINDOWS_OUTPUT_DIR)/winicon.o
 
 	@echo [ INFO ] WINDOWS BUILD SUCCEEDED. Output located at dist/$(WINDOWS_OUTPUT_DIR)/
 
@@ -43,8 +50,8 @@ osx:
 	mkdir -p dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents
 	mkdir -p dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/Resources
 	mkdir -p dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/MacOS
-	cp project/appres/osx/Info.plist dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents
-	cp project/appres/osx/application.icns dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/Resources
+	cp project/$(APP_RES_PATH)/osx/Info.plist dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents
+	cp project/$(APP_RES_PATH)/osx/application.icns dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/Resources
 	cp -r project/assets/* dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/Resources
 
 
@@ -88,7 +95,7 @@ web:
 	-s TOTAL_STACK=$(WASM_STACK_MB)MB 						\
     -s INITIAL_MEMORY=$(WASM_INIT_MEM_MB)MB 				\
 	-s EXPORTED_RUNTIME_METHODS=['HEAPF32','HEAPU8']		\
-	--shell-file project/appres/web/$(WASM_SHELL)			\
+	--shell-file project/$(APP_RES_PATH)/web/$(WASM_SHELL)	\
 	-s $(WASM_FLAGS)
 
 	@echo [ INFO ] WEB BUILD SUCCEEDED. Output located at dist/$(WASM_OUTPUT_DIR)/

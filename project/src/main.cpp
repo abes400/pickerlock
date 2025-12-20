@@ -9,27 +9,37 @@ using namespace std;
 
 int main(int argc, char** argv) {
 
+    // TODO : Prevent multiple instance loading
+
     // Change app directory to Resources folder on MacOS
     #ifdef __APPLE__
-
+    cout << "----------------------------------> macOS\n";
     char* macOSPath = (char*) malloc(sizeof(char) * PATH_MAX);
     if(macOSPath) {
         snprintf(macOSPath, PATH_MAX, "%s/../Resources", GetApplicationDirectory());
         ChangeDirectory(macOSPath);
         free(macOSPath);
     } else return EXIT_FAILURE;
-
     #else
+    cout << "----------------------------------> NOT macOS\n";
     ChangeDirectory(GetApplicationDirectory());
     #endif
 
     // Init game window
     SetConfigFlags(FLAG_VSYNC_HINT);
     InitWindow(Globals::windowWidth, Globals::windowHeight, "Pickerlock");
+    
+    #ifdef _WIN32
+    cout << "----------------------------------> Windows\n";
+    Image winIcon = LoadImage("texture/icon.png");
+    SetWindowIcon(winIcon);
+    UnloadImage(winIcon);
+    #endif
 
     // Cursor not hidden in web build since it malfunctions
     // Instead, the cursor is hidden in shell.html by CSS
     #ifndef PLATFORM_WEB
+    cout << "----------------------------------> Web\n";
     HideCursor();
     #endif
 
