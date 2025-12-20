@@ -36,6 +36,8 @@ int main(int argc, char** argv) {
     UnloadImage(winIcon);
     #endif
 
+    HideCursor();
+
     // Init audio device
     InitAudioDevice();
 
