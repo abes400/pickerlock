@@ -68,25 +68,27 @@ osx:
 
 # ./dist/$(MACOS_OUTPUT_DIR)/Pickerlock
 
-
+clear:
+	rm -rf dist
+	@echo [ INFO ] OUTPUT FILES DELETED.
 
 # web specific opts
-WASM_CC 			= emcc
-WASM_FLAGS			= USE_GLFW=3 -s ASYNCIFY -s ASSERTIONS -DPLATFORM_WEB
-WASM_RAYLIB_LINKED 	= libraylib_wasm.a
-WASM_OUTPUT_DIR 	= web
-WASM_OUTPUT_HTML	= index.html
+# WASM_CC 			= emcc
+# WASM_FLAGS			= USE_GLFW=3 -s ASYNCIFY -s ASSERTIONS -DPLATFORM_WEB
+# WASM_RAYLIB_LINKED 	= libraylib_wasm.a
+# WASM_OUTPUT_DIR 	= web
+# WASM_OUTPUT_HTML	= index.html
 
-WASM_PRELOAD		= project/assets@/
-WASM_STACK_MB		= 64
-WASM_INIT_MEM_MB	= 128
-WASM_SHELL			= shell.html
+# WASM_PRELOAD		= project/assets@/
+# WASM_STACK_MB		= 64
+# WASM_INIT_MEM_MB	= 128
+# WASM_SHELL			= shell.html
 
-web:
-	clear
-	mkdir -p dist/$(WASM_OUTPUT_DIR)
+# web:
+# 	clear
+#	mkdir -p dist/$(WASM_OUTPUT_DIR)
 
-	$(WASM_CC) -std=c++$(STD)								\
+#	$(WASM_CC) -std=c++$(STD)								\
 	$(CPP_SRCS) 											\
 	-I$(INCLUDE_DIRS) -I$(LIB_INCLUDE_DIRS) 				\
 	$(LINKED_LIB_PATH)$(WASM_RAYLIB_LINKED) 				\
@@ -98,8 +100,4 @@ web:
 	--shell-file project/$(APP_RES_PATH)/web/$(WASM_SHELL)	\
 	-s $(WASM_FLAGS)
 
-	@echo [ INFO ] WEB BUILD SUCCEEDED. Output located at dist/$(WASM_OUTPUT_DIR)/
-
-clear:
-	rm -rf dist
-	@echo [ INFO ] OUTPUT FILES DELETED.
+#	@echo [ INFO ] WEB BUILD SUCCEEDED. Output located at dist/$(WASM_OUTPUT_DIR)/

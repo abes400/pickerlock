@@ -36,13 +36,6 @@ int main(int argc, char** argv) {
     UnloadImage(winIcon);
     #endif
 
-    // Cursor not hidden in web build since it malfunctions
-    // Instead, the cursor is hidden in shell.html by CSS
-    #ifndef PLATFORM_WEB
-    cout << "----------------------------------> Web\n";
-    HideCursor();
-    #endif
-
     // Init audio device
     InitAudioDevice();
 
