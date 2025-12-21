@@ -7,6 +7,7 @@ namespace Assets {
                 start_btn_down,
                 btn, btn_down,
                 ui_box,
+                ui_box2,
                 instruction,
                 lockwindow,
                 hand,
@@ -54,8 +55,8 @@ namespace Globals {
         HARD
     };
 
-    float   windowWidth  = W_WINDOW;
-    float   windowHeight = H_WINDOW;
+    float windowWidth  = W_WINDOW;
+    float windowHeight = H_WINDOW;
     float winCenterX   = windowWidth / 2;
     float winCenterY   = windowHeight / 2;
 

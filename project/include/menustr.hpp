@@ -46,7 +46,7 @@ namespace DiffStr {
 }
 
 namespace OptsStr {
-    constexpr const char* optsTxt   = "- Options -\nMusic\nSFX\nFullscreen";
+    constexpr const char* optsTxt   = "- Options -\n\nMusic\nSFX\nFullscreen";
 }
 
 

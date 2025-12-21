@@ -45,7 +45,7 @@ int main(int argc, char** argv) {
     init();
 
     // Show splash screen
-    Splash();
+    //Splash();
 
     // Game loop
     Globals::scene = Globals::MAIN_MENU;

@@ -13,6 +13,7 @@ void init() {
     btn             = LoadTexture("texture/button.png");
     btn_down        = LoadTexture("texture/button_down.png");
     ui_box          = LoadTexture("texture/uibox.png");
+    ui_box2          = LoadTexture("texture/uibox2.png");
     instruction     = LoadTexture("texture/inst_vis.png");
     lockwindow      = LoadTexture("texture/lock.png");
     hand            = LoadTexture("texture/hand.png");
@@ -59,6 +60,7 @@ void unload() {
     UnloadTexture(btn);
     UnloadTexture(btn_down);
     UnloadTexture(ui_box);
+    UnloadTexture(ui_box2);
     UnloadTexture(instruction);
     UnloadTexture(lockwindow);
     UnloadTexture(hand);

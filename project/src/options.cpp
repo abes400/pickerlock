@@ -10,22 +10,24 @@
 namespace Opts {
     bool sfx = true;
     bool msc = true;
+    bool fsc = false;
     // TODO: add fullscreen support
 }
 
 void Options() {
 
     // Init text
-    float boxX          = (Globals::windowWidth - Assets::ui_box.width)   / 2;
-    float boxY          = (Globals::windowHeight - Assets::ui_box.height) / 2;
+    float boxX          = (Globals::windowWidth - Assets::ui_box2.width)   / 2;
+    float boxY          = (Globals::windowHeight - Assets::ui_box2.height) / 2;
 
-    Vector2 optsTxtPos  = { boxX + 231, boxY + 65 };
+    Vector2 optsTxtPos  = { boxX + 72, boxY + 22 };
 
     // Init btuttons
     Button* back    = new Button(Vector2 {Globals::winCenterX,       Globals::winCenterY + 155 }, &Assets::btn, &Assets::btn_down);
-    
-    Checkbox* music = new Checkbox(Vector2 {Globals::winCenterX + 50,  Globals::winCenterY - 35  }, &Assets::checkbox, 18, Opts::msc);
-    Checkbox* sfx   = new Checkbox(Vector2 {Globals::winCenterX + 50,  Globals::winCenterY + 20  }, &Assets::checkbox, 18, Opts::sfx);
+
+    Checkbox* music = new Checkbox(Vector2 {Globals::winCenterX + 50,  Globals::winCenterY - 55  }, &Assets::checkbox, 18, Opts::msc);
+    Checkbox* sfx   = new Checkbox(Vector2 {Globals::winCenterX + 50,  Globals::winCenterY - 36  }, &Assets::checkbox, 18, Opts::sfx);
+    Checkbox* fscr  = new Checkbox(Vector2 {Globals::winCenterX + 50,  Globals::winCenterY - 17  }, &Assets::checkbox, 18, Opts::fsc);
 
     back    -> addLabel(MiscMenuStr::back, LIFT, 8);
 
@@ -42,17 +44,15 @@ void Options() {
         if (back -> checkClick(mousePos, mousePressed)) {
             Globals::scene = Globals::MAIN_MENU; break; 
         } else if (music -> checkClick(mousePos)) {
-            /*
-            Opts::msc = !Opts::msc;
+
+            Opts::msc = music -> isChecked;
             float newVol = Opts::msc ? 1: 0;
             SetMusicVolume(Assets::gameBgm, newVol);
             SetMusicVolume(Assets::menuBgm, newVol);
-            */
-        } else if (sfx -> checkClick(mousePos)) {
-            /*
-            Opts::sfx = !Opts::sfx;
-            float newVol = Opts::sfx ? 1: 0;
 
+        } else if (sfx -> checkClick(mousePos)) {
+            Opts::sfx = sfx -> isChecked;
+            float newVol = Opts::sfx ? 1: 0;
             SetSoundVolume(Assets::beep,    newVol);
             SetSoundVolume(Assets::buzzer,  newVol);
             SetSoundVolume(Assets::dial,    newVol);
@@ -60,7 +60,12 @@ void Options() {
             SetSoundVolume(Assets::slam,    newVol);
             SetSoundVolume(Assets::unlock,  newVol);
             SetSoundVolume(Assets::wohoo,   newVol);
-            */
+
+        } else if (fscr -> checkClick(mousePos)) {
+            Opts::fsc = fscr -> isChecked;
+            ToggleFullscreen();
+
+            windowHeight = 
         }
 
         // Draw elements
@@ -68,10 +73,11 @@ void Options() {
         ClearBackground(PL_YELLOW);
         tileBG();
 
-        DrawTexture(Assets::ui_box, boxX, boxY, WHITE);
+        DrawTexture(Assets::ui_box2, boxX, boxY, WHITE);
         DrawTextEx(Assets::uifont, OptsStr::optsTxt, optsTxtPos, Assets::uifont.baseSize, FONT_SPACING, WHITE);
         music -> draw();
         sfx   -> draw();
+        fscr  -> draw();
         back  -> draw();
         DrawTextureEx(Assets::cursor, mousePos, 0, 1, WHITE);
         
@@ -81,4 +87,5 @@ void Options() {
     delete back;
     delete music;
     delete sfx;
+    delete fscr;
 }

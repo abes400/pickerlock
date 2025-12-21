@@ -8,6 +8,7 @@ namespace Assets {
                         start_btn_down,
                         btn, btn_down,
                         ui_box,
+                        ui_box2,
                         instruction,
                         lockwindow,
                         hand,
