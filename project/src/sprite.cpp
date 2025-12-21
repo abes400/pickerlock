@@ -2,12 +2,14 @@
 #include "sprite.hpp"
 
 /////////////////// IMPLEMENTATION OF SPRITEV ///////////////////
-SpriteV::SpriteV (Vector2 position, const SpriteVProp* spriteProperty) {
-
-    prop_ = spriteProperty;
-    position_   = position;
-
-    frame_crop_ = {0, 0, static_cast<float>(prop_ -> texture_ -> width), prop_ -> frameH_};
+SpriteV::SpriteV (Vector2 position, const SpriteVProp* spriteProperty)
+: prop_(spriteProperty), 
+  position_(position) {
+    frame_crop_ = Rectangle {
+        0, 0,
+        static_cast<float>(prop_ -> texture_ -> width),
+        prop_ -> frameH_
+    };
 }
 
 void SpriteV::setOriginAsCenter() {
@@ -30,10 +32,9 @@ void SpriteV::draw() {
 /////////////////// IMPLEMENTATION OF ANIMATEDSPRITE ///////////////////
 AnimatedSprite::
 AnimatedSprite(Vector2 position, const AnimatedSpriteProp* spriteProperty, Loopability loopable)
-: SpriteV(position, spriteProperty) {
-    frame_timer_ = spriteProperty -> frame_timer_second_;
-    loop = loopable;
-}
+: SpriteV(position, spriteProperty),
+  frame_timer_( spriteProperty -> frame_timer_second_),
+  loop(loopable) {}
 
 void AnimatedSprite::setFrame(short frame) {
     SpriteV::setFrame(frame);

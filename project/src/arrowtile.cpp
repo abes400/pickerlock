@@ -8,14 +8,14 @@ float ArrowTile::width_, ArrowTile::height_;
 
 ArrowTile::
 ArrowTile(Vector2 position, const AnimatedSpriteProp* spriteProperty, Loopability loop)
-: AnimatedSprite (position, spriteProperty, loop){
+: AnimatedSprite (position, spriteProperty, loop) {
     if(!inst_before_) {
         srand(time(NULL));
 
         width_ = spriteProperty -> texture_ -> width;
         height_ = spriteProperty -> frameH_;
 
-        frame_origin_ = {
+        frame_origin_ = Vector2 {
             width_ / 2,
             height_ / 2
         };

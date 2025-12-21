@@ -2,11 +2,11 @@
 #include "button.hpp"
 #include "globals.hpp"
 
-Button::Button(Vector2 position, Texture2D* texture, Texture2D* texture_hold) {
-    texture_        = currentTexture_ = texture;
-    texture_hold_   = texture_hold;
-    position_       = position;
-
+Button::Button(Vector2 position, Texture2D* texture, Texture2D* texture_hold)
+: texture_(texture), 
+  currentTexture_(texture), 
+  texture_hold_(texture_hold),
+  position_(position) {
     position_.x -= texture_ -> width/2;
     position_.y -= texture_ -> height/2;
 }
