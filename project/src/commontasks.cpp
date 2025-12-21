@@ -1,5 +1,6 @@
 
 #include <math.h>
+#include "gamesetup.h"
 #include "globals.hpp"
 
 using namespace Assets;
@@ -30,8 +31,8 @@ void init() {
 
     bgRec           = Rectangle{
         0, 0, 
-        Globals::windowWidth + background.width,
-        Globals::windowHeight + background.height
+        GetScreenWidth() + background.width,
+        GetScreenHeight() + background.height
     };
     
     bgPos           = Vector2 {0, 0};
@@ -89,6 +90,20 @@ void unload() {
 }
 
 // Tiles the background texture in an animated manner
+
+void calculateResolution(bool fullScreen) {
+    float newWidth, newHeight;
+    if(fullScreen) {
+        int monitor = GetCurrentMonitor();
+        Globals::windowWidth = GetMonitorWidth(monitor);
+        Globals::windowHeight = GetMonitorHeight(monitor);
+    } else {
+        Globals::windowWidth = W_WINDOW;
+        Globals::windowHeight = H_WINDOW;
+    }
+    Globals::winCenterX = Globals::windowWidth / 2;
+    Globals::winCenterY = Globals::windowHeight / 2;
+}
 
 void tileBG(float deltaTime) {
     DrawTextureRec(background, bgRec, bgPos, WHITE);

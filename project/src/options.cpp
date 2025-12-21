@@ -44,12 +44,10 @@ void Options() {
         if (back -> checkClick(mousePos, mousePressed)) {
             Globals::scene = Globals::MAIN_MENU; break; 
         } else if (music -> checkClick(mousePos)) {
-
             Opts::msc = music -> isChecked;
-            float newVol = Opts::msc ? 1: 0;
+            float newVol = Opts::sfx ? 1: 0;
             SetMusicVolume(Assets::gameBgm, newVol);
             SetMusicVolume(Assets::menuBgm, newVol);
-
         } else if (sfx -> checkClick(mousePos)) {
             Opts::sfx = sfx -> isChecked;
             float newVol = Opts::sfx ? 1: 0;
@@ -60,12 +58,12 @@ void Options() {
             SetSoundVolume(Assets::slam,    newVol);
             SetSoundVolume(Assets::unlock,  newVol);
             SetSoundVolume(Assets::wohoo,   newVol);
-
         } else if (fscr -> checkClick(mousePos)) {
             Opts::fsc = fscr -> isChecked;
+            calculateResolution(Opts::fsc);
+            SetWindowSize(Globals::windowWidth, Globals::windowHeight);
             ToggleFullscreen();
-
-            windowHeight = 
+            break;
         }
 
         // Draw elements
