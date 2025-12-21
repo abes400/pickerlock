@@ -11,7 +11,6 @@ namespace Opts {
     bool sfx = true;
     bool msc = true;
     bool fsc = false;
-    // TODO: add fullscreen support
 }
 
 void Options() {
@@ -45,7 +44,7 @@ void Options() {
             Globals::scene = Globals::MAIN_MENU; break; 
         } else if (music -> checkClick(mousePos)) {
             Opts::msc = music -> isChecked;
-            float newVol = Opts::sfx ? 1: 0;
+            float newVol = Opts::msc ? 1: 0;
             SetMusicVolume(Assets::gameBgm, newVol);
             SetMusicVolume(Assets::menuBgm, newVol);
         } else if (sfx -> checkClick(mousePos)) {
@@ -60,8 +59,8 @@ void Options() {
             SetSoundVolume(Assets::wohoo,   newVol);
         } else if (fscr -> checkClick(mousePos)) {
             Opts::fsc = fscr -> isChecked;
+            ToggleBorderlessWindowed();
             adaptResolution(Opts::fsc);
-            //ToggleFullscreen();
             break;
         }
 

@@ -1,4 +1,5 @@
 #include "checkbox.hpp"
+#include "globals.hpp"
 #include <iostream>
 using namespace std;
 
@@ -32,6 +33,7 @@ bool Checkbox::checkClick(Vector2& mousePos) {
         )
     ) {
         cout << "Clicked\n";
+        PlaySound(Assets::dial);
         isChecked = !isChecked;
         frame_crop_.y = isChecked ? frameH_ : 0;
         return true;

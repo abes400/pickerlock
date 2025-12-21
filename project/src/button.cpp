@@ -1,4 +1,3 @@
-#include "gamesetup.h"
 #include "button.hpp"
 #include "globals.hpp"
 
