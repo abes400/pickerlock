@@ -16,4 +16,5 @@ class Checkbox {
         Checkbox(Vector2 position, Texture2D* texture, const float frameHeight, bool checked = UNCHECKED);
         bool checkClick(Vector2& mousePos);
         void draw();
+        ~Checkbox();
 };

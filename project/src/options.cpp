@@ -2,6 +2,7 @@
 
 #include "gamesetup.h"
 #include "button.hpp"
+#include "checkbox.hpp"
 #include "globals.hpp"
 #include "menustr.hpp"
 #include "commontasks.hpp"
@@ -22,12 +23,11 @@ void Options() {
 
     // Init btuttons
     Button* back    = new Button(Vector2 {Globals::winCenterX,       Globals::winCenterY + 155 }, &Assets::btn, &Assets::btn_down);
-    Button* music   = new Button(Vector2 {Globals::winCenterX + 50,  Globals::winCenterY - 35  }, &Assets::btn, &Assets::btn_down);
-    Button* sfx     = new Button(Vector2 {Globals::winCenterX + 50,  Globals::winCenterY + 20  }, &Assets::btn, &Assets::btn_down);
+    
+    Checkbox* music = new Checkbox(Vector2 {Globals::winCenterX + 50,  Globals::winCenterY - 35  }, &Assets::checkbox, 18, Opts::msc);
+    Checkbox* sfx   = new Checkbox(Vector2 {Globals::winCenterX + 50,  Globals::winCenterY + 20  }, &Assets::checkbox, 18, Opts::sfx);
 
     back    -> addLabel(MiscMenuStr::back, LIFT, 8);
-    music   -> addLabel(Opts::msc ? OptsStr::enbl : OptsStr::dsbl,     LIFT, 8);
-    sfx     -> addLabel(Opts::sfx ? OptsStr::enbl : OptsStr::dsbl,     LIFT, 8);
 
     Vector2 mousePos;
     bool    mousePressed;
@@ -41,15 +41,16 @@ void Options() {
 
         if (back -> checkClick(mousePos, mousePressed)) {
             Globals::scene = Globals::MAIN_MENU; break; 
-        } else if (music -> checkClick(mousePos, mousePressed)) {
+        } else if (music -> checkClick(mousePos)) {
+            /*
             Opts::msc = !Opts::msc;
-            music -> addLabelWithoutMeasuring(Opts::msc ? OptsStr::enbl : OptsStr::dsbl);
             float newVol = Opts::msc ? 1: 0;
             SetMusicVolume(Assets::gameBgm, newVol);
             SetMusicVolume(Assets::menuBgm, newVol);
-        } else if (sfx -> checkClick(mousePos, mousePressed)) {
+            */
+        } else if (sfx -> checkClick(mousePos)) {
+            /*
             Opts::sfx = !Opts::sfx;
-            sfx -> addLabelWithoutMeasuring(Opts::sfx ? OptsStr::enbl : OptsStr::dsbl);
             float newVol = Opts::sfx ? 1: 0;
 
             SetSoundVolume(Assets::beep,    newVol);
@@ -59,6 +60,7 @@ void Options() {
             SetSoundVolume(Assets::slam,    newVol);
             SetSoundVolume(Assets::unlock,  newVol);
             SetSoundVolume(Assets::wohoo,   newVol);
+            */
         }
 
         // Draw elements

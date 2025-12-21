@@ -1,4 +1,6 @@
 #include "checkbox.hpp"
+#include <iostream>
+using namespace std;
 
 Checkbox::Checkbox(Vector2 position, Texture2D* texture, const float frameHeight, bool checked)
 : position_(position),
@@ -11,6 +13,7 @@ Checkbox::Checkbox(Vector2 position, Texture2D* texture, const float frameHeight
         static_cast<float>(texture -> width),
         frameH_
     };
+    cout << "Checkbox created\n";
 }
 
 #include <iostream>
@@ -39,4 +42,8 @@ bool Checkbox::checkClick(Vector2& mousePos) {
 
 void Checkbox::draw() {
     DrawTextureRec(*texture_, frame_crop_, position_, WHITE);
+}
+
+Checkbox::~Checkbox() {
+    cout << "Checkbox dealloc'd\n";
 }
