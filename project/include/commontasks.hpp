@@ -3,7 +3,7 @@
 
 void init();
 void unload();
-void calculateResolution (bool fullScreen);
+void adaptResolution (bool fullScreen);
 void tileBG(float deltaTime = GetFrameTime());
 void close();
 void terminate(int code);

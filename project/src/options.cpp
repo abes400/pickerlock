@@ -60,9 +60,8 @@ void Options() {
             SetSoundVolume(Assets::wohoo,   newVol);
         } else if (fscr -> checkClick(mousePos)) {
             Opts::fsc = fscr -> isChecked;
-            calculateResolution(Opts::fsc);
-            SetWindowSize(Globals::windowWidth, Globals::windowHeight);
-            ToggleFullscreen();
+            adaptResolution(Opts::fsc);
+            //ToggleFullscreen();
             break;
         }
 

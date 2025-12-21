@@ -88,21 +88,27 @@ void unload() {
     UnloadMusicStream(menuBgm);
 
 }
-
+#include<stdio.h>
 // Tiles the background texture in an animated manner
-
-void calculateResolution(bool fullScreen) {
+void adaptResolution(bool fullScreen) {
     float newWidth, newHeight;
     if(fullScreen) {
         int monitor = GetCurrentMonitor();
-        Globals::windowWidth = GetMonitorWidth(monitor);
-        Globals::windowHeight = GetMonitorHeight(monitor);
+        newWidth = GetMonitorWidth(monitor);
+        newHeight = GetMonitorHeight(monitor);
+        printf("Fullscreen\n");
     } else {
-        Globals::windowWidth = W_WINDOW;
-        Globals::windowHeight = H_WINDOW;
+        newWidth = W_WINDOW;
+        newHeight = H_WINDOW;
+        printf("Window\n");
     }
-    Globals::winCenterX = Globals::windowWidth / 2;
-    Globals::winCenterY = Globals::windowHeight / 2;
+    Globals::winCenterX = newWidth / 2;
+    Globals::winCenterY = newHeight / 2;
+    bgRec.width = newWidth + background.width;
+    bgRec.height = newHeight + background.height;
+
+    SetWindowSize(newWidth, newHeight);
+    printf("%f %f\n", newWidth, newHeight);
 }
 
 void tileBG(float deltaTime) {
