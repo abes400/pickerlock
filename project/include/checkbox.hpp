@@ -1,6 +1,9 @@
 #pragma once
 #include "raylib.h"
 
+#define UNCHECKED false
+#define CHECKED   true
+
 class Checkbox {
     private:
         Texture2D*  texture_;
@@ -10,7 +13,7 @@ class Checkbox {
 
     public:
         bool isChecked = false;
-        Checkbox(Vector2 position, Texture2D* texture);
-        bool checkClick(Vector2& mousePos, bool mousePressed);
+        Checkbox(Vector2 position, Texture2D* texture, const float frameHeight, bool checked = UNCHECKED);
+        bool checkClick(Vector2& mousePos);
         void draw();
 };
