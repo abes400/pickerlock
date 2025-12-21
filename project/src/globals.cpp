@@ -25,8 +25,6 @@ namespace Assets {
     Rectangle   bgRec;
     Vector2     bgPos;
 
-    float       tileAnimOffset = 0;
-
     Sound       beep,
                 buzzer,
                 dial,

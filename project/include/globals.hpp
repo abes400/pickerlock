@@ -25,7 +25,6 @@ namespace Assets {
                         
     extern Rectangle    bgRec;
     extern Vector2      bgPos;
-    extern float        tileAnimOffset;
 
     extern Sound        beep,
                         buzzer,

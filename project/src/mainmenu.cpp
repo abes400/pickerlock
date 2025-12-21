@@ -12,7 +12,7 @@ void MainMenu() {
     
     // Init logo coordinates
     float logoX = Globals::winCenterX - Assets::logo.width / 2;
-    float logoY = Globals::winCenterY - Assets::logo.height * 2;
+    float logoY = Globals::winCenterY - Assets::logo.height * 2 + 26;
 
     // Initialise MainMenu Elements
     Button* start = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 25  }, &Assets::start_btn,   &Assets::start_btn_down);
