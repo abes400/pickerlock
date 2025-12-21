@@ -15,8 +15,8 @@ void Difficulty() {
         PlayMusicStream(Assets::menuBgm);
 
     // Init text
-    float boxX          = (Globals::windowWidth - Assets::ui_box.width)  / 2;
-    float boxY          = (Globals::windowHeight - Assets::ui_box.height) / 2;
+    float boxX          = (GetScreenWidth() - Assets::ui_box.width)  / 2;
+    float boxY          = (GetScreenHeight() - Assets::ui_box.height) / 2;
 
     Vector2 diffTxtPos  = { boxX + 231, boxY + 50 };
 

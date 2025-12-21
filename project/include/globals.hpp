@@ -55,8 +55,6 @@ namespace Globals {
         HARD
     };
 
-    extern float   windowWidth;
-    extern float   windowHeight;
     extern float winCenterX;
     extern float winCenterY;
 

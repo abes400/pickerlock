@@ -55,10 +55,8 @@ namespace Globals {
         HARD
     };
 
-    float windowWidth  = W_WINDOW;
-    float windowHeight = H_WINDOW;
-    float winCenterX   = windowWidth / 2;
-    float winCenterY   = windowHeight / 2;
+    float winCenterX   = W_WINDOW / 2;
+    float winCenterY   = H_WINDOW / 2;
 
     enum Scenes scene = MAIN_MENU;
     enum Difficulties difficulty;

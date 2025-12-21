@@ -1,5 +1,6 @@
 #include "raylib.h"
 
+#include "gamesetup.h"
 #include "globals.hpp"
 #include "gameloops.hpp"
 #include "commontasks.hpp"
@@ -27,7 +28,7 @@ int main(int argc, char** argv) {
 
     // Init game window
     SetConfigFlags(FLAG_VSYNC_HINT);
-    InitWindow(Globals::windowWidth, Globals::windowHeight, "Pickerlock");
+    InitWindow(W_WINDOW, H_WINDOW, "Pickerlock");
     
     #ifdef _WIN32
     cout << "----------------------------------> Windows\n";

@@ -17,8 +17,8 @@ namespace Opts {
 void Options() {
 
     // Init text
-    float boxX          = (Globals::windowWidth - Assets::ui_box2.width)   / 2;
-    float boxY          = (Globals::windowHeight - Assets::ui_box2.height) / 2;
+    float boxX          = (GetScreenWidth() - Assets::ui_box2.width)   / 2;
+    float boxY          = (GetScreenHeight() - Assets::ui_box2.height) / 2;
 
     Vector2 optsTxtPos  = { boxX + 72, boxY + 22 };
 

@@ -14,8 +14,8 @@
 void Instructions() {
 
     // Init box coords.
-    float boxX          = (Globals::windowWidth - Assets::ui_box.width ) / 2;
-    float boxY          = (Globals::windowHeight - Assets::ui_box.height) / 2;
+    float boxX          = (GetScreenWidth() - Assets::ui_box.width ) / 2;
+    float boxY          = (GetScreenHeight() - Assets::ui_box.height) / 2;
 
     // Calculate instr. text coords.
     Vector2 instTxtPos = { boxX + 23, boxY + 30 };
@@ -69,8 +69,8 @@ void Instructions() {
 void Credits() {
 
     // Init text
-    float boxX = (Globals::windowWidth  - Assets::ui_box.width) / 2;
-    float boxY = (Globals::windowHeight - Assets::ui_box.height) / 2;
+    float boxX = (GetScreenWidth()  - Assets::ui_box.width) / 2;
+    float boxY = (GetScreenHeight() - Assets::ui_box.height) / 2;
 
     float gjX       = boxX + Assets::ui_box.width - Assets::jamlogo.width - 30;
     float fmpX      = gjX - Assets::flymaplogo.width - 10;

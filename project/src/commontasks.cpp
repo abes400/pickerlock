@@ -89,7 +89,7 @@ void unload() {
 
 }
 #include<stdio.h>
-// Tiles the background texture in an animated manner
+
 void adaptResolution(bool fullScreen) {
     float newWidth, newHeight;
     if(fullScreen) {
@@ -111,6 +111,7 @@ void adaptResolution(bool fullScreen) {
     printf("%f %f\n", newWidth, newHeight);
 }
 
+// Tiles the background texture in an animated manner
 void tileBG(float deltaTime) {
     DrawTextureRec(background, bgRec, bgPos, WHITE);
     bgPos.x = bgPos.x <= - background.width ? 0 : bgPos.x - 40 * deltaTime;  
