@@ -22,6 +22,6 @@ class Button {
         Button(Vector2 position, Texture2D* texture, Texture2D* texture_hold = nullptr);
         void addLabel(const char* label = nullptr, bool lifted = false, short lift_height = 0);
         void addLabelWithoutMeasuring(const char* label);
-        void draw();
         bool checkClick(Vector2& mousePos, bool mousePressed);
+        void draw();
 };

@@ -12,7 +12,7 @@ namespace MainMenuStr {
 namespace InstructionsStr {
     constexpr const char* instTxt = "Objective: \n"
                     "You are in a lock picking contest. \n"
-                    "Your task to open as many locks as you can in 20 seconds. \n\n\n\n\n\n\n\n"
+                    "Your task to open as many locks as you can before time runs out. \n\n\n\n\n\n\n\n"
 
                     "Instructions: \n"
                     "Press the arrow keys in the order given on screen to open each lock. \n"
