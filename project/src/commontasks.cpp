@@ -22,6 +22,7 @@ void init() {
     flymaplogo      = LoadTexture("texture/flymap.png");
     jamlogo         = LoadTexture("texture/20sgj.png");
     cursor          = LoadTexture("texture/cursor.png");
+    checkbox        = LoadTexture("texture/checkbox.png");
 
     uifont          = LoadFont("font/uifont.png");
     numfont         = LoadFont("font/numfont.png");
@@ -67,6 +68,7 @@ void unload() {
     UnloadTexture(flymaplogo);
     UnloadTexture(jamlogo);
     UnloadTexture(cursor);
+    UnloadTexture(checkbox);
 
     UnloadFont(uifont);
     UnloadFont(numfont);

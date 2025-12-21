@@ -16,7 +16,8 @@ namespace Assets {
                         statbox,
                         flymaplogo,
                         jamlogo,
-                        cursor;
+                        cursor,
+                        checkbox;
 
     extern Font         uifont,
                         numfont;
