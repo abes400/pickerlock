@@ -54,6 +54,8 @@ namespace DiffStr {
 
 namespace OptsStr {
     constexpr const char* optsTxt   = "- Options -\n\nMusic\nSFX\nFullscreen";
+    constexpr const char* rsHS      = "Rst Best Scrs";
+    constexpr const char* rsInf     = "All high scores reset!";
 }
 
 

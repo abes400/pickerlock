@@ -12,8 +12,7 @@
 
 void Difficulty() {
 
-    if(!IsMusicStreamPlaying(Assets::menuBgm))
-        PlayMusicStream(Assets::menuBgm);
+    if(!IsMusicStreamPlaying(Assets::menuBgm)) PlayMusicStream(Assets::menuBgm);
 
     // Init text
     float boxX          = (GetScreenWidth()  - Assets::ui_box.width ) / 2;
@@ -30,7 +29,7 @@ void Difficulty() {
     Button*     easy = new Button   (Vector2 {Globals::winCenterX - 170, diffTxtPos.y + 175  }, &Assets::btn, &Assets::btn_down);
     Button*     medi = new Button   (Vector2 {Globals::winCenterX,       diffTxtPos.y + 175  }, &Assets::btn, &Assets::btn_down);
     Button*     hard = new Button   (Vector2 {Globals::winCenterX + 170, diffTxtPos.y + 175  }, &Assets::btn, &Assets::btn_down);
-    Checkbox*   edls = new Checkbox (Vector2 {diffTxtPos.x        + 201, diffTxtPos.y - 2    }, &Assets::checkbox, 18, Globals::endless);
+    Checkbox*   edls = new Checkbox (Vector2 {diffTxtPos.x        + 201, diffTxtPos.y - 2    }, &Assets::checkbox, 19, Globals::endless);
 
     back -> addLabel(MiscMenuStr::back, LIFT, 8);
     easy -> addLabel(DiffStr::easy,     LIFT, 8);
@@ -49,8 +48,7 @@ void Difficulty() {
 
     // Clean up and kill the program if allocation fails
     // bc. it won't make any sense to run the process anymore at this point
-    if(!hsStr || !hsStrEndls) 
-        terminate(EXIT_FAILURE);
+    if(!hsStr || !hsStrEndls)  terminate(EXIT_FAILURE);
 
     snprintf(
         hsStr, 15, DiffStr::hscr,
@@ -58,7 +56,6 @@ void Difficulty() {
         Globals::highscores[Globals::MEDIUM],
         Globals::highscores[Globals::HARD  ]
     );
-
     snprintf(
         hsStrEndls, 15, DiffStr::hscr,
         Globals::highscoresEndless[Globals::EASY  ],
