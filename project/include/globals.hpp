@@ -60,5 +60,7 @@ namespace Globals {
     extern enum Scenes scene;
     extern enum Difficulties difficulty;
 
-    extern int highscores[3];
+    extern bool endless;
+    extern unsigned short highscores[3];
+    extern unsigned short highscoresEndless[3];
 }

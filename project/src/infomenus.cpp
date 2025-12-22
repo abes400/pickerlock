@@ -29,7 +29,7 @@ void Instructions() {
     instAnim -> is_playing = PLAY;
 
     // Init back btn
-    Button* back = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 155}, &Assets::btn, &Assets::btn_down);
+    Button* back = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 200}, &Assets::btn, &Assets::btn_down);
     back -> addLabel(MiscMenuStr::back, LIFT, 8);
 
     Vector2 mousePos;
@@ -79,7 +79,7 @@ void Credits() {
     Vector2 credTxtPos  = { boxX + 22, boxY + 32 };
 
     // Init back btn
-    Button* back = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 155}, &Assets::btn, &Assets::btn_down);
+    Button* back = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 200}, &Assets::btn, &Assets::btn_down);
     back -> addLabel(MiscMenuStr::back, LIFT, 8);
 
     Vector2 mousePos;

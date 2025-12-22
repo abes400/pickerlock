@@ -59,5 +59,7 @@ namespace Globals {
     enum Scenes scene = MAIN_MENU;
     enum Difficulties difficulty;
 
-    int highscores[3] = {0, 0, 0};
+    bool endless = false;
+    unsigned short highscores[3]        = {0, 0, 0};
+    unsigned short highscoresEndless[3] = {0, 0, 0};
 }
