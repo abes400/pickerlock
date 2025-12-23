@@ -69,7 +69,11 @@ void Options() {
             SetSoundVolume(Assets::wohoo,   newVol);
         } else if (fscr -> checkClick(mousePos)) {
             Opts::fsc = fscr -> isChecked;
+            #ifdef __APPLE__
+            ToggleFullscreen();
+            #else
             ToggleBorderlessWindowed();
+            #endif
             adaptResolution(Opts::fsc);
             break;
         }
