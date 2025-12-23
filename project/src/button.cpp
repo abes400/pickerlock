@@ -16,8 +16,8 @@ void Button::addLabel(const char* label, bool lifted, short lift_height) {
         lift_height_    = lifted ? lift_height : 0;
 
         Vector2 labelSize   = MeasureTextEx(Assets::uifont, label, Assets::uifont.baseSize, 0);
-        label_pos_          = Vector2 { static_cast<float>(position_.x + (texture_ -> width - labelSize.x) / 2), 
-                                        static_cast<float>(position_.y + (texture_ -> height - labelSize.y) / 2 - lift_height)};
+        label_pos_          = Vector2 { position_.x + (texture_ -> width - labelSize.x) / 2.0f, 
+                                        position_.y + (texture_ -> height - labelSize.y) / 2.0f - lift_height};
 
         labeled_ = true;
     } else

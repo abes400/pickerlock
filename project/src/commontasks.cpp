@@ -31,8 +31,8 @@ void init() {
 
     bgRec           = Rectangle{
         0, 0, 
-        GetScreenWidth() + background.width,
-        GetScreenHeight() + background.height
+        static_cast<float>(GetScreenWidth() + background.width),
+        static_cast<float>(GetScreenHeight() + background.height)
     };
     
     bgPos           = Vector2 {0, 0};

@@ -25,7 +25,7 @@ void MainMenu() {
     crdts -> addLabel(MainMenuStr::cred, LIFT, 8);
 
     // Initialize ByLine
-    Vector2 bylinePos   = { logoX - 20, GetScreenHeight() - 32 };
+    Vector2 bylinePos   = { logoX - 20, GetScreenHeight() - 32.0f };
 
     Vector2 mousePos;
     bool    mousePressed;
