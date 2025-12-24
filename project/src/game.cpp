@@ -1,3 +1,4 @@
+#include <cstdint>
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -99,8 +100,8 @@ void Game() {
     bool  timerActive       = false;
     float gameTimerDelay    = 1;
 
-    short gameTimer         = Globals::endless ? 3 : 20;
-    int   score             = 0;
+    short      gameTimer         = Globals::endless ? 3 : 20;
+    uint16_t   score             = 0;
 
 
     // Allocating string buffers to be fed into RayLib to show timer and score
