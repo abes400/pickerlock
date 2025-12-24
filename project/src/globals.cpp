@@ -1,5 +1,7 @@
+#include <cstdint>
 #include "raylib.h"
 #include "gamesetup.h"
+
 namespace Assets {
     Texture2D   background,
                 logo,
@@ -63,6 +65,6 @@ namespace Globals {
     enum Difficulties difficulty;
 
     bool endless = false;
-    unsigned short highscores[3]        = {0, 0, 0};
-    unsigned short highscoresEndless[3] = {0, 0, 0};
+    uint16_t highscores[3]        = {0, 0, 0};
+    uint16_t highscoresEndless[3] = {0, 0, 0};
 }

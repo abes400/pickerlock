@@ -44,7 +44,7 @@ namespace DiffStr {
     constexpr const char* hard  = "Hard: 5 Tiles";
     constexpr const char* scrs  = "- Best (Timed) -\nEasy\nMedium\nHard";
     constexpr const char* scrsE = "- Best (Endless) -\nEasy\nMedium\nHard";
-    constexpr const char* hscr  = "%04d\n%04d\n%04d"; // "0000\n0000\n0000\0" 15 chars (inc. '\0')
+    constexpr const char* hscr  = "%04u\n%04u\n%04u"; // "0000\n0000\n0000\0" 15 chars (inc. '\0')
 
     constexpr const char* endTxt = "Endless Mode";
     constexpr const char* mdDsc1 = "- Given 20 seconds through entire game.\n- Game ends as the time runs out.";

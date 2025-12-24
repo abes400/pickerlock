@@ -1,4 +1,5 @@
 #pragma once
+#include <cstdint>
 #include "raylib.h"
 
 namespace Assets {
@@ -64,6 +65,6 @@ namespace Globals {
     extern enum Difficulties difficulty;
 
     extern bool endless;
-    extern unsigned short highscores[3];
-    extern unsigned short highscoresEndless[3];
+    extern uint16_t highscores[3];
+    extern uint16_t highscoresEndless[3];
 }

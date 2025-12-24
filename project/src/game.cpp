@@ -260,7 +260,7 @@ void Game() {
 
 void setHighScore(const int score) {
     printf("Assessing high score...\n");
-    unsigned short* scoreChart = Globals::endless ? Globals::highscoresEndless : Globals::highscores;
+    uint16_t* scoreChart = Globals::endless ? Globals::highscoresEndless : Globals::highscores;
     if(score > scoreChart[Globals::difficulty])
        scoreChart[Globals::difficulty] = score;
 }
