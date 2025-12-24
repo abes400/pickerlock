@@ -11,6 +11,7 @@ using namespace std;
 int main(int argc, char** argv) {
 
     // TODO : Prevent multiple instance loading
+    cout << "TODO:::::::: load from file\n";
 
     // Change app directory to Resources folder on MacOS
     #ifdef __APPLE__
@@ -43,14 +44,14 @@ int main(int argc, char** argv) {
     InitAudioDevice();
 
     // Initialize texture structs
-    init();
+    loadAssets();
 
     // Show splash screen
     //Splash();
 
     // Game loop
     Globals::scene = Globals::MAIN_MENU;
-    while(!WindowShouldClose()) {
+    while(Globals::keepRunning && !WindowShouldClose()) {
 
         switch(Globals::scene) {
             case Globals::MAIN_MENU:
@@ -74,6 +75,7 @@ int main(int argc, char** argv) {
         }
 
     }
-    close();
+    closeApplication();
+    cout << "TODO:::::::: save to file\n";
     return 0;
 }

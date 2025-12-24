@@ -6,7 +6,7 @@
 using namespace Assets;
 
 
-void init() {
+void loadAssets() {
     background      = LoadTexture("texture/bg.png");
     logo            = LoadTexture("texture/logo.png");
     start_btn       = LoadTexture("texture/start.png");
@@ -53,7 +53,7 @@ void init() {
     
 }
 
-void unload() {
+void unloadAssets() {
     UnloadTexture(background);
     UnloadTexture(logo);
     UnloadTexture(start_btn);
@@ -128,13 +128,14 @@ bool delayIsOver (float* timer, float delayLength, float deltaTime) {
     return false;
 }
 
-void close() {
-    unload();
+void closeApplication() {
+    unloadAssets();
     CloseAudioDevice();
     CloseWindow();
+    printf("The application is closed and the assets are unloaded\n");
 }
 
 void terminate(int code) {
-    close();
+    closeApplication();
     exit(code);
 }

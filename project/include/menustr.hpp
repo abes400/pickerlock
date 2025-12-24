@@ -5,6 +5,7 @@ namespace MainMenuStr {
     constexpr const char* inst = "Instructions";
     constexpr const char* opts = "Options";
     constexpr const char* cred = "Credits";
+    constexpr const char* exit = "Quit Game";
     constexpr const char* byln = "by Flying Map Entertainment - Made for 20 Second Game Jam";
 }
 

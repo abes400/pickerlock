@@ -15,14 +15,16 @@ void MainMenu() {
     float logoY = Globals::winCenterY - Assets::logo.height * 2 + 26;
 
     // Initialise MainMenu Elements
-    Button* start = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 25  }, &Assets::start_btn,   &Assets::start_btn_down);
-    Button* instr = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 90  }, &Assets::btn,         &Assets::btn_down);
-    Button* optns = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 150 }, &Assets::btn,         &Assets::btn_down);
-    Button* crdts = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 210 }, &Assets::btn,         &Assets::btn_down);
+    Button* start = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY - 30  }, &Assets::start_btn,   &Assets::start_btn_down);
+    Button* instr = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 45  }, &Assets::btn,         &Assets::btn_down);
+    Button* optns = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 105 }, &Assets::btn,         &Assets::btn_down);
+    Button* crdts = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 165 }, &Assets::btn,         &Assets::btn_down);
+    Button* exit  = new Button(Vector2 {Globals::winCenterX, Globals::winCenterY + 225 }, &Assets::btn,         &Assets::btn_down);
 
     instr -> addLabel(MainMenuStr::inst, LIFT, 8);
     optns -> addLabel(MainMenuStr::opts, LIFT, 8);
     crdts -> addLabel(MainMenuStr::cred, LIFT, 8);
+    exit  -> addLabel(MainMenuStr::exit, LIFT, 8);
 
     // Initialize ByLine
     Vector2 bylinePos   = { logoX - 20, GetScreenHeight() - 32.0f };
@@ -42,6 +44,7 @@ void MainMenu() {
         else if (instr -> checkClick(mousePos, mousePressed)) { Globals::scene = Globals::INSTRUCTIONS; break; }
         else if (optns -> checkClick(mousePos, mousePressed)) { Globals::scene = Globals::OPTIONS;      break; }
         else if (crdts -> checkClick(mousePos, mousePressed)) { Globals::scene = Globals::CREDITS;      break; }
+        else if (exit  -> checkClick(mousePos, mousePressed)) { Globals::keepRunning = false;           break; }
 
         // Draw elements
         BeginDrawing();
@@ -53,6 +56,7 @@ void MainMenu() {
         instr -> draw();
         optns -> draw();
         crdts -> draw();
+        exit  -> draw();
         DrawTextEx(Assets::uifont, MainMenuStr::byln, bylinePos, Assets::uifont.baseSize, FONT_SPACING, WHITE);
         DrawTextureEx(Assets::cursor, mousePos, 0, 1, WHITE);
 
@@ -64,4 +68,5 @@ void MainMenu() {
     delete instr;
     delete optns;
     delete crdts;
+    delete exit;
 }

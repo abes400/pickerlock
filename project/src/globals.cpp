@@ -37,6 +37,9 @@ namespace Assets {
 }
 
 namespace Globals {
+
+    bool keepRunning = true;
+
     enum Scenes {
         MAIN_MENU,
         DIFFICULTY,
