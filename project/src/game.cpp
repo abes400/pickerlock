@@ -31,12 +31,13 @@
 #define SCORE_STR_LEN 5
 #define TIME_STR_LEN  3
 
-enum GameState { GET_READY = 0, START, INPUT, ADVANCE, WRONG_MOVE, TIME_UP, DISQUALIFIED };
+enum GameState { GET_READY = 0, START, INPUT, ADVANCE, WRONG_MOVE, END };
 
 void updateAllTiles         (short tileCount, ArrowTile** arrowTiles, float deltaTime);
 void decideDirectionForAll  (short tileCount, ArrowTile** arrowTiles);
 void resetAllTiles          (short tileCount, ArrowTile** arrowTiles);
 void drawAllTiles           (short tileCount, ArrowTile** arrowTiles);
+void setHighScore           (const int score);
 
 Directions getDirectionFromKey (short* frameNumber);
 short rotateFrame(short min, short max, short value, short direction);
@@ -98,7 +99,7 @@ void Game() {
     bool  timerActive       = false;
     float gameTimerDelay    = 1;
 
-    short gameTimer         = 20;
+    short gameTimer         = Globals::endless ? 3 : 20;
     int   score             = 0;
 
 
@@ -150,11 +151,16 @@ void Game() {
                         current_tile++;
 
                         if(current_tile >= tileCount) {
-                            snprintf(scoreStr, SCORE_STR_LEN, GameStr::scoref, ++score);
                             current_tile = 0;
                             hand -> setFrame(0);
                             lockAnim -> is_playing = PLAY;
                             PlaySound(Assets::unlock);
+                            snprintf(scoreStr, SCORE_STR_LEN, GameStr::scoref, ++score);
+                            if(Globals::endless) {
+                                gameTimer = 3;
+                                gameTimerDelay = 1;
+                                snprintf(timeStr,  TIME_STR_LEN,  GameStr::timef,  gameTimer);
+                            }
                             gameState = ADVANCE;
                         }
                     } else {
@@ -162,6 +168,7 @@ void Game() {
                         timerActive = false;
                         StopMusicStream(Assets::gameBgm);
                         PlaySound(Assets::buzzer);
+                        if(Globals::endless) setHighScore(score);
                         gameState = WRONG_MOVE;
                     }
                 }                
@@ -179,20 +186,26 @@ void Game() {
             break;
             case WRONG_MOVE:
                 if(delayIsOver(&cardTimer, GMEND_TIME, deltaTime)) {
-                    hand -> setFrame(5);
-                    card -> setFrame(3);
+                    if(Globals::endless) {
+                        card -> setFrame(4);
+                        hand -> setFrame(4);
+                        PlaySound(Assets::wohoo);
+                    } else {
+                        card -> setFrame(3);
+                        hand -> setFrame(5);
+                        PlaySound(Assets::grunt);
+                    }
+                    
                     cardVisible = true;
                     cardTimer = GMEND_TIME;
-                    PlaySound(Assets::grunt);
-                    gameState = DISQUALIFIED;
+                    gameState = END;
                 }
             break;
-            case DISQUALIFIED: case TIME_UP:
+            case END:
                 if(delayIsOver(&cardTimer, GMEND_TIME, deltaTime)) {
                     StopMusicStream(Assets::gameBgm);
                     Globals::scene = Globals::DIFFICULTY;
-                }
-                    
+                }  
             break;
         }
 
@@ -203,14 +216,13 @@ void Game() {
             snprintf(timeStr,  TIME_STR_LEN,  GameStr::timef,  gameTimer);
             if(gameTimer == 0) {
                 timerActive = false;
-                if(score > Globals::highscores[Globals::difficulty])
-                    Globals::highscores[Globals::difficulty] = score;
+                setHighScore(score);
                 card -> setFrame(2);
                 hand -> setFrame(4);
                 cardVisible = true;
                 PlaySound(Assets::wohoo);
                 cardTimer = GMEND_TIME;
-                gameState = TIME_UP;
+                gameState = END;
             }      
         }
                 
@@ -230,7 +242,6 @@ void Game() {
         DrawTextEx  (Assets::numfont, scoreStr, scoreTxtPos, Assets::numfont.baseSize, NUMF_SPACING, WHITE);
 
         if(cardVisible) card -> draw();
-        //DrawFPS(0, 0);
         
         EndDrawing();
     }
@@ -242,20 +253,24 @@ void Game() {
     delete lockAnim;
     delete hand;
     delete card;
-    for(short i = 0 ; i < tileCount ; i++)
-        delete tiles[i];
-    
+    for(short i = 0 ; i < tileCount ; i++) delete tiles[i];
 }
 
+#include<stdio.h>
+
+void setHighScore(const int score) {
+    printf("Assessing high score...\n");
+    unsigned short* scoreChart = Globals::endless ? Globals::highscoresEndless : Globals::highscores;
+    if(score > scoreChart[Globals::difficulty])
+       scoreChart[Globals::difficulty] = score;
+}
 
 void decideDirectionForAll (short tileCount, ArrowTile** arrowTiles) {
-    for(short i = 0; i < tileCount; i++)
-        arrowTiles[i] -> decideDirection();
+    for(short i = 0; i < tileCount; i++) arrowTiles[i] -> decideDirection();
 }
 
 void updateAllTiles (short tileCount, ArrowTile** arrowTiles, float deltaTime) {
-    for(short i = 0; i < tileCount; i++)
-        arrowTiles[i] -> updateFrame(deltaTime);
+    for(short i = 0; i < tileCount; i++) arrowTiles[i] -> updateFrame(deltaTime);
 }
 
 void resetAllTiles (short tileCount, ArrowTile** arrowTiles) {
@@ -266,8 +281,7 @@ void resetAllTiles (short tileCount, ArrowTile** arrowTiles) {
 }
 
 void drawAllTiles (short tileCount, ArrowTile** arrowTiles) {
-    for(short i = 0; i < tileCount; i++)
-        arrowTiles[i] -> draw();
+    for(short i = 0; i < tileCount; i++) arrowTiles[i] -> draw();
 }
 
 short rotateFrame(short min, short max, short value, short direction) {
