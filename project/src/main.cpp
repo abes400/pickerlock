@@ -4,6 +4,7 @@
 #include "globals.hpp"
 #include "gameloops.hpp"
 #include "commontasks.hpp"
+#include "fileoperations.hpp"
 
 #include <iostream>
 using namespace std;
@@ -76,6 +77,7 @@ int main(int argc, char** argv) {
 
     }
     closeApplication();
+    save();
     cout << "TODO:::::::: save to file\n";
     return 0;
 }
