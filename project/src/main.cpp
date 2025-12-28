@@ -12,7 +12,11 @@ using namespace std;
 int main(int argc, char** argv) {
 
     // TODO : Prevent multiple instance loading
+
     cout << "TODO:::::::: load from file\n";
+    // Generate the Path to the SAVE FILE and try loading from it
+    initSavePath();
+    printf("SAVE PATH IS: %s\n", savePath);
 
     // Change app directory to Resources folder on MacOS
     #ifdef __APPLE__
