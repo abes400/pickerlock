@@ -57,6 +57,7 @@ void load() {
 
 /**
  * Saves the highscores and the settings on the known path provided by the OS.
+ * 
  */
 void save() {
     uint8_t     saveFileBuffer[saveFileBufferSize];                 // Buffer to be written from
@@ -88,6 +89,6 @@ void save() {
     memmove(cursor, &checksum, sizeof(uint16_t));
     memmove(saveFileBuffer, &checksum, sizeof(uint16_t));
 
-    // Saving the buffer contents on the file
+    MakeDirectory(GetPrevDirectoryPath(savePath));
     SaveFileData(savePath, saveFileBuffer, saveFileBufferSize);
 }
