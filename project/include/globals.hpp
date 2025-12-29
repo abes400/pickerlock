@@ -68,9 +68,3 @@ namespace Globals {
     extern uint16_t highscores[3];
     extern uint16_t highscoresEndless[3];
 }
-
-namespace Opts {
-    extern bool sfx;
-    extern bool msc;
-    extern bool fsc;
-}

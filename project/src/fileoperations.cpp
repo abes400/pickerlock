@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <climits>
 #include "globals.hpp"
+#include "options.hpp"
 #include "raylib.h"
 
 char savePath[PATH_MAX];
