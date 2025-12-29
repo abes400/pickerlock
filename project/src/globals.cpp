@@ -65,6 +65,6 @@ namespace Globals {
     enum Difficulties difficulty;
 
     bool endless = false;
-    uint16_t highscores[3]        = {9999, 9999, 9999};
-    uint16_t highscoresEndless[3] = {9999, 9999, 9999};
+    uint16_t highscores[3]        = {112, 9999, 555};
+    uint16_t highscoresEndless[3] = {9999, 626, 9999};
 }

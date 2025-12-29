@@ -52,7 +52,56 @@ int initSavePath() {
 #endif
 
 void load() {
-    
+    // Check existance and length of the file
+    if(!FileExists(savePath)) return;
+    if(GetFileLength(savePath) < saveFileBufferSize) return;
+
+    // Load file
+    int bufferSize = saveFileBufferSize;
+    uint8_t* saveFileBuffer = LoadFileData(savePath, &bufferSize);
+    uint8_t* cursor = saveFileBuffer;
+
+    // Extract data from file to temp fields
+    uint16_t checksum1, checksum2, checksumComputed = 0;
+    uint16_t hsTimed[3], hsEndlss[3];
+    uint8_t  msc, sfx, fsc;
+
+    memmove(&checksum1, cursor, sizeof(checksum1));
+    cursor += sizeof(checksum1);
+
+    // Highscores
+    memmove(hsTimed, cursor, sizeof(hsTimed));
+    cursor += sizeof(hsTimed);
+    memmove(hsEndlss, cursor, sizeof(hsEndlss));
+    cursor += sizeof(hsEndlss);
+
+    // Options
+    memmove(&msc, cursor, sizeof(msc));
+    cursor += sizeof(msc);
+    memmove(&sfx, cursor, sizeof(sfx));
+    cursor += sizeof(sfx);
+    memmove(&fsc, cursor, sizeof(fsc));
+    cursor += sizeof(fsc);
+
+    memmove(&checksum2, cursor, sizeof(checksum2));
+
+    // Unload file
+    UnloadFileData(saveFileBuffer);
+
+    // Doing range tests for the scores and computing checksumTest for validation
+    // return if any value is out of range
+    for(short i = 0; i < 3; i++) {
+        if( hsTimed[i]  > 9999 || hsEndlss[i] > 9999 ) return;
+        checksumComputed += hsTimed[i] + hsEndlss[i];
+    }
+
+    checksumComputed += msc + sfx + fsc;
+
+    if(checksumComputed != checksum1 || checksumComputed != checksum2) return;
+
+    // If the function reaches here with no early-returns
+    // then it is safe to write the values to the actual variables
+    printf("If you read this, the file is safe to use\n"); 
 }
 
 /**

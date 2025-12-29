@@ -16,7 +16,9 @@ int main(int argc, char** argv) {
     cout << "TODO:::::::: load from file\n";
     // Generate the Path to the SAVE FILE and try loading from it
     initSavePath();
-    printf("SAVE PATH IS: %s\n", savePath);
+    load();
+
+    /*
 
     // Change app directory to Resources folder on MacOS
     #ifdef __APPLE__
@@ -81,6 +83,7 @@ int main(int argc, char** argv) {
 
     }
     closeApplication();
+    */
     save();
     cout << "TODO:::::::: save to file\n";
     return 0;
