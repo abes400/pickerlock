@@ -55,7 +55,7 @@ int initSavePath() {
 /**
  * Loads the highscores and the settings on the known path provided by the OS.
  */
-void load() {
+void loadFile() {
     // Check existance and length of the file
     if(!FileExists(savePath)) return;
     if(GetFileLength(savePath) < saveFileBufferSize) return;
@@ -118,7 +118,7 @@ void load() {
 /**
  * Saves the highscores and the settings on the known path provided by the OS.
  */
-void save() {
+void saveFile() {
     uint8_t     saveFileBuffer[saveFileBufferSize];                 // Buffer to be written from
     uint8_t     tempOpts[]  = {Opts::msc, Opts::sfx, Opts::fsc};    // Used separate array for sake of performance
     uint16_t    checksum    = Opts::msc + Opts::sfx + Opts::fsc;    // The validation value written on both ends of the buffer

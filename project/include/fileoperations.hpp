@@ -11,9 +11,9 @@ int initSavePath();
 /**
  * Loads the highscores and the settings on the known path provided by the OS.
  */
-void load();
+void loadFile();
 
 /**
  * Saves the highscores and the settings on the known path provided by the OS.
  */
-void save();
+void saveFile();
