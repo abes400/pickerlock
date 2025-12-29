@@ -2,6 +2,7 @@
 
 #include "gamesetup.h"
 #include "globals.hpp"
+#include "options.hpp"
 #include "gameloops.hpp"
 #include "commontasks.hpp"
 #include "fileoperations.hpp"
@@ -48,6 +49,11 @@ int main(int argc, char** argv) {
 
     // Initialize texture structs
     loadAssets();
+
+    // Apply settings
+    applyMusic();
+    applySfx();
+    if(Opts::fsc) toggleProperFullscreen();
 
     // Show splash screen
     //Splash();
