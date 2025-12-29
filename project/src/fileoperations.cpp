@@ -51,6 +51,9 @@ int initSavePath() {
 
 #endif
 
+/**
+ * Loads the highscores and the settings on the known path provided by the OS.
+ */
 void load() {
     // Check existance and length of the file
     if(!FileExists(savePath)) return;
@@ -100,43 +103,49 @@ void load() {
     if(checksumComputed != checksum1 || checksumComputed != checksum2) return;
 
     // If the function reaches here with no early-returns
-    // then it is safe to write the values to the actual variables
-    printf("If you read this, the file is safe to use\n"); 
+    // then it is safe to assign the values to the actual variables
+
+    for(short i = 0; i < 3; i++) {
+        Globals::highscores[i]        = hsTimed[i];
+        Globals::highscoresEndless[i] = hsEndlss[i];
+    }
+    Opts::msc = msc;
+    Opts::sfx = sfx;
+    Opts::fsc = fsc;
 }
 
 /**
  * Saves the highscores and the settings on the known path provided by the OS.
- * 
  */
 void save() {
     uint8_t     saveFileBuffer[saveFileBufferSize];                 // Buffer to be written from
-    uint8_t*    cursor      = saveFileBuffer + sizeof(uint16_t);    // Skipped by uint16_t size for the first checksum!
     uint8_t     tempOpts[]  = {Opts::msc, Opts::sfx, Opts::fsc};    // Used separate array for sake of performance
     uint16_t    checksum    = Opts::msc + Opts::sfx + Opts::fsc;    // The validation value written on both ends of the buffer
                                                                     // Initialized w/ values of settings
+    uint8_t*    cursor      = saveFileBuffer + sizeof(checksum);    // Skipped by uint16_t size for the first checksum!
 
 
     // Copying timed mode highscores on buffer (and computing checksum)
-    memmove(cursor, Globals::highscores, 3 * sizeof(uint16_t));
+    memmove(cursor, Globals::highscores, sizeof(Globals::highscores));
     checksum += Globals::highscores[Globals::EASY] 
               + Globals::highscores[Globals::MEDIUM] 
               + Globals::highscores[Globals::HARD];
-    cursor   += 3 * sizeof(uint16_t);
+    cursor   += sizeof(Globals::highscores);
 
     // Copying endless mode highscores on buffer (and computing checksum)
-    memmove(cursor, Globals::highscoresEndless, 3 * sizeof(uint16_t));
+    memmove(cursor, Globals::highscoresEndless, sizeof(Globals::highscoresEndless));
     checksum += Globals::highscoresEndless[Globals::EASY] 
               + Globals::highscoresEndless[Globals::MEDIUM] 
               + Globals::highscoresEndless[Globals::HARD];
-    cursor   += 3 * sizeof(uint16_t);
+    cursor   += sizeof(Globals::highscoresEndless);
 
     // Copying settings on buffer (checksum already computed)
-    memmove(cursor, tempOpts, 3 * sizeof(uint8_t));
-    cursor += 3 * sizeof(uint8_t);
+    memmove(cursor, tempOpts, sizeof(tempOpts));
+    cursor += sizeof(tempOpts);
 
     // Copying checksums on each end of the buffer
-    memmove(cursor, &checksum, sizeof(uint16_t));
-    memmove(saveFileBuffer, &checksum, sizeof(uint16_t));
+    memmove(cursor, &checksum, sizeof(checksum));
+    memmove(saveFileBuffer, &checksum, sizeof(checksum));
 
     MakeDirectory(GetPrevDirectoryPath(savePath));
     SaveFileData(savePath, saveFileBuffer, saveFileBufferSize);

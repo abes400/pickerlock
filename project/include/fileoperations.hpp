@@ -8,7 +8,9 @@ extern char savePath[];
  */
 int initSavePath();
 
-
+/**
+ * Loads the highscores and the settings on the known path provided by the OS.
+ */
 void load();
 
 /**
