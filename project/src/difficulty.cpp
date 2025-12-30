@@ -29,7 +29,7 @@ void Difficulty() {
     Button*     easy = new Button   (Vector2 {Globals::winCenterX - 170, diffTxtPos.y + 175  }, &Assets::btn, &Assets::btn_down);
     Button*     medi = new Button   (Vector2 {Globals::winCenterX,       diffTxtPos.y + 175  }, &Assets::btn, &Assets::btn_down);
     Button*     hard = new Button   (Vector2 {Globals::winCenterX + 170, diffTxtPos.y + 175  }, &Assets::btn, &Assets::btn_down);
-    Checkbox*   edls = new Checkbox (Vector2 {diffTxtPos.x        + 201, diffTxtPos.y - 2    }, &Assets::checkbox, 19, Globals::endless);
+    Checkbox*   edls = new Checkbox (Vector2 {diffTxtPos.x        + 201, diffTxtPos.y - 7    }, &Assets::checkbox, 25, Globals::endless);
 
     back -> addLabel(MiscMenuStr::back, LIFT, 8);
     easy -> addLabel(DiffStr::easy,     LIFT, 8);
@@ -40,7 +40,7 @@ void Difficulty() {
     Vector2 scoreTxtPos         = { Globals::winCenterX  - 167, boxY                 + 30 };
     Vector2 scoreValPos         = { scoreTxtPos.x        + 95,  scoreTxtPos.y        + 16 };
     Vector2 scoreTxtPosEndless  = { scoreTxtPos.x        + 170, scoreTxtPos.y             };
-    Vector2 scoreValPosEndless  = { scoreTxtPosEndless.x + 95,  scoreTxtPosEndless.y + 16 };
+    Vector2 scoreValPosEndless  = { scoreTxtPosEndless.x + 112,  scoreTxtPosEndless.y + 16 };
 
     // allocate 15 char long string buffer for high score values
     char* hsStr         = (char*) malloc(sizeof(char) * 15);

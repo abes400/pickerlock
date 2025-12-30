@@ -14,16 +14,16 @@ void Options() {
     float boxX          = (GetScreenWidth() - Assets::ui_box2.width)   / 2;
     float boxY          = (GetScreenHeight() - Assets::ui_box2.height) / 2;
 
-    Vector2 optsTxtPos  = { boxX + 72, boxY + 22  };
-    Vector2 rsetTxtPos  = { boxX + 52, boxY + 190 };
+    Vector2 optsTxtPos  = { boxX + 72, boxY + 22                };
+    Vector2 rsetTxtPos  = { boxX + 52, Globals::winCenterY + 50 };
 
     // Init btuttons
     Button* back    = new Button(Vector2 {Globals::winCenterX,       Globals::winCenterY + 120 }, &Assets::btn, &Assets::btn_down);
-    Button* rset    = new Button(Vector2 {Globals::winCenterX,       Globals::winCenterY + 25  }, &Assets::btn, &Assets::btn_down);
+    Button* rset    = new Button(Vector2 {Globals::winCenterX,       Globals::winCenterY + 60  }, &Assets::btn, &Assets::btn_down);
 
-    Checkbox* music = new Checkbox(Vector2 {Globals::winCenterX + 44,  Globals::winCenterY - 70  }, &Assets::checkbox, 19, Opts::msc);
-    Checkbox* sfx   = new Checkbox(Vector2 {Globals::winCenterX + 44,  Globals::winCenterY - 51  }, &Assets::checkbox, 19, Opts::sfx);
-    Checkbox* fscr  = new Checkbox(Vector2 {Globals::winCenterX + 44,  Globals::winCenterY - 32  }, &Assets::checkbox, 19, Opts::fsc);
+    Checkbox* music = new Checkbox(Vector2 {Globals::winCenterX + 44,  Globals::winCenterY - 75  }, &Assets::checkbox, 25, Opts::msc);
+    Checkbox* sfx   = new Checkbox(Vector2 {Globals::winCenterX + 44,  Globals::winCenterY - 38  }, &Assets::checkbox, 25, Opts::sfx);
+    Checkbox* fscr  = new Checkbox(Vector2 {Globals::winCenterX + 44,  Globals::winCenterY       }, &Assets::checkbox, 25, Opts::fsc);
 
     back    -> addLabel(MiscMenuStr::back, LIFT, 8);
     rset    -> addLabel(OptsStr::rsHS, LIFT, 8);
@@ -43,7 +43,7 @@ void Options() {
 
         if (back -> checkClick(mousePos, mousePressed)) {
             Globals::scene = Globals::MAIN_MENU; break; 
-        } else if (rset -> checkClick(mousePos, mousePressed)) {
+        } else if (!didReset && rset -> checkClick(mousePos, mousePressed)) {
             for(short mode = Globals::EASY; mode <= Globals::HARD; mode++)
                 Globals::highscores[mode] = Globals::highscoresEndless[mode] = 0;
             didReset = true;
@@ -70,7 +70,7 @@ void Options() {
         music -> draw();
         sfx   -> draw();
         fscr  -> draw();
-        rset  -> draw();
+        if(!didReset) rset  -> draw();
         back  -> draw();
         DrawTextureEx(Assets::cursor, mousePos, 0, 1, WHITE);
         
