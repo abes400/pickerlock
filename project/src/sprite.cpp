@@ -1,7 +1,7 @@
 #include "raylib.h"
 #include "sprite.hpp"
 
-/////////////////// IMPLEMENTATION OF SPRITEV ///////////////////
+// IMPLEMENTATION OF SPRITEV
 SpriteV::SpriteV (Vector2 position, const SpriteVProp* spriteProperty)
 : prop_(spriteProperty), 
   position_(position) {
@@ -26,10 +26,10 @@ void SpriteV::setFrame(short frame) {
 void SpriteV::draw() {
     DrawTextureRec(*(prop_ -> texture_), frame_crop_, position_, WHITE);
 }
-/////////////////////////////////////////////////////////////////
 
 
-/////////////////// IMPLEMENTATION OF ANIMATEDSPRITE ///////////////////
+
+// IMPLEMENTATION OF ANIMATEDSPRITE
 AnimatedSprite::
 AnimatedSprite(Vector2 position, const AnimatedSpriteProp* spriteProperty, Loopability loopable)
 : SpriteV(position, spriteProperty),
@@ -63,4 +63,3 @@ void AnimatedSprite::updateFrame(float deltaTime) {
     }
     
 }
-////////////////////////////////////////////////////////////////////////

@@ -1,6 +1,14 @@
 #include "checkbox.hpp"
 #include "globals.hpp"
 
+/**
+ * Creates a new instance of Checkbox.
+ * @param position Position of where the checkbox should be drawn.
+ * @param texture Texture to be drawn for the checkbox. (User is responsible for its allocation).
+ * @param frameHeight Height of each frame.
+ * @param checked Initial state of the checkbox.
+ * @return The address of the created checkbox.
+ */
 Checkbox::Checkbox(Vector2 position, Texture2D* texture, const float frameHeight, bool checked)
 : position_(position),
   texture_(texture),
@@ -14,6 +22,11 @@ Checkbox::Checkbox(Vector2 position, Texture2D* texture, const float frameHeight
     };
 }
 
+/**
+ * Checks whether the checkbox is clicked.
+ * @param mousePos Position of the cursor.
+ * @return true if the checkbox was clicked (press and release), false otherwise.
+ */
 bool Checkbox::checkClick(Vector2& mousePos) {
     if( IsMouseButtonReleased(MOUSE_BUTTON_LEFT) &&
         CheckCollisionPointRec(
@@ -34,7 +47,9 @@ bool Checkbox::checkClick(Vector2& mousePos) {
     return false;
 }
 
-
+/**
+ * Draws the checkbox on the set position.
+ */
 void Checkbox::draw() {
     DrawTextureRec(*texture_, frame_crop_, position_, WHITE);
 }

@@ -1,6 +1,13 @@
 #include "button.hpp"
 #include "globals.hpp"
 
+/**
+ * Creates a new instance of Button.
+ * @param position Position of where the button should be drawn.
+ * @param texture Texture to be drawn for the button when idle. (User is responsible for its allocation).
+ * @param texture_hold (OPTIONAL) Texture to be drawn for the button when held. (User is responsible for its allocation).
+ * @return The address of the created button.
+ */
 Button::Button(Vector2 position, Texture2D* texture, Texture2D* texture_hold)
 : texture_(texture), 
   currentTexture_(texture), 
@@ -10,6 +17,13 @@ Button::Button(Vector2 position, Texture2D* texture, Texture2D* texture_hold)
     position_.y -= texture_ -> height/2;
 }
 
+
+/**
+ * Assigns a label for the Button (measures the alignment automatically).
+ * @param label The label to be shown on the button.
+ * @param lifted (OPTIONAL) Does the button have illusion of being un-lifted when held? Then set this as LIFT, otherwise, NO_LIFT.
+ * @param lift_height Number of pixels to unlift the label when button is held (ignored if lifted is NO_LIFT).
+ */
 void Button::addLabel(const char* label, bool lifted, short lift_height) {
     if(label != nullptr) {
         label_          = label;
@@ -24,6 +38,12 @@ void Button::addLabel(const char* label, bool lifted, short lift_height) {
         labeled_ = false;
 }
 
+/**
+ * Assigns a label for the Button without measuring its alignment automatically.
+ * 
+ * Recommended if you want to quickly change the label.
+ * @param label The label to be shown on the button.
+ */
 void Button::addLabelWithoutMeasuring(const char* label) {
     if(label != nullptr) {
         label_   = label;
@@ -32,12 +52,22 @@ void Button::addLabelWithoutMeasuring(const char* label) {
         labeled_ = false;
 }
 
+/**
+ * Checks whether the button is clicked.
+ * @param mousePos Position of the cursor.
+ * @param mousePressed whether the mouse is held or not.
+ * @return true if the button was clicked (press and release), false otherwise.
+ */
 void Button::draw() {
     DrawTextureV(*currentTexture_, position_, WHITE);
     if(labeled_) DrawTextEx(Assets::uifont, label_, label_pos_, Assets::uifont.baseSize, 0, WHITE);
 }
 
 // TODO: Reimplement this dogshoot
+
+/**
+ * Draws the button on the set position.
+ */
 bool Button::checkClick(Vector2& mousePos, bool mousePressed) {
     if (mousePressed &&
         CheckCollisionPointRec(

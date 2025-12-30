@@ -5,8 +5,11 @@
 
 using namespace Assets;
 
-
+/**
+ * Loads assets on assets directory.
+ */
 void loadAssets() {
+    // Textures
     background      = LoadTexture("texture/bg.png");
     logo            = LoadTexture("texture/logo.png");
     start_btn       = LoadTexture("texture/start.png");
@@ -26,6 +29,7 @@ void loadAssets() {
     cursor          = LoadTexture("texture/cursor.png");
     checkbox        = LoadTexture("texture/checkbox.png");
 
+    // Fonts
     uifont          = LoadFont("font/uifont.png");
     numfont         = LoadFont("font/numfont.png");
 
@@ -39,6 +43,7 @@ void loadAssets() {
 
     SetTextureWrap(background, TEXTURE_WRAP_REPEAT);
 
+    // Sounds
     beep            = LoadSound("audio/beep.wav");
     buzzer          = LoadSound("audio/buzzer.wav");
     dial            = LoadSound("audio/dial.wav");
@@ -48,11 +53,15 @@ void loadAssets() {
     beep            = LoadSound("audio/beep.wav");
     wohoo           = LoadSound("audio/wohoo.wav");
 
+    // Music
     gameBgm         = LoadMusicStream("audio/gamebgm.wav");
     menuBgm         = LoadMusicStream("audio/menubgm.wav");
     
 }
 
+/**
+ * Unloads the assets
+ */
 void unloadAssets() {
     UnloadTexture(background);
     UnloadTexture(logo);
@@ -89,6 +98,14 @@ void unloadAssets() {
 
 }
 
+/**
+ * Sets the proper resolution depending on the Fullscreen state and calculates the center of the window.
+ * 
+ * If fullScreen is true, the resolution is set for the native screen.
+ * 
+ * Otherwise, it is 800 by 600.
+ * @param fullScreen Whether the resolution is adapted for the fullscreen or not.
+ */
 void adaptResolution(bool fullScreen) {
     float newWidth, newHeight;
     if(fullScreen) {
@@ -107,7 +124,10 @@ void adaptResolution(bool fullScreen) {
     SetWindowSize(newWidth, newHeight);
 }
 
-// Tiles the background texture in an animated manner
+/**
+ * Tiles the background texture in an animated manner.
+ * @param deltaTime The time that passed between the last frames.
+ */
 void tileBG(float deltaTime) {
     DrawTextureRec(background, bgRec, bgPos, WHITE);
     bgPos.x = bgPos.x <= - background.width ? 0 : bgPos.x - 40 * deltaTime;  
@@ -115,6 +135,13 @@ void tileBG(float deltaTime) {
     DrawFPS(0, 0);
 }
 
+/**
+ * "Asynchronously" holds delay and returns whether it is over.
+ * @param timer The variable to hold the time with
+ * @param delayLength How long the delay should be
+ * @param deltaTime The time that passed between the last frames.
+ * @return Whether the timer had reached 0 or not.
+ */
 bool delayIsOver (float* timer, float delayLength, float deltaTime) {
     *timer -= deltaTime;
     if(*timer <= 0) {
@@ -124,12 +151,24 @@ bool delayIsOver (float* timer, float delayLength, float deltaTime) {
     return false;
 }
 
+/**
+ * Prepares the process for the proper closing of the Application.
+ * 
+ * Unloads the assets and closes the window.
+ */
 void closeApplication() {
     unloadAssets();
     CloseAudioDevice();
     CloseWindow();
 }
 
+/**
+ * Prepares the process for the proper closing of the Application if something goes wrong.
+ * 
+ * No need to call closeApplication() since it is called here as well
+ * 
+ * @param code The error code to end the process with.
+ */
 void terminate(int code) {
     closeApplication();
     exit(code);
