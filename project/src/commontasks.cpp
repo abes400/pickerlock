@@ -88,7 +88,6 @@ void unloadAssets() {
     UnloadMusicStream(menuBgm);
 
 }
-#include<stdio.h>
 
 void adaptResolution(bool fullScreen) {
     float newWidth, newHeight;
@@ -96,11 +95,9 @@ void adaptResolution(bool fullScreen) {
         int monitor = GetCurrentMonitor();
         newWidth = GetMonitorWidth(monitor);
         newHeight = GetMonitorHeight(monitor);
-        printf("Fullscreen\n");
     } else {
         newWidth = W_WINDOW;
         newHeight = H_WINDOW;
-        printf("Window\n");
     }
     Globals::winCenterX = newWidth / 2;
     Globals::winCenterY = newHeight / 2;
@@ -108,7 +105,6 @@ void adaptResolution(bool fullScreen) {
     bgRec.height = newHeight + background.height;
 
     SetWindowSize(newWidth, newHeight);
-    printf("%f %f\n", newWidth, newHeight);
 }
 
 // Tiles the background texture in an animated manner
@@ -132,7 +128,6 @@ void closeApplication() {
     unloadAssets();
     CloseAudioDevice();
     CloseWindow();
-    printf("The application is closed and the assets are unloaded\n");
 }
 
 void terminate(int code) {

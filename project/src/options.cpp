@@ -9,12 +9,10 @@ namespace Opts {
     bool msc = true;
     bool fsc = false;
 }
-#include<stdio.h>
 /**
  * Applies the music setting according to value of Opts::msc
  */
 void applyMusic() {
-    printf("msc: %d", Opts::msc);
     float newVol = Opts::msc ? 1: 0;
     SetMusicVolume(Assets::gameBgm, newVol);
     SetMusicVolume(Assets::menuBgm, newVol);

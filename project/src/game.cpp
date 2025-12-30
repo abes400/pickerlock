@@ -257,10 +257,7 @@ void Game() {
     for(short i = 0 ; i < tileCount ; i++) delete tiles[i];
 }
 
-#include<stdio.h>
-
 void setHighScore(const int score) {
-    printf("Assessing high score...\n");
     uint16_t* scoreChart = Globals::endless ? Globals::highscoresEndless : Globals::highscores;
     if(score > scoreChart[Globals::difficulty])
        scoreChart[Globals::difficulty] = score;

@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <climits>
 #include "raylib.h"
 
 #include "gamesetup.h"
@@ -6,9 +9,6 @@
 #include "gameloops.hpp"
 #include "commontasks.hpp"
 #include "fileoperations.hpp"
-
-#include <iostream>
-using namespace std;
 
 int main(int argc, char** argv) {
 
@@ -19,7 +19,6 @@ int main(int argc, char** argv) {
 
     // Change app directory to Resources folder on MacOS
     #ifdef __APPLE__
-    cout << "----------------------------------> macOS\n";
     char* macOSPath = (char*) malloc(sizeof(char) * PATH_MAX);
     if(macOSPath) {
         snprintf(macOSPath, PATH_MAX, "%s/../Resources", GetApplicationDirectory());
@@ -27,7 +26,6 @@ int main(int argc, char** argv) {
         free(macOSPath);
     } else return EXIT_FAILURE;
     #else
-    cout << "----------------------------------> NOT macOS\n";
     ChangeDirectory(GetApplicationDirectory());
     #endif
 
@@ -36,7 +34,6 @@ int main(int argc, char** argv) {
     InitWindow(W_WINDOW, H_WINDOW, "Pickerlock");
     
     #ifdef _WIN32
-    cout << "----------------------------------> Windows\n";
     Image winIcon = LoadImage("texture/icon.png");
     SetWindowIcon(winIcon);
     UnloadImage(winIcon);
