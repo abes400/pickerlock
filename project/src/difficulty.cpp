@@ -73,7 +73,7 @@ void Difficulty() {
         mousePos        = GetMousePosition();
         mousePressed    = IsMouseButtonDown(MOUSE_BUTTON_LEFT);
 
-        if (back -> checkClick(mousePos, mousePressed)) {
+        if (back -> checkClick(mousePos, mousePressed) || IsKeyPressed(KEY_ESCAPE)) {
             Globals::scene = Globals::MAIN_MENU; break; 
         } else if (easy -> checkClick(mousePos, mousePressed)) {
             Globals::difficulty = Globals::EASY;

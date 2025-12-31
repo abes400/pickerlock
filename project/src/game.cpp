@@ -143,6 +143,10 @@ void Game() {
                 }
             break;
             case INPUT:
+                if(IsKeyPressed(KEY_ESCAPE)) {
+                    cardTimer = 0;
+                    gameState = END;
+                }
                 keyDirection = getDirectionFromKey(&handFrame);
                 if(keyDirection != NONE) {
                     PlaySound(Assets::dial);

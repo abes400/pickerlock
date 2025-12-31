@@ -42,7 +42,8 @@ void Instructions() {
 
         // Handle Button Events
         mousePos = GetMousePosition();
-        if(back -> checkClick(mousePos, IsMouseButtonDown(MOUSE_BUTTON_LEFT))) { Globals::scene = Globals::MAIN_MENU; break; }
+        if(back -> checkClick(mousePos, IsMouseButtonDown(MOUSE_BUTTON_LEFT)) || IsKeyPressed(KEY_ESCAPE))
+        { Globals::scene = Globals::MAIN_MENU; break; }
 
         // Handle visualisation animation
         instAnim -> updateFrame(deltaTime);
@@ -89,7 +90,8 @@ void Credits() {
 
         // Handle Button Events
         mousePos = GetMousePosition();
-        if(back -> checkClick(mousePos, IsMouseButtonDown(MOUSE_BUTTON_LEFT))) { Globals::scene = Globals::MAIN_MENU; break; }
+        if(back -> checkClick(mousePos, IsMouseButtonDown(MOUSE_BUTTON_LEFT)) || IsKeyPressed(KEY_ESCAPE))
+        { Globals::scene = Globals::MAIN_MENU; break; }
 
         // Draw elements
         BeginDrawing();
