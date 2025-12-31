@@ -1,6 +1,6 @@
 #pragma once
 
-extern char savePath[PATH_MAX];
+extern char savePath[];
 extern  short saveFileBufferSize;
 
 /**

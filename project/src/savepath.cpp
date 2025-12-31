@@ -6,6 +6,7 @@ short saveFileBufferSize = 8 * sizeof(uint16_t) + 3 * sizeof(uint8_t);
 
 #if defined(__APPLE__)
 
+#include <stdio.h>
 #include <sysdir.h>
 #include <glob.h>
 
