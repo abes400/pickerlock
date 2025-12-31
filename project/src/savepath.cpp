@@ -2,7 +2,6 @@
 #include <cstdint>
 
 char savePath[PATH_MAX];
-short saveFileBufferSize = 8 * sizeof(uint16_t) + 3 * sizeof(uint8_t);
 
 #if defined(__APPLE__)
 

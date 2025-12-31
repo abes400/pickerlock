@@ -4,6 +4,7 @@
 #include "options.hpp"
 #include "savepath.hpp"
 
+const short saveFileBufferSize = 8 * sizeof(uint16_t) + 3 * sizeof(uint8_t);
 
 /**
  * Loads the highscores and the settings on the known path provided by the OS.

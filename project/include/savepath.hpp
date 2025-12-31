@@ -1,7 +1,6 @@
 #pragma once
 
 extern char savePath[];
-extern  short saveFileBufferSize;
 
 /**
  * Generates the correct Save Path using the OS's API.
