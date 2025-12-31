@@ -40,6 +40,7 @@ int main(int argc, char** argv) {
     #endif
 
     HideCursor();
+    SetExitKey(KEY_NULL);
 
     // Init audio device
     InitAudioDevice();
