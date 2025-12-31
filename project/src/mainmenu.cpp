@@ -48,16 +48,15 @@ void MainMenu() {
         mousePos         = GetMousePosition();
         mousePressed     = IsMouseButtonDown(MOUSE_BUTTON_LEFT);
 
-        if (exit -> checkClick(mousePos, mousePressed) || IsKeyPressed(KEY_ESCAPE)) {
-            if(catchEscapeInput) { Globals::keepRunning = false; break; }
-            else catchEscapeInput = true;
-        }
-        else if(start -> checkClick(mousePos, mousePressed)) { Globals::scene = Globals::DIFFICULTY;   break; }
+        if      (start -> checkClick(mousePos, mousePressed)) { Globals::scene = Globals::DIFFICULTY;   break; }
         else if (instr -> checkClick(mousePos, mousePressed)) { Globals::scene = Globals::INSTRUCTIONS; break; }
         else if (optns -> checkClick(mousePos, mousePressed)) { Globals::scene = Globals::OPTIONS;      break; }
         else if (crdts -> checkClick(mousePos, mousePressed)) { Globals::scene = Globals::CREDITS;      break; }
+        else if (exit -> checkClick(mousePos, mousePressed) || IsKeyPressed(KEY_ESCAPE)) {
+            if(catchEscapeInput) { Globals::keepRunning = false; break; }
+            else catchEscapeInput = true;
+        }
         
-
         // Draw elements
         BeginDrawing();
         ClearBackground(PL_YELLOW);
