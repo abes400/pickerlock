@@ -4,6 +4,12 @@
 #define UNCHECKED false
 #define CHECKED   true
 
+
+/**
+ * Class for Button Objects which are clickable.
+ * 
+ * Holds a boolean state showing whether it's checked or not.
+ */
 class Checkbox {
 private:
     Texture2D*  texture_;
@@ -20,7 +26,7 @@ public:
     /**
      * Creates a new instance of Checkbox.
      * @param position Position of where the checkbox should be drawn.
-     * @param texture Texture to be drawn for the checkbox. (User is responsible for its allocation).
+     * @param texture Texture to be drawn for the checkbox. (User is responsible for its allocation) (Frames should be arranged VERTICALLY).
      * @param frameHeight Height of each frame.
      * @param checked Initial state of the checkbox.
      * @return The address of the created checkbox.

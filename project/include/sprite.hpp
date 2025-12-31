@@ -1,12 +1,22 @@
 #pragma once
 #include "raylib.h"
 
+/**
+ * Struct for holding common properties shared by similar SpriteV sprites.
+ * Made for efficiency. User is responsible for the allocation/deallocation
+ * 
+ * The spritesheet to be fed as the texture should contain the frames VERTICALLY
+ */
 struct SpriteVProp {
     const Texture2D* texture_;
     const float      frameH_;
     const short      frame_count_;
 };
 
+/**
+ * Class for Sprite Objects with multiple indexed frames and positions.
+ * V is for Vertical since the frames should be arranged VERTICALLY
+ */
 class SpriteV {
 protected:
     const SpriteVProp* prop_;
@@ -44,19 +54,46 @@ public:
     void draw();
 };
 
+
+/**
+ * Struct for holding common properties shared by similar Animated Sprites.
+ * Made for efficiency. User is responsible for the allocation/deallocation
+ * 
+ * The spritesheet to be fed as the texture should contain the frames VERTICALLY
+ */
 struct AnimatedSpriteProp : public SpriteVProp {
     const float frame_timer_second_;
 };
 
+
 enum Loopability { LOOPABLE = true, NOT_LOOPABLE = false };
 enum PlayState   { PLAY     = true, PAUSE        = false };
 
+
+
+/**
+ * Class for Animated Sprite Objects with multiple indexed frames and positions.
+ * V is for Vertical since the frames should be arranged VERTICALLY
+ * 
+ * Unlike SpriteV, AnimatedSprite's frame can be advanced with updateFrame()
+ * function called every time in the game loop.
+ */
 class AnimatedSprite : public SpriteV {
 private:
     float   frame_timer_;
     
 public:
+    /**
+     * Decides whether the sprite should loop after the final frame.
+     * LOOPABLE: Can loop when the last frame is advanced.
+     * NOT_LOOPABLE: is_playing is set to PAUSE and hence, the sprite pauses.
+     */
     enum Loopability    loop;
+
+    /**
+     * PLAY: the frame advances as the updateFrame() is called.
+     * PAUSE: the frame doesn't advance as the updateFrame() is called.
+     */
     enum PlayState      is_playing = PAUSE;
 
     /**

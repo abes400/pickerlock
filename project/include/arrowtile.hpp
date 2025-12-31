@@ -3,6 +3,12 @@
 
 
 enum Directions { UP = 0, RIGHT, DOWN, LEFT, NONE };
+
+
+/**
+ * Class for the Tile Objects with multiple indexed frames, positions, AND DIRECTIONS.
+ * V is for Vertical since the frames should be arranged VERTICALLY
+ */
 class ArrowTile : public AnimatedSprite {
 private:
     

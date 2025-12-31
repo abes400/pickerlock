@@ -3,6 +3,11 @@
 
 #define LIFT true
 #define NO_LIFT false
+
+
+/**
+ * Class for Button Objects which are clickable.
+ */
 class Button {
 private:
     Texture2D*  texture_;
