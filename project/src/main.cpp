@@ -8,6 +8,7 @@
 #include "options.hpp"
 #include "gameloops.hpp"
 #include "commontasks.hpp"
+#include "savepath.hpp"
 #include "fileoperations.hpp"
 
 int main(int argc, char** argv) {

@@ -1,63 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <climits>
-#include "globals.hpp"
-#include "options.hpp"
 #include "raylib.h"
 
-char savePath[PATH_MAX];
-const short saveFileBufferSize = 8 * sizeof(uint16_t) + 3 * sizeof(uint8_t);
+#include "globals.hpp"
+#include "options.hpp"
+#include "savepath.hpp"
 
-#if defined(__APPLE__)
-
-#include <sysdir.h>
-#include <glob.h>
-
-/**
- * Generates the correct Save Path using the OS's API.
- * 
- * The path is saved on a global buffer, no need to free it.
- * 
- * @return Whether the correct save path was successfully fetched.
- */
-bool initSavePath() {
-
-    char path[PATH_MAX];
-    sysdir_search_path_enumeration_state state = 
-    sysdir_start_search_path_enumeration(SYSDIR_DIRECTORY_APPLICATION_SUPPORT, SYSDIR_DOMAIN_MASK_USER);
-
-    if((state = sysdir_get_next_search_path_enumeration(state, path)) == 0) return false;
-
-    glob_t buffer = {0};
-    int result = glob(path, GLOB_TILDE | GLOB_NOSORT, NULL, &buffer);
-
-    if(result) return false;
-    if(buffer.gl_pathc <= 0) {
-        globfree(&buffer);
-        return false;
-    }
-
-    int validate = snprintf(savePath, PATH_MAX, "%s/Flying Map Entertainment/Pickerlock/save", buffer.gl_pathv[0]);
-    globfree(&buffer);
-    return validate >= 0 && validate < PATH_MAX;
-
-}
-
-#elif defined(_WIN32)
-
-/**
- * Generates the correct Save Path using the OS's API.
- * 
- * The path is saved on a global buffer, no need to free it.
- * 
- * @return Whether the correct save path was successfully fetched.
- */
-int initSavePath() {
-    
-}
-
-#endif
 
 /**
  * Loads the highscores and the settings on the known path provided by the OS.
