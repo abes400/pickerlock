@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <climits>
 #include <cstdint>
 
@@ -5,7 +6,6 @@ char savePath[PATH_MAX];
 
 #if defined(__APPLE__)
 
-#include <stdio.h>
 #include <sysdir.h>
 #include <glob.h>
 
@@ -40,6 +40,7 @@ bool initSavePath() {
 }
 
 #elif defined(_WIN32)
+#include <windows.h>
 #include <shlobj.h>
 
 /**
@@ -49,8 +50,21 @@ bool initSavePath() {
  * 
  * @return Whether the correct save path was successfully fetched.
  */
-int initSavePath() {
-    return 31;
+bool initSavePath() {
+/*
+    PWSTR pathWin;
+    HRESULT hres = SHGetKnownFolderPath((REFKNOWNFOLDERID)FOLDERID_LocalAppData, 0, nullptr, &pathWin);
+    if(hres != S_OK) return false;
+
+    printf("%S\n", path);
+
+    char path[PATH_MAX];
+
+    
+    return false;
+
+*/
+return false;
 }
 
 #endif

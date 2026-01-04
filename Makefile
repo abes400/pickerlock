@@ -12,7 +12,7 @@ APP_RES_PATH			= appres
 EXEC_NAME				= Pickerlock
 
 # windows specific opts
-WINDOWS_LINKED_LIBS 	= -lopengl32 -lgdi32 -lwinmm
+WINDOWS_LINKED_LIBS 	= -lopengl32 -lgdi32 -lwinmm -lshell32 -luuid
 WINDOWS_RAYLIB_LINKED 	= libraylib_windows_x64.a
 WINDOWS_OUTPUT_DIR 		= windows_x64
 

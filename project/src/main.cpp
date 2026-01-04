@@ -85,5 +85,6 @@ int main(int argc, char** argv) {
     }
     closeApplication();
     saveFile();
+    
     return 0;
 }

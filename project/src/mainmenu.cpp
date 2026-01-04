@@ -6,14 +6,6 @@
 #include "menustr.hpp"
 #include "commontasks.hpp"
 
-#include<stdio.h>
-
-// It is a dead stupid fix but it works at least
-// This prevents IsKeyPressed from returning true when it is 
-// suppose to return false!
-// Works normal in other menus but here it won't stop *itching!
-bool catchEscapeInput = true;
-
 void MainMenu() {
     if(!IsMusicStreamPlaying(Assets::menuBgm))
         PlayMusicStream(Assets::menuBgm);
@@ -52,10 +44,7 @@ void MainMenu() {
         else if (instr -> checkClick(mousePos, mousePressed)) { Globals::scene = Globals::INSTRUCTIONS; break; }
         else if (optns -> checkClick(mousePos, mousePressed)) { Globals::scene = Globals::OPTIONS;      break; }
         else if (crdts -> checkClick(mousePos, mousePressed)) { Globals::scene = Globals::CREDITS;      break; }
-        else if (exit -> checkClick(mousePos, mousePressed) || IsKeyPressed(KEY_ESCAPE)) {
-            if(catchEscapeInput) { Globals::keepRunning = false; break; }
-            else catchEscapeInput = true;
-        }
+        else if (exit  -> checkClick(mousePos, mousePressed)) { Globals::keepRunning = false;           break; }
         
         // Draw elements
         BeginDrawing();
@@ -72,9 +61,12 @@ void MainMenu() {
         DrawTextureEx(Assets::cursor, mousePos, 0, 1, WHITE);
 
         EndDrawing();
-    }
 
-    catchEscapeInput = false;
+
+        // Escape key input is caught here
+        // I know it sounds stupid but otherwise, the input is caught even if you return from another menu.
+        if(IsKeyPressed(KEY_ESCAPE)) { Globals::keepRunning = false;           break; }
+    }
 
     // Deallocate Buttons
     delete start;
