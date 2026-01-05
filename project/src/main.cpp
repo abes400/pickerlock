@@ -8,7 +8,7 @@
 #include "options.hpp"
 #include "gameloops.hpp"
 #include "commontasks.hpp"
-#include "savepath.hpp"
+#include "osspecific.hpp"
 #include "fileoperations.hpp"
 
 int main(int argc, char** argv) {
@@ -31,6 +31,9 @@ int main(int argc, char** argv) {
     #elif defined(_WIN32)
 
     // TODO : Prevent multiple instance loading
+
+
+
     ChangeDirectory(GetApplicationDirectory());
 
     #endif
