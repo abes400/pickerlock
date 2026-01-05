@@ -41,5 +41,5 @@ bool initSavePath() {
 }
 
 #elif defined(_WIN32)
-
+char savePath[] = "save";
 #endif
