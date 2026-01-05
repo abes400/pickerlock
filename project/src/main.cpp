@@ -13,13 +13,11 @@
 
 int main(int argc, char** argv) {
 
-    // TODO : Prevent multiple instance loading
-    
-    
-
+    // Platform-specific initialization tasks
+    #if defined(__APPLE__)
     // Change app directory to Resources folder on MacOS
     // Generate the Path to the SAVE FILE
-    #ifdef __APPLE__
+
     char* macOSPath = (char*) malloc(sizeof(char) * PATH_MAX);
     if(macOSPath) {
         snprintf(macOSPath, PATH_MAX, "%s/../Resources", GetApplicationDirectory());
@@ -29,8 +27,12 @@ int main(int argc, char** argv) {
         initSavePath();
         MakeDirectory(GetPrevDirectoryPath(savePath));
     } else return EXIT_FAILURE;
-    #else
+
+    #elif defined(_WIN32)
+
+    // TODO : Prevent multiple instance loading
     ChangeDirectory(GetApplicationDirectory());
+
     #endif
 
     // Try loading from save file
