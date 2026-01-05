@@ -41,5 +41,19 @@ bool initSavePath() {
 }
 
 #elif defined(_WIN32)
+
+#include<windows.h>
+
 char savePath[] = "save";
+
+/**
+ * Checks whether there is already an instance running on the system.
+ * 
+ * @return Whether there is already an instance running on the system.
+ */
+bool instanceAlreadyExists() {
+    CreateMutexA(0, 1, "Global\\PickerlockInstanceMutex");
+
+    return GetLastError() == ERROR_ALREADY_EXISTS;
+}
 #endif

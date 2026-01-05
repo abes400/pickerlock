@@ -30,9 +30,7 @@ int main(int argc, char** argv) {
 
     #elif defined(_WIN32)
 
-    // TODO : Prevent multiple instance loading
-
-
+    if(instanceAlreadyExists()) return EXIT_FAILURE;
 
     ChangeDirectory(GetApplicationDirectory());
 
@@ -66,7 +64,7 @@ int main(int argc, char** argv) {
     if(Opts::fsc) toggleProperFullscreen();
 
     // Show splash screen
-    Splash();
+    //Splash();
 
     // Game loop
     Globals::scene = Globals::MAIN_MENU;

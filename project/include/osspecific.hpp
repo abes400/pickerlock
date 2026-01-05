@@ -1,5 +1,10 @@
 #pragma once
 
+
+
+
+#if defined(__APPLE__)
+
 extern char savePath[];
 
 /**
@@ -12,3 +17,16 @@ extern char savePath[];
  * @return Whether the correct save path was successfully fetched.
  */
 bool initSavePath();
+
+#elif defined(_WIN32)
+
+extern char savePath[];
+
+/**
+ * Checks whether there is already an instance running on the system.
+ * 
+ * @return Whether there is already an instance running on the system.
+ */
+bool instanceAlreadyExists();
+
+#endif
