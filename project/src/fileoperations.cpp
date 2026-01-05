@@ -102,6 +102,5 @@ void saveFile() {
     memmove(cursor, &checksum, sizeof(checksum));
     memmove(saveFileBuffer, &checksum, sizeof(checksum));
 
-    MakeDirectory(GetPrevDirectoryPath(savePath));
     SaveFileData(savePath, saveFileBuffer, saveFileBufferSize);
 }

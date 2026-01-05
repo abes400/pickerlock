@@ -1,18 +1,19 @@
+#if defined(__APPLE__)
+
 #include <stdio.h>
 #include <climits>
 #include <cstdint>
-
-char savePath[PATH_MAX];
-
-#if defined(__APPLE__)
-
 #include <sysdir.h>
 #include <glob.h>
+
+char savePath[PATH_MAX];
 
 /**
  * Generates the correct Save Path using the OS's API.
  * 
  * The path is saved on a global buffer, no need to free it.
+ * 
+ * WARNING: NOT AVAILABLE ON WIN32 (YET) DUE TO THE LIMITATIONS OF RAYLIB
  * 
  * @return Whether the correct save path was successfully fetched.
  */
@@ -40,31 +41,5 @@ bool initSavePath() {
 }
 
 #elif defined(_WIN32)
-#include <windows.h>
-#include <shlobj.h>
-
-/**
- * Generates the correct Save Path using the OS's API.
- * 
- * The path is saved on a global buffer, no need to free it.
- * 
- * @return Whether the correct save path was successfully fetched.
- */
-bool initSavePath() {
-/*
-    PWSTR pathWin;
-    HRESULT hres = SHGetKnownFolderPath((REFKNOWNFOLDERID)FOLDERID_LocalAppData, 0, nullptr, &pathWin);
-    if(hres != S_OK) return false;
-
-    printf("%S\n", path);
-
-    char path[PATH_MAX];
-
-    
-    return false;
-
-*/
-return false;
-}
 
 #endif

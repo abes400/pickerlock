@@ -14,21 +14,27 @@
 int main(int argc, char** argv) {
 
     // TODO : Prevent multiple instance loading
-    // Generate the Path to the SAVE FILE and try loading from it
-    initSavePath();
-    loadFile();
+    
+    
 
     // Change app directory to Resources folder on MacOS
+    // Generate the Path to the SAVE FILE
     #ifdef __APPLE__
     char* macOSPath = (char*) malloc(sizeof(char) * PATH_MAX);
     if(macOSPath) {
         snprintf(macOSPath, PATH_MAX, "%s/../Resources", GetApplicationDirectory());
         ChangeDirectory(macOSPath);
         free(macOSPath);
+
+        initSavePath();
+        MakeDirectory(GetPrevDirectoryPath(savePath));
     } else return EXIT_FAILURE;
     #else
     ChangeDirectory(GetApplicationDirectory());
     #endif
+
+    // Try loading from save file
+    loadFile();
 
     // Init game window
     SetConfigFlags(FLAG_VSYNC_HINT);
