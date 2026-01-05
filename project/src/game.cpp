@@ -128,89 +128,89 @@ void Game() {
         deltaTime = GetFrameTime();
 
         switch(gameState) {
-            case GET_READY:
-                if (delayIsOver(&cardTimer, READY_TIME, deltaTime)) {
-                    card -> setFrame(1);
-                    PlaySound(Assets::slam);
-                    gameState = START;
-                }
+        case GET_READY:
+            if (delayIsOver(&cardTimer, READY_TIME, deltaTime)) {
+                card -> setFrame(1);
+                PlaySound(Assets::slam);
+                gameState = START;
+            }
             break;
-            case START:
-                if (delayIsOver(&cardTimer, START_TIME, deltaTime)) {
-                        cardVisible = false;
-                        timerActive = true;
-                        gameState = INPUT;
-                }
-            break;
-            case INPUT:
-                if(IsKeyPressed(KEY_ESCAPE)) {
-                    cardTimer = 0;
-                    gameState = END;
-                }
-                keyDirection = getDirectionFromKey(&handFrame);
-                if(keyDirection != NONE) {
-                    PlaySound(Assets::dial);
-                    hand -> setFrame(handFrame);
-                    if(tiles[current_tile] -> direction == keyDirection) {
-                        tiles[current_tile] -> is_playing = PLAY;
-                        current_tile++;
-
-                        if(current_tile >= tileCount) {
-                            current_tile = 0;
-                            hand -> setFrame(0);
-                            lockAnim -> is_playing = PLAY;
-                            PlaySound(Assets::unlock);
-                            snprintf(scoreStr, SCORE_STR_LEN, GameStr::scoref, ++score);
-                            if(Globals::endless) {
-                                gameTimer = 3;
-                                gameTimerDelay = 1;
-                                snprintf(timeStr,  TIME_STR_LEN,  GameStr::timef,  gameTimer);
-                            }
-                            gameState = ADVANCE;
-                        }
-                    } else {
-                        tiles[current_tile] -> setFrame(0);
-                        timerActive = false;
-                        StopMusicStream(Assets::gameBgm);
-                        PlaySound(Assets::buzzer);
-                        if(Globals::endless) setHighScore(score);
-                        gameState = WRONG_MOVE;
-                    }
-                }                
-            break;
-            case ADVANCE:
-                lockAnim -> updateFrame(deltaTime);
-                if(lockAnim -> is_playing == PAUSE) {
-                    hand -> setFrame(2);
-                    lockAnim -> setFrame(0);
-                    decideDirectionForAll(tileCount, tiles);
-                    resetAllTiles(tileCount, tiles);
+        case START:
+            if (delayIsOver(&cardTimer, START_TIME, deltaTime)) {
+                    cardVisible = false;
+                    timerActive = true;
                     gameState = INPUT;
+            }
+            break;
+        case INPUT:
+            if(IsKeyPressed(KEY_ESCAPE)) {
+                cardTimer = 0;
+                gameState = END;
+            }
+            keyDirection = getDirectionFromKey(&handFrame);
+            if(keyDirection != NONE) {
+                PlaySound(Assets::dial);
+                hand -> setFrame(handFrame);
+                if(tiles[current_tile] -> direction == keyDirection) {
+                    tiles[current_tile] -> is_playing = PLAY;
+                    current_tile++;
+
+                    if(current_tile >= tileCount) {
+                        current_tile = 0;
+                        hand -> setFrame(0);
+                        lockAnim -> is_playing = PLAY;
+                        PlaySound(Assets::unlock);
+                        snprintf(scoreStr, SCORE_STR_LEN, GameStr::scoref, ++score);
+                        if(Globals::endless) {
+                            gameTimer = 3;
+                            gameTimerDelay = 1;
+                            snprintf(timeStr,  TIME_STR_LEN,  GameStr::timef,  gameTimer);
+                        }
+                        gameState = ADVANCE;
+                    }
+                } else {
+                    tiles[current_tile] -> setFrame(0);
+                    timerActive = false;
+                    StopMusicStream(Assets::gameBgm);
+                    PlaySound(Assets::buzzer);
+                    if(Globals::endless) setHighScore(score);
+                    gameState = WRONG_MOVE;
                 }
+            }                
+            break;
+        case ADVANCE:
+            lockAnim -> updateFrame(deltaTime);
+            if(lockAnim -> is_playing == PAUSE) {
+                hand -> setFrame(2);
+                lockAnim -> setFrame(0);
+                decideDirectionForAll(tileCount, tiles);
+                resetAllTiles(tileCount, tiles);
+                gameState = INPUT;
+            }
 
             break;
-            case WRONG_MOVE:
-                if(delayIsOver(&cardTimer, GMEND_TIME, deltaTime)) {
-                    if(Globals::endless) {
-                        card -> setFrame(4);
-                        hand -> setFrame(4);
-                        PlaySound(Assets::wohoo);
-                    } else {
-                        card -> setFrame(3);
-                        hand -> setFrame(5);
-                        PlaySound(Assets::grunt);
-                    }
-                    
-                    cardVisible = true;
-                    cardTimer = GMEND_TIME;
-                    gameState = END;
+        case WRONG_MOVE:
+            if(delayIsOver(&cardTimer, GMEND_TIME, deltaTime)) {
+                if(Globals::endless) {
+                    card -> setFrame(4);
+                    hand -> setFrame(4);
+                    PlaySound(Assets::wohoo);
+                } else {
+                    card -> setFrame(3);
+                    hand -> setFrame(5);
+                    PlaySound(Assets::grunt);
                 }
+                
+                cardVisible = true;
+                cardTimer = GMEND_TIME;
+                gameState = END;
+            }
             break;
-            case END:
-                if(delayIsOver(&cardTimer, GMEND_TIME, deltaTime)) {
-                    StopMusicStream(Assets::gameBgm);
-                    Globals::scene = Globals::DIFFICULTY;
-                }  
+        case END:
+            if(delayIsOver(&cardTimer, GMEND_TIME, deltaTime)) {
+                StopMusicStream(Assets::gameBgm);
+                Globals::scene = Globals::DIFFICULTY;
+            }  
             break;
         }
 

@@ -70,22 +70,22 @@ int main(int argc, char** argv) {
     while(Globals::keepRunning && !WindowShouldClose()) {
 
         switch(Globals::scene) {
-            case Globals::MAIN_MENU:
+        case Globals::MAIN_MENU:
             MainMenu();
             break;
-            case Globals::DIFFICULTY:
+        case Globals::DIFFICULTY:
             Difficulty();
             break;
-            case Globals::IN_GAME:
+        case Globals::IN_GAME:
             Game();
             break;
-            case Globals::INSTRUCTIONS:
+        case Globals::INSTRUCTIONS:
             Instructions();
             break;
-            case Globals::OPTIONS:
+        case Globals::OPTIONS:
             Options();
             break;
-            case Globals::CREDITS:
+        case Globals::CREDITS:
             Credits();
             break;
         }
