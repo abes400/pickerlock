@@ -20,7 +20,7 @@ bool initSavePath();
 
 #elif defined(_WIN32)
 
-extern char savePath[];
+constexpr const char* savePath = "save";
 
 /**
  * Checks whether there is already an instance running on the system.

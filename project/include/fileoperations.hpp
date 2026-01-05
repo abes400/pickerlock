@@ -1,7 +1,5 @@
 #pragma once
 
-extern char savePath[];
-
 /**
  * Generates the correct Save Path using the OS's API.
  * 

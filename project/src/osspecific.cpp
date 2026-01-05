@@ -44,8 +44,6 @@ bool initSavePath() {
 
 #include<windows.h>
 
-char savePath[] = "save";
-
 /**
  * Checks whether there is already an instance running on the system.
  * 
