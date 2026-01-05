@@ -63,31 +63,19 @@ int main(int argc, char** argv) {
     if(Opts::fsc) toggleProperFullscreen();
 
     // Show splash screen
-    //Splash();
+    Splash();
 
     // Game loop
     Globals::scene = Globals::MAIN_MENU;
     while(Globals::keepRunning && !WindowShouldClose()) {
 
         switch(Globals::scene) {
-        case Globals::MAIN_MENU:
-            MainMenu();
-            break;
-        case Globals::DIFFICULTY:
-            Difficulty();
-            break;
-        case Globals::IN_GAME:
-            Game();
-            break;
-        case Globals::INSTRUCTIONS:
-            Instructions();
-            break;
-        case Globals::OPTIONS:
-            Options();
-            break;
-        case Globals::CREDITS:
-            Credits();
-            break;
+        case Globals::MAIN_MENU:    MainMenu();     break;
+        case Globals::DIFFICULTY:   Difficulty();   break;
+        case Globals::IN_GAME:      Game();         break;
+        case Globals::INSTRUCTIONS: Instructions(); break;
+        case Globals::OPTIONS:      Options();      break;
+        case Globals::CREDITS:      Credits();      break;
         }
 
     }
