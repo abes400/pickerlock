@@ -50,7 +50,7 @@ namespace DiffStr {
 
     constexpr const char* endTxt = "Endless Mode";
     constexpr const char* mdDsc1 = "- Given 20 seconds through entire game.\n- Game ends as the time runs out.";
-    constexpr const char* mdDsc2 = "- Given 3 to 5 seconds for each lock,\n  depending on difficulty.\n"
+    constexpr const char* mdDsc2 = "- Given 3 seconds for each lock,\n  depending on difficulty.\n"
                                    "- Time resets as you crack each lock.\n"
                                    "- Game ends as the time runs out.";
 }
