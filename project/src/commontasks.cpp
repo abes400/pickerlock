@@ -132,7 +132,7 @@ void tileBG(float deltaTime) {
     DrawTextureRec(background, bgRec, bgPos, WHITE);
     bgPos.x = bgPos.x <= - background.width ? 0 : bgPos.x - 40 * deltaTime;  
     bgPos.y = bgPos.y <= - background.height ? 0 : bgPos.y - 40 * deltaTime;  
-    DrawFPS(0, 0);
+    //DrawFPS(0, 0);
 }
 
 /**

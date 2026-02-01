@@ -37,7 +37,7 @@ win:
 
 	@echo [ INFO ] WINDOWS BUILD SUCCEEDED. Output located at dist/$(WINDOWS_OUTPUT_DIR)/
 
-	./dist/$(WINDOWS_OUTPUT_DIR)/$(EXEC_NAME)/$(EXEC_NAME) 
+#	./dist/$(WINDOWS_OUTPUT_DIR)/$(EXEC_NAME)/$(EXEC_NAME) 
 
 # macOS specific opts
 MACOS_ARCHS			= -arch x86_64 -arch arm64
