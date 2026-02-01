@@ -64,7 +64,7 @@ int main(int argc, char** argv) {
     if(Opts::fsc) toggleProperFullscreen();
 
     // Show splash screen
-    //Splash();
+    Splash();
 
     // Game loop
     Globals::scene = Globals::MAIN_MENU;

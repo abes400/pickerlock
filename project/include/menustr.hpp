@@ -12,29 +12,31 @@ namespace MainMenuStr {
 
 namespace InstructionsStr {
     constexpr const char* instTxt = "Objective: \n"
-                    "You are in a lock picking contest. \n"
-                    "Your task to open as many locks as you can before time runs out. \n\n\n\n\n\n\n\n\n\n\n"
+                    "You don't know how and when you decided to do so, \n"
+                    "but somehow, you found yourself enrolled in a lock picking contest. \n"
+                    "You are tasked to open as many locks as you can. \n\n\n\n\n\n\n\n\n\n"
 
                     "Instructions: \n"
                     "Press the arrow keys in the order given on screen to open each lock. \n"
                     "As you successfully open a lock, you will be given the next one. \n"
-                    "If you press the wrong button, you'll get disqualified.";
+                    "If you press the wrong button, the game ends.";
 }
 
 namespace CreditsStr {
     constexpr const char* credTxt =
                     "PICKERLOCK from FLYING MAP ENTERTAINMENT\n"
-                    "Version 1.0 - Deluxe Edition - Jan. ??, 2026\n\n\n\n"
+                    "Version 1.0 - Deluxe Edition - Feb. 01, 2026\n\n\n\n"
 
                     "- Concept, Programming, and Artwork -\n"
                     "I. K. Bilir (Abes400)\n\n\n\n"
 
                     "- Music -\n" 
                     "\"Safe At Home\" by Marcelo Fernandez - marcelofernandezmusic.com\n"
-                    "\"A Journey Awaits\" by Pierre Bondoerffer - opengameart.org: pbondoer\n\n\n\n"
+                    "\"A Journey Awaits\" by Pierre Bondoerffer - opengameart.org: pbondoer\n\n\n"
 
                     "Distributed under MIT License.\n"
-                    "Made for 20 Second Game Jam 2025.";;
+                    "Initially made for 20 Second Game Jam 2025.\n"
+                    "Altered for 20 Million Second Game Jam.";
 }
 
 namespace DiffStr {
@@ -48,9 +50,9 @@ namespace DiffStr {
 
     constexpr const char* endTxt = "Endless Mode";
     constexpr const char* mdDsc1 = "- Given 20 seconds through entire game.\n- Game ends as the time runs out.";
-    constexpr const char* mdDsc2 = "- Given limited seconds for each lock,\n  depending on the difficulty.\n"
-                                   "- Time resets as each lock is cracked.\n"
-                                   "- Game ends as time runs out.";
+    constexpr const char* mdDsc2 = "- Given 3 to 5 seconds for each lock,\n  depending on difficulty.\n"
+                                   "- Time resets as you crack each lock.\n"
+                                   "- Game ends as the time runs out.";
 }
 
 namespace OptsStr {
