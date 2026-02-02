@@ -5,6 +5,8 @@
 Made with [Raylib 5.5](https://www.raylib.com/) using C++.  
 Distributed under MIT License.
 
+**[Jump to Build Instructions](#build-instructions)**
+
 
 ## Screenshots
 <img src="./screenshots/mainmenu.png" width="400" alt="Main Menu">
@@ -80,7 +82,7 @@ Repo_Directory\
 
 <br>
 
-### Clear the dist directory
+### Clear the `dist` directory
 ```
 make clear
 ```
