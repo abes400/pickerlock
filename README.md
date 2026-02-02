@@ -52,7 +52,7 @@ Repo_Directory\
 - #### Prerequisites for Windows
     - **MSYS2** with MINGW64 -- *[Download From Here](https://www.msys2.org/) if not installed*
     - **GCC** for MINGW64 -- *Run `pacman -S mingw-w64-x86_64-gcc` if not installed*
-    - **Make** for MINGW64 -- *Run `pacman -S mingw-w64-x86_64-make` if not installed*
+    - **Make** for MINGW64 -- *Run `pacman -S make` if not installed*
 
 - #### Building for Windows
     On MSYS2 MINGW64 Bash:  
