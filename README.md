@@ -7,11 +7,13 @@ Distributed under MIT License.
 
 **[Jump to Build Instructions](#build-instructions)**
 
+<br>
 
 Main Menu             |  Gameplay
 :-------------------------:|:-------------------------:
 ![Main Menu](./screenshots/mainmenu.png)  |  ![Gameplay](./screenshots/gameplay.png)
 
+<br>
 
 ## About the Game
 You don't know how and when you decided to do so, but somehow, you found yourself enrolled in a lock picking contest. No prize, no praise, just 20 seconds  and an opportuity to show off your speed. There is one simple rule: NO MISTAKES! Otherwise, you're out.
@@ -32,6 +34,7 @@ Programming and Visuals - **Abes400**
 Menu Music - **“Safe At Home”** by **[Marcelo Fernández](https://www.marcelofernandezmusic.com/)**  (Licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/))  
 In-game Music: -  **"A Journey Awaits"** by **[Pierre Bondoerffer](https://opengameart.org/users/pbondoer)**
 
+<br>
 
 ## Build Instructions
 **NOTE**: From now on, the toppermost directory of this repository will be referred to as the ***Repo Directory***. As you clone this repository, this directory will probably be named as **Pickerlock**. The sub contents of **Repo Directory** should be as follows:  
