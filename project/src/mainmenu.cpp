@@ -27,7 +27,7 @@ void MainMenu() {
     exit  -> addLabel(MainMenuStr::exit, LIFT, 8);
 
     // Initialize ByLine
-    Vector2 bylinePos   = { logoX - 20, GetScreenHeight() - 32.0f };
+    Vector2 bylinePos   = { logoX - 25, GetScreenHeight() - 32.0f };
 
     Vector2 mousePos;
     bool    mousePressed;
