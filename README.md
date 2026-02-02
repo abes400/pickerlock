@@ -9,8 +9,8 @@ Distributed under MIT License.
 
 
 ## Screenshots
-<img src="./screenshots/mainmenu.png" width="400" alt="Main Menu">
-<img src="./screenshots/gameplay.png" width="400" alt="Gameplay">
+<img src="./screenshots/mainmenu.png" width="300" alt="Main Menu">
+<img src="./screenshots/gameplay.png" width="300" alt="Gameplay">
 
 <br>
 
