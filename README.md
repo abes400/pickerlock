@@ -7,13 +7,13 @@ Distributed under MIT License.
 
 **[Jump to Build Instructions](#build-instructions)**
 
-<br>
+<hr>
 
 Main Menu             |  Gameplay
 :-------------------------:|:-------------------------:
 ![Main Menu](./screenshots/mainmenu.png)  |  ![Gameplay](./screenshots/gameplay.png)
 
-<br>
+<hr>
 
 ## About the Game
 You don't know how and when you decided to do so, but somehow, you found yourself enrolled in a lock picking contest. No prize, no praise, just 20 seconds  and an opportuity to show off your speed. There is one simple rule: NO MISTAKES! Otherwise, you're out.
