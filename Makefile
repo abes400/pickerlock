@@ -35,9 +35,9 @@ win:
 
 	rm dist/$(WINDOWS_OUTPUT_DIR)/winicon.o
 
-	@echo [ INFO ] WINDOWS BUILD SUCCEEDED. Output located at dist/$(WINDOWS_OUTPUT_DIR)/
+	start .\dist\$(WINDOWS_OUTPUT_DIR)\
 
-#	./dist/$(WINDOWS_OUTPUT_DIR)/$(EXEC_NAME)/$(EXEC_NAME) 
+	@echo [ INFO ] WINDOWS BUILD SUCCEEDED. Output located at dist/$(WINDOWS_OUTPUT_DIR)/
 
 # macOS specific opts
 MACOS_ARCHS			= -arch x86_64 -arch arm64
@@ -62,11 +62,10 @@ osx:
 	$(MACOS_LINKED_LIBS) $(LINKED_LIB_PATH)$(MACOS_RAYLIB_LINKED)	\
 	-o dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/MacOS/$(EXEC_NAME)
 
-	./dist/$(MACOS_OUTPUT_DIR)/$(EXEC_NAME).app/Contents/MacOS/$(EXEC_NAME)
+	open ./dist/$(MACOS_OUTPUT_DIR)/
 
 	@echo [ INFO ] MACOS BUILD SUCCEEDED. Output located at dist/$(MACOS_OUTPUT_DIR)/
 
-# ./dist/$(MACOS_OUTPUT_DIR)/Pickerlock
 
 clear:
 	rm -rf dist
