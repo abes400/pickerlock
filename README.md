@@ -51,11 +51,11 @@ Repo_Directory\
 ### Windows (x64)
 - #### Prerequisites for Windows
     - **MSYS2** with MINGW64 -- *[Download From Here](https://www.msys2.org/) if not installed*
-    - **GCC** for MINGW64 -- *Run `pacman -S mingw-w64-x86_64-gcc` if not installed*
-    - **Make** for MINGW64 -- *Run `pacman -S make` if not installed*
+    - **GCC** for MINGW64 -- *Run `pacman -S mingw-w64-x86_64-gcc` on **MSYS2 Terminal** if not installed*
+    - **Make** for MINGW64 -- *Run `pacman -S make` on **MSYS2 Terminal** if not installed*
 
 - #### Building for Windows
-    On MSYS2 MINGW64 Bash:  
+    On MSYS2 **MINGW64** Bash:  
     ```
     # Go to the Repo Directory
     cd /path/to/the/Repo_Directory
@@ -69,7 +69,7 @@ Repo_Directory\
 
 ### macOS (Universal)
 - #### Prerequisites for macOS
-    - **Xcode Command Line Tools**  -- *Run `xcode-select --install` to install*
+    - **Xcode Command Line Tools**  -- *Run `xcode-select --install` on **Terminal** if not installed*
 
 - #### Building for macOS
     On Terminal:
