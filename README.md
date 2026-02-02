@@ -1,4 +1,4 @@
-![Pickerlock Logo](./screenshots/logo.png)
+![Pickerlock Logo](./repo_assets/logo.png)
 #### A simple lock picking game made for [20 Second Game Jam 2025](https://itch.io/jam/20-second-game-jam-2025).
 
 [See itch.io page.](https://abes400.itch.io/pickerlock)  
@@ -11,7 +11,7 @@ Distributed under MIT License.
 
 Main Menu             |  Gameplay
 :-------------------------:|:-------------------------:
-![Main Menu](./screenshots/mainmenu.png)  |  ![Gameplay](./screenshots/gameplay.png)
+![Main Menu](./repo_assets/mainmenu.png)  |  ![Gameplay](./repo_assets/gameplay.png)
 
 <hr>
 
