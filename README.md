@@ -1,4 +1,4 @@
-# Pickerlock
+![Pickerlock: How many locks can you crack open in 20 seconds?](./screenshots/logo.png)
 #### A simple lock picking game made for [20 Second Game Jam 2025](https://itch.io/jam/20-second-game-jam-2025).
 
 [See itch.io page.](https://abes400.itch.io/pickerlock)  
