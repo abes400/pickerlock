@@ -1,11 +1,12 @@
 ![Pickerlock Logo](./repo_assets/logo.png)
 #### A simple lock picking game made for [20 Second Game Jam 2025](https://itch.io/jam/20-second-game-jam-2025).
 
-[See itch.io page.](https://abes400.itch.io/pickerlock)  
+[See the itch.io page.](https://abes400.itch.io/pickerlock)  
 Made with [Raylib 5.5](https://www.raylib.com/) using C++.  
 Distributed under MIT License.
 
-**[Jump to Build Instructions](#build-instructions)**
+**[Jump to Build Instructions](#build-instructions)**  
+**[Jump to Building Installers](#building-installers)**
 
 <hr>
 
