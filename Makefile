@@ -31,13 +31,13 @@ win:
 	$(LINKED_LIB_PATH)$(WINDOWS_RAYLIB_LINKED) $(WINDOWS_LINKED_LIBS) 	\
 	-o dist/$(WINDOWS_OUTPUT_DIR)/$(EXEC_NAME)/$(EXEC_NAME) 			\
 	-static																\
-#   -mwindows
+    -mwindows
 
-#	rm dist/$(WINDOWS_OUTPUT_DIR)/winicon.o
+	rm dist/$(WINDOWS_OUTPUT_DIR)/winicon.o
 
-#	start .\dist\$(WINDOWS_OUTPUT_DIR)\
+	start .\dist\$(WINDOWS_OUTPUT_DIR)\
 
-	./dist/$(WINDOWS_OUTPUT_DIR)/$(EXEC_NAME)/$(EXEC_NAME) 
+#	./dist/$(WINDOWS_OUTPUT_DIR)/$(EXEC_NAME)/$(EXEC_NAME) 
 
 	@echo [ INFO ] WINDOWS BUILD SUCCEEDED. Output located at dist/$(WINDOWS_OUTPUT_DIR)/
 
