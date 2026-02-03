@@ -68,6 +68,26 @@ osx:
 
 	@echo [ INFO ] MACOS BUILD SUCCEEDED. Output located at dist/$(MACOS_OUTPUT_DIR)/
 
+DMG_OUTPUT_DIR = dist/$(MACOS_OUTPUT_DIR)/Install_Pickerlock_1.0.dmg
+dmg:
+	clear
+	create-dmg \
+    --volname "Install Pickerlock 1.0" \
+    --volicon "project/$(APP_RES_PATH)/osx/install.icns" \
+    --background "project/$(APP_RES_PATH)/osx/dmgbg.png" \
+    --window-pos 200 120 \
+    --window-size 540 380 \
+    --icon-size 80 \
+    --icon "Pickerlock.app" 150 250 \
+    --hide-extension "Pickerlock.app" \
+    --app-drop-link 380 250 \
+    "$(DMG_OUTPUT_DIR)" \
+    "dist/macosx_universal/"
+
+	open $(DMG_OUTPUT_DIR)/..
+
+	@echo [ INFO ] MACOS INSTALLER CREATED. Output located at $(DMG_OUTPUT_DIR)
+
 
 clear:
 	rm -rf dist
