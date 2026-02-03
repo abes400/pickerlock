@@ -84,6 +84,37 @@ Repo_Directory\
 
 <br>
 
+## Building Installers
+
+### Windows (x64)
+- #### Prerequisites for Windows
+    - **NullSoft Scriptable Install System (NSIS)** -- *[Download From Here](https://nsis.sourceforge.io/Download)*
+
+- #### Building Installer for Windows
+    - Open **NSIS**
+    - Select **Compile NSI scripts**
+    - Drag & drop the **[Windows Installer Script](./project/appres/win/windows_installer.nsi)** to the ***MakeNSISW*** window.
+    - On success, you should see the ***Installer executable*** at `Repo_Directory\dist\windows_x64`.
+
+<br>
+
+### macOS (Universal)
+- #### Prerequisites for macOS
+    - **create-dmg Command Line Tool**  -- *Run `brew install create-dmg` on **Terminal** if not installed (Homebrew required)*
+
+- #### Building Installer for macOS
+    On Terminal:
+    ```
+    # Go to the Repo Directory
+    cd /path/to/the/Repo_Directory
+
+    # Create the .dmg file with create-dmg
+    make dmg
+    ```
+    On success, you should see the **Installer Disk Image** at `Repo_Directory/dist/macosx_universal`.
+
+<br>
+
 ### Clear the `dist` directory
 ```
 make clear
