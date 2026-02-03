@@ -65,7 +65,7 @@ bool initSavePath() {
 
     PWSTR prog_data_path = nullptr;
 
-    HRESULT hres = SHGetKnownFolderPath((REFKNOWNFOLDERID)FOLDERID_ProgramData, 0, nullptr, &prog_data_path);
+    HRESULT hres = SHGetKnownFolderPath((REFKNOWNFOLDERID)FOLDERID_Public, 0, nullptr, &prog_data_path);
     if(FAILED(hres)) return false;
 
     int pdpath_size_as_multibyte = WideCharToMultiByte(CP_UTF8, 0, prog_data_path, -1, nullptr, 0, nullptr, nullptr);
