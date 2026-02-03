@@ -32,7 +32,7 @@ You don't know how and when you decided to do so, but somehow, you found yoursel
 
 ## Credits
 Programming and Visuals - **Abes400**  
-Menu Music - **“Safe At Home”** by **[Marcelo Fernández](https://www.marcelofernandezmusic.com/)**  (Licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/))  
+Menu Music - **"Safe At Home"** by **[Marcelo Fernández](https://www.marcelofernandezmusic.com/)**  (Licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/))  
 In-game Music: -  **"A Journey Awaits"** by **[Pierre Bondoerffer](https://opengameart.org/users/pbondoer)**
 
 <br>
