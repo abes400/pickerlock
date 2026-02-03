@@ -1,19 +1,17 @@
-#if defined(__APPLE__)
-
-#include <stdio.h>
 #include <climits>
+#include <stdio.h>
+
+char savePath[PATH_MAX];
+
+#if defined(__APPLE__)
 #include <cstdint>
 #include <sysdir.h>
 #include <glob.h>
-
-char savePath[PATH_MAX];
 
 /**
  * Generates the correct Save Path using the OS's API.
  * 
  * The path is saved on a global buffer, no need to free it.
- * 
- * WARNING: NOT AVAILABLE ON WIN32 (YET) DUE TO THE LIMITATIONS OF RAYLIB
  * 
  * @return Whether the correct save path was successfully fetched.
  */
@@ -41,8 +39,8 @@ bool initSavePath() {
 }
 
 #elif defined(_WIN32)
-
 #include<windows.h>
+#include<shlobj.h>
 
 /**
  * Checks whether there is already an instance running on the system.
@@ -54,4 +52,43 @@ bool instanceAlreadyExists() {
 
     return GetLastError() == ERROR_ALREADY_EXISTS;
 }
+
+/**
+ * Generates the correct Save Path using the OS's API.
+ * 
+ * The path is saved on a global buffer, no need to free it.
+ * 
+ * @return Whether the correct save path was successfully fetched.
+ */
+
+bool initSavePath() {
+
+    PWSTR prog_data_path = nullptr;
+
+    HRESULT hres = SHGetKnownFolderPath((REFKNOWNFOLDERID)FOLDERID_ProgramData, 0, nullptr, &prog_data_path);
+    if(FAILED(hres)) return false;
+
+    int pdpath_size_as_multibyte = WideCharToMultiByte(CP_UTF8, 0, prog_data_path, -1, nullptr, 0, nullptr, nullptr);
+
+    char* prog_data_path_multibyte = (char*) malloc(sizeof(char) * pdpath_size_as_multibyte);
+
+    if(!prog_data_path_multibyte) {
+        CoTaskMemFree(prog_data_path);
+        return false;
+    }
+
+    int converted = WideCharToMultiByte(CP_UTF8, 0, prog_data_path, -1, prog_data_path_multibyte, pdpath_size_as_multibyte, nullptr, nullptr);
+    CoTaskMemFree(prog_data_path);
+
+    if(!converted) {
+        free(prog_data_path_multibyte);
+        return false;
+    }
+
+    int validate = snprintf(savePath, PATH_MAX, "%s\\Flying Map Entertainment\\Pickerlock\\save", prog_data_path_multibyte);
+    free(prog_data_path_multibyte);
+
+    return validate >= 0 && validate < PATH_MAX;
+}
+
 #endif

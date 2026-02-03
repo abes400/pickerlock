@@ -16,16 +16,12 @@ int main(int argc, char** argv) {
     // Platform-specific initialization tasks
     #if defined(__APPLE__)
     // Change app directory to Resources folder on MacOS
-    // Generate the Path to the SAVE FILE
 
     char* macOSPath = (char*) malloc(sizeof(char) * PATH_MAX);
     if(macOSPath) {
         snprintf(macOSPath, PATH_MAX, "%s/../Resources", GetApplicationDirectory());
         ChangeDirectory(macOSPath);
         free(macOSPath);
-
-        initSavePath();
-        MakeDirectory(GetPrevDirectoryPath(savePath));
     } else return EXIT_FAILURE;
 
     #elif defined(_WIN32)
@@ -35,6 +31,10 @@ int main(int argc, char** argv) {
     ChangeDirectory(GetApplicationDirectory());
 
     #endif
+
+    // Generate the Path to the SAVE FILE
+    initSavePath();
+    MakeDirectory(GetPrevDirectoryPath(savePath));
 
     // Try loading from save file
     loadFile();

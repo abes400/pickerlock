@@ -12,7 +12,7 @@ APP_RES_PATH			= appres
 EXEC_NAME				= Pickerlock
 
 # windows specific opts
-WINDOWS_LINKED_LIBS 	= -lopengl32 -lgdi32 -lwinmm
+WINDOWS_LINKED_LIBS 	= -lopengl32 -lgdi32 -lwinmm -luuid -lole32
 WINDOWS_RAYLIB_LINKED 	= libraylib_windows_x64.a
 WINDOWS_OUTPUT_DIR 		= windows_x64
 
@@ -31,11 +31,13 @@ win:
 	$(LINKED_LIB_PATH)$(WINDOWS_RAYLIB_LINKED) $(WINDOWS_LINKED_LIBS) 	\
 	-o dist/$(WINDOWS_OUTPUT_DIR)/$(EXEC_NAME)/$(EXEC_NAME) 			\
 	-static																\
-    -mwindows
+#   -mwindows
 
-	rm dist/$(WINDOWS_OUTPUT_DIR)/winicon.o
+#	rm dist/$(WINDOWS_OUTPUT_DIR)/winicon.o
 
-	start .\dist\$(WINDOWS_OUTPUT_DIR)\
+#	start .\dist\$(WINDOWS_OUTPUT_DIR)\
+
+	./dist/$(WINDOWS_OUTPUT_DIR)/$(EXEC_NAME)/$(EXEC_NAME) 
 
 	@echo [ INFO ] WINDOWS BUILD SUCCEEDED. Output located at dist/$(WINDOWS_OUTPUT_DIR)/
 
