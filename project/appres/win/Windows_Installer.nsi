@@ -17,6 +17,11 @@
 !define REG_APP_PATH "Software\Microsoft\Windows\CurrentVersion\App Paths\${MAIN_APP_EXE}"
 !define UNINSTALL_PATH "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}"
 
+!define MUI_WELCOMEFINISHPAGE_BITMAP ".\gameplay.bmp"
+!define MUI_ICON ".\install.ico"
+!define MUI_HEADERIMAGE
+!define MUI_HEADERIMAGE_BITMAP ".\header.bmp"
+
 ######################################################################
 
 VIProductVersion  "${VERSION}"
@@ -49,6 +54,8 @@ InstallDir "$PROGRAMFILES\Flying Map Entertainment\Pickerlock"
 !ifdef LICENSE_TXT
 !insertmacro MUI_PAGE_LICENSE "${LICENSE_TXT}"
 !endif
+
+!insertmacro MUI_PAGE_DIRECTORY
 
 !ifdef REG_START_MENU
 !define MUI_STARTMENUPAGE_NODISABLE
