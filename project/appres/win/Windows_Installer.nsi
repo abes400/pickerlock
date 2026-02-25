@@ -6,11 +6,11 @@
 
 !define APP_NAME "Pickerlock"
 !define COMP_NAME "Flying Map Entertainment"
-!define VERSION "01.00.00.00"
+!define VERSION "01.01.00.00"
 !define COPYRIGHT "Copyright (c) 2025-2026 Flying Map Entertainment"
 !define DESCRIPTION "A simple lock picking game made for 20 Second Game Jam 2025."
 !define LICENSE_TXT "..\..\..\LICENSE"
-!define INSTALLER_NAME "..\..\..\dist\windows_x64\Install_Pickerlock_1.0.exe"
+!define INSTALLER_NAME "..\..\..\dist\windows_x64\Install_Pickerlock_1.1.exe"
 !define MAIN_APP_EXE "Pickerlock.exe"
 !define INSTALL_TYPE "SetShellVarContext all"
 !define REG_ROOT "HKLM"

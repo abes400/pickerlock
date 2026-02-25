@@ -294,19 +294,19 @@ short rotateFrame(short min, short max, short value, short direction) {
 }
 
 Directions getDirectionFromKey (short* frameNumber) {
-    if      (IsKeyPressed(KEY_UP)) {
+    if      (IsKeyPressed(KEY_UP) || IsKeyPressed(KEY_W)) {
         *frameNumber = rotateFrame(1, 3, *frameNumber, 1);
         return UP;
     }     
-    else if (IsKeyPressed(KEY_DOWN)) {
+    else if (IsKeyPressed(KEY_DOWN) || IsKeyPressed(KEY_S)) {
         *frameNumber = rotateFrame(1, 3, *frameNumber, -1);
         return DOWN;
     }
-    else if (IsKeyPressed(KEY_LEFT)) {
+    else if (IsKeyPressed(KEY_LEFT) || IsKeyPressed(KEY_A)) {
         *frameNumber = rotateFrame(1, 3, *frameNumber, 1);
         return LEFT;
     }   
-    else if (IsKeyPressed(KEY_RIGHT)) {
+    else if (IsKeyPressed(KEY_RIGHT) || IsKeyPressed(KEY_D)) {
         *frameNumber = rotateFrame(1, 3, *frameNumber, -1);
         return RIGHT;
     }  

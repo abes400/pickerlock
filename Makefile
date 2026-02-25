@@ -68,11 +68,11 @@ osx:
 
 	@echo [ INFO ] MACOS BUILD SUCCEEDED. Output located at dist/$(MACOS_OUTPUT_DIR)/
 
-DMG_OUTPUT_DIR = dist/$(MACOS_OUTPUT_DIR)/Install_Pickerlock_1.0.dmg
+DMG_OUTPUT_DIR = dist/$(MACOS_OUTPUT_DIR)/Install_Pickerlock_1.1.dmg
 dmg:
 	clear
 	create-dmg \
-    --volname "Install Pickerlock 1.0" \
+    --volname "Install Pickerlock 1.1" \
     --volicon "project/$(APP_RES_PATH)/osx/install.icns" \
     --background "project/$(APP_RES_PATH)/osx/dmgbg.png" \
     --window-pos 200 120 \

@@ -17,15 +17,15 @@ namespace InstructionsStr {
                     "You are tasked to open as many locks as you can. \n\n\n\n\n\n\n\n\n\n"
 
                     "Instructions: \n"
-                    "Press the arrow keys in the order given on screen to open each lock. \n"
+                    "Open each lock by pressing the arrow / WASD keys in the order given. \n"
                     "As you successfully open a lock, you will be given the next one. \n"
-                    "If you press the wrong button, the game ends.";
+                    "If you press the wrong key, the game ends.";
 }
 
 namespace CreditsStr {
     constexpr const char* credTxt =
                     "PICKERLOCK from FLYING MAP ENTERTAINMENT\n"
-                    "Version 1.0 - Deluxe Edition - Feb. 01, 2026\n\n\n\n"
+                    "Version 1.1 - Deluxe Edition - Feb. 25, 2026\n\n\n\n"
 
                     "- Concept, Programming, and Artwork -\n"
                     "I. K. Bilir (Abes400)\n\n\n\n"
