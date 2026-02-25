@@ -20,7 +20,7 @@ Main Menu             |  Gameplay
 You don't know how and when you decided to do so, but somehow, you found yourself enrolled in a lock picking contest. No prize, no praise, just 20 seconds  and an opportuity to show off your speed. There is one simple rule: NO MISTAKES! Otherwise, you're out.
 
 ### Controls
-- **Arrow Keys:** Pick the locks  
+- **Arrow Keys / WASD:** Pick the locks  
 - **Mouse:** Interact with menus
 
 ### 3 Difficulty Modes
