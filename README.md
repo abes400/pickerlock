@@ -42,7 +42,7 @@ In-game Music: -  **"A Journey Awaits"** by **[Pierre Bondoerffer](https://openg
 ```
 Repo_Directory\
 ├─ project\
-├─ screenshots\
+├─ repo_assets\
 ├─ .gitignore
 ├─ LICENSE
 ├─ Makefile
