@@ -41,6 +41,7 @@ In-game Music: -  **"A Journey Awaits"** by **[Pierre Bondoerffer](https://openg
 **NOTE**: From now on, the toppermost directory of this repository will be referred to as the ***Repo Directory***. As you clone this repository, this directory will probably be named as **Pickerlock**. The sub contents of **Repo Directory** should be as follows:  
 ```
 Repo_Directory\
+├─ .vscode\
 ├─ project\
 ├─ repo_assets\
 ├─ .gitignore
